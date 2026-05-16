@@ -1,6 +1,6 @@
 # Tourism Weather ML
 
-Proyecto de Machine Learning para estimar la demanda turistica en Espana a partir de datos de turismo, clima, calendario y movilidad.
+Proyecto de Machine Learning para estimar la demanda turística en España a partir de datos de turismo, clima, calendario y movilidad.
 
 ## Problema elegido
 
@@ -18,11 +18,11 @@ Prediccion supervisada de ocupacion/pernoctaciones hoteleras por provincia o com
 ## Fuentes de datos elegidas
 
 1. Dataestur: demanda turistica agregada, alojamientos, gasto y transporte.
-2. AEMET OpenData: observaciones climaticas oficiales.
+2. Open-Meteo: clima historico diario reproducible por provincia.
 3. Calendario laboral/festivos: estacionalidad, puentes y vacaciones.
 4. AENA Open Data: movilidad aeroportuaria como proxy de demanda.
 
-Para el clima se usa Open-Meteo Historical Weather API por accesibilidad y reproducibilidad. AEMET queda como fuente oficial española de contraste y solo se descarga si se pide explicitamente con `--source aemet`.
+AEMET queda como fuente oficial española de contraste y solo se descarga si se pide explícitamente con `--source aemet`.
 
 ## Primeros pasos
 
@@ -59,7 +59,7 @@ descargados en `datasets/raw/`, sin subir nada a S3:
 python scripts/run_pipeline.py --process --skip-s3-upload
 ```
 
-Por defecto el script intenta el flujo completo: despliegue idempotente, ingesta y procesamiento. La ingesta por defecto usa Dataestur para turismo, Open-Meteo para clima y `holidays` para calendario laboral; AEMET queda fuera salvo ejecucion explicita con `--source aemet`. Si un recurso ya existe, se reutiliza. Las opciones `--deploy`, `--ingest`, `--process`, `--source` y `--dataestur-endpoint` quedan para depuracion o ejecuciones parciales.
+Por defecto el script intenta el flujo completo: despliegue idempotente, ingesta y procesamiento. La ingesta por defecto usa Dataestur para turismo, Open-Meteo para clima, `holidays` para calendario laboral y los ficheros AENA locales para movilidad; AEMET queda fuera salvo ejecucion explicita con `--source aemet`. Si un recurso ya existe, se reutiliza. Las opciones `--deploy`, `--ingest`, `--process`, `--source` y `--dataestur-endpoint` quedan para depuracion o ejecuciones parciales.
 
 ## Dataestur
 
@@ -150,7 +150,7 @@ La ingesta guarda el calendario original local en `datasets/raw/holidays/origina
 
 ## Open-Meteo
 
-Open-Meteo es la fuente climatica recomendada para el MVP: no requiere API key y permite descargar el historico diario 2015-2024 por coordenadas representativas de cada provincia.
+Open-Meteo es la fuente climatica principal del proyecto: no requiere API key y permite descargar el historico diario 2015-2024 por coordenadas representativas de cada provincia.
 
 ```env
 OPEN_METEO_FROM_DATE=2015-10-01
@@ -177,12 +177,28 @@ python scripts/run_pipeline.py --ingest --source open_meteo
 La ingesta guarda los JSON originales locales en `datasets/raw/open_meteo/original/` y sus manifests en `datasets/raw/open_meteo/landing_manifest/`. En S3 conserva la capa `bronze/open_meteo/...`.
 Si la API devuelve `429`, el conector espera y reintenta. Si una ejecucion se corta, vuelve a lanzar el mismo comando: con `OPEN_METEO_SKIP_EXISTING=true` reutiliza los ficheros ya descargados y continua con los que faltan.
 
+## AENA
+
+Los ficheros mensuales de AENA se descargan manualmente desde el portal de estadisticas de AENA y se guardan localmente en `datasets/raw/aena/`. El script no automatiza esa descarga; solo registra y procesa los Excel locales. Soporta los Excel historicos `.xls` y los `.xlsx` modernos:
+
+```bash
+python scripts/run_pipeline.py --ingest --source aena --dry-run
+python scripts/run_pipeline.py --process --source aena --skip-s3-upload
+```
+
+El procesamiento genera:
+
+- `datasets/processed/silver/aena_monthly_air_traffic.csv`
+- `datasets/processed/silver/aena_monthly_air_traffic_by_province.csv`
+
+La tabla gold incorpora las features `aena_passengers`, `aena_operations`, `aena_cargo_kg` y `aena_airport_count` por provincia y mes.
+
 ## Estructura
 
 ```text
 config/                  Configuracion declarativa del proyecto
 datasets/                Datos locales de apoyo, no versionar grandes datasets
 docs/                    Arquitectura, decisiones y fuentes
-notebooks/               Entregables explicativos por hito
+notebooks/               Notebook principal y analisis incrementales del proyecto
 scripts/run_pipeline.py  Script unico de despliegue, ingesta y procesamiento
 ```

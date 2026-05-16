@@ -16,6 +16,7 @@ import os
 import re
 import sys
 import time
+import unicodedata
 import zipfile
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -196,6 +197,68 @@ PROVINCE_REGION_CODES = {
     "Bizkaia": "PV",
     "Zamora": "CL",
     "Zaragoza": "AR",
+}
+
+
+AENA_AIRPORT_PROVINCES = {
+    "A CORUNA": "A Coruna",
+    "ADOLFO SUAREZ MADRID-BARAJAS": "Madrid",
+    "AEROPUERTO INTL. REGION MURCIA": "Murcia",
+    "ALBACETE": "Albacete",
+    "ALGECIRAS-HELIPUERTO": "Cadiz",
+    "ALICANTE-ELCHE": "Alicante",
+    "ALICANTE-ELCHE MIGUEL HDEZ.": "Alicante",
+    "ALMERIA": "Almeria",
+    "ASTURIAS": "Asturias",
+    "BADAJOZ": "Badajoz",
+    "BARCELONA-EL PRAT": "Barcelona",
+    "BARCELONA-EL PRAT J.T.": "Barcelona",
+    "BILBAO": "Bizkaia",
+    "BURGOS": "Burgos",
+    "CEUTA-HELIPUERTO": "Ceuta",
+    "CORDOBA": "Cordoba",
+    "EL HIERRO": "Santa Cruz de Tenerife",
+    "FGL GRANADA-JAEN": "Granada",
+    "FUERTEVENTURA": "Las Palmas",
+    "GIRONA": "Girona",
+    "GIRONA-COSTA BRAVA": "Girona",
+    "GRAN CANARIA": "Las Palmas",
+    "HUESCA-PIRINEOS": "Huesca",
+    "IBIZA": "Illes Balears",
+    "JEREZ DE LA FRONTERA": "Cadiz",
+    "LA GOMERA": "Santa Cruz de Tenerife",
+    "LA PALMA": "Santa Cruz de Tenerife",
+    "LANZAROTE": "Las Palmas",
+    "LANZAROTE CESAR MANRIQUE": "Las Palmas",
+    "LANZAROTE-CESAR MANRIQUE": "Las Palmas",
+    "LEON": "Leon",
+    "LOGRONO": "La Rioja",
+    "MADRID-CUATRO VIENTOS": "Madrid",
+    "MALAGA-COSTA DEL SOL": "Malaga",
+    "MELILLA": "Melilla",
+    "MENORCA": "Illes Balears",
+    "MURCIA-SAN JAVIER": "Murcia",
+    "PALMA DE MALLORCA": "Illes Balears",
+    "PAMPLONA": "Navarra",
+    "REUS": "Tarragona",
+    "SABADELL": "Barcelona",
+    "SALAMANCA": "Salamanca",
+    "SAN SEBASTIAN": "Gipuzkoa",
+    "SANTIAGO": "A Coruna",
+    "SANTIAGO-ROSALIA DE CASTRO": "A Coruna",
+    "SEVE BALLESTEROS-SANTANDER": "Cantabria",
+    "SEVILLA": "Sevilla",
+    "SON BONET": "Illes Balears",
+    "TENERIFE NORTE": "Santa Cruz de Tenerife",
+    "TENERIFE NORTE-C. LA LAGUNA": "Santa Cruz de Tenerife",
+    "TENERIFE SUR": "Santa Cruz de Tenerife",
+    "TENERIFE-NORTE": "Santa Cruz de Tenerife",
+    "TENERIFE-SUR": "Santa Cruz de Tenerife",
+    "VALENCIA": "Valencia",
+    "VALLADOLID": "Valladolid",
+    "VIGO": "Pontevedra",
+    "VITORIA": "Alava",
+    "ZARAGOZA": "Zaragoza",
 }
 
 
@@ -562,7 +625,7 @@ def ensure_lambda_function(settings: Settings) -> None:
 
 def ingest(settings: Settings, args: argparse.Namespace) -> list[str]:
     actions: list[str] = []
-    selected = (args.source,) if args.source else ("dataestur", "open_meteo", "holidays")
+    selected = (args.source,) if args.source else ("dataestur", "open_meteo", "holidays", "aena")
     for source in selected:
         try:
             if source == "dataestur":
@@ -571,6 +634,8 @@ def ingest(settings: Settings, args: argparse.Namespace) -> list[str]:
                 actions.extend(ingest_open_meteo(settings, args.dry_run))
             elif source == "holidays":
                 actions.extend(ingest_holidays(settings, args.dry_run))
+            elif source == "aena":
+                actions.extend(ingest_aena(settings, args.dry_run))
             elif source == "aemet":
                 actions.append(
                     "skipped aemet: optional contrast source, not part of the default "
@@ -584,6 +649,15 @@ def ingest(settings: Settings, args: argparse.Namespace) -> list[str]:
                 raise
             actions.append(f"skipped {source} after error: {exc}")
     return actions
+
+
+def ingest_aena(settings: Settings, dry_run: bool) -> list[str]:
+    files = sorted((RAW_DIR / "aena").glob("*.xls")) + sorted((RAW_DIR / "aena").glob("*.xlsx"))
+    if dry_run:
+        return [f"DRY-RUN register {len(files)} local AENA Excel files from {RAW_DIR / 'aena'}"]
+    for path in files:
+        upload_to_s3(settings, path, f"{settings.s3_bronze_prefix}/aena/original/{path.name}")
+    return [f"registered {len(files)} local AENA Excel files from {RAW_DIR / 'aena'}"]
 
 
 def ingest_holidays(settings: Settings, dry_run: bool) -> list[str]:
@@ -641,7 +715,7 @@ def build_holiday_rows(settings: Settings) -> list[dict[str, Any]]:
                 "date": day.isoformat(),
                 "country": "ES",
                 "region_code": "ES",
-                "region_name": "Espana",
+                "region_name": "España",
                 "holiday_name": str(name),
                 "scope": "national",
             }
@@ -842,14 +916,16 @@ def upload_to_s3(settings: Settings, path: Path, key: str) -> None:
 
 def process(settings: Settings, dry_run: bool, source: str | None = None) -> list[str]:
     actions = []
-    selected = (source,) if source else ("open_meteo", "dataestur", "holidays")
+    selected = (source,) if source else ("open_meteo", "dataestur", "holidays", "aena")
     if "open_meteo" in selected:
         actions.extend(process_open_meteo(settings, dry_run))
     if "dataestur" in selected:
         actions.extend(process_dataestur_inventory(settings, dry_run))
     if "holidays" in selected:
         actions.extend(process_holidays(settings, dry_run))
-    unsupported = set(selected) - {"open_meteo", "dataestur", "holidays"}
+    if "aena" in selected:
+        actions.extend(process_aena(settings, dry_run))
+    unsupported = set(selected) - {"open_meteo", "dataestur", "holidays", "aena"}
     for item in sorted(unsupported):
         actions.append(f"skipped {item}: no processing step in the default Open-Meteo pipeline")
     if not dry_run:
@@ -959,6 +1035,163 @@ def process_holidays(settings: Settings, dry_run: bool) -> list[str]:
     return [f"processed Spanish holidays calendar with {len(enriched)} rows -> {output_path}"]
 
 
+def process_aena(settings: Settings, dry_run: bool) -> list[str]:
+    files = sorted((RAW_DIR / "aena").glob("*.xls")) + sorted((RAW_DIR / "aena").glob("*.xlsx"))
+    output_path = PROCESSED_DIR / "silver" / "aena_monthly_air_traffic.csv"
+    province_output_path = PROCESSED_DIR / "silver" / "aena_monthly_air_traffic_by_province.csv"
+    if dry_run:
+        return [f"DRY-RUN process {len(files)} AENA Excel files -> {output_path}"]
+    rows: list[dict[str, Any]] = []
+    for path in files:
+        rows.extend(parse_aena_file(path))
+    write_csv(output_path, rows)
+    maybe_write_parquet(output_path.with_suffix(".parquet"), rows)
+    province_rows = aggregate_aena_by_province(rows)
+    write_csv(province_output_path, province_rows)
+    maybe_write_parquet(province_output_path.with_suffix(".parquet"), province_rows)
+    upload_to_s3(settings, output_path, f"{settings.s3_silver_prefix}/aena/aena_monthly_air_traffic.csv")
+    upload_to_s3(
+        settings,
+        province_output_path,
+        f"{settings.s3_silver_prefix}/aena/aena_monthly_air_traffic_by_province.csv",
+    )
+    return [
+        f"processed AENA airport-month table with {len(rows)} rows -> {output_path}",
+        f"processed AENA province-month table with {len(province_rows)} rows -> {province_output_path}",
+    ]
+
+
+def parse_aena_file(path: Path) -> list[dict[str, Any]]:
+    try:
+        import pandas as pd
+    except ImportError as exc:
+        raise RuntimeError("Install AENA processing dependencies with `pip install pandas xlrd openpyxl`.") from exc
+
+    year, month = parse_aena_file_date(path)
+    sheet_name, data, title_row = find_aena_data_sheet(path, pd)
+    pairs = aena_block_pairs(data, title_row + 1)
+    metrics: dict[str, dict[str, int]] = {}
+    display_names: dict[str, str] = {}
+    for metric, (name_col, total_col) in zip(("passengers", "operations", "cargo_kg"), pairs):
+        block = extract_aena_metric_block(data, title_row, name_col, total_col)
+        metrics[metric] = block
+        for normalized_name, value in block.items():
+            if value is not None:
+                display_names.setdefault(normalized_name, normalized_name.title())
+
+    airports = sorted(set().union(*(set(block) for block in metrics.values())))
+    missing_mapping = sorted(airport for airport in airports if airport not in AENA_AIRPORT_PROVINCES)
+    if missing_mapping:
+        raise ValueError(f"Missing AENA airport province mapping: {', '.join(missing_mapping)}")
+
+    rows = []
+    for airport in airports:
+        rows.append(
+            {
+                "year": year,
+                "month": month,
+                "year_month": f"{year:04d}-{month:02d}",
+                "airport_name": display_names.get(airport, airport.title()),
+                "airport_normalized": airport,
+                "province": AENA_AIRPORT_PROVINCES[airport],
+                "passengers": metrics.get("passengers", {}).get(airport, 0),
+                "operations": metrics.get("operations", {}).get(airport, 0),
+                "cargo_kg": metrics.get("cargo_kg", {}).get(airport, 0),
+                "source_file": path.name,
+                "source_sheet": sheet_name,
+            }
+        )
+    return rows
+
+
+def parse_aena_file_date(path: Path) -> tuple[int, int]:
+    month_match = re.match(r"(\d{2})[._]", path.name)
+    year_match = re.search(r"(20\d{2})", path.name)
+    if not month_match or not year_match:
+        raise ValueError(f"Cannot parse AENA month/year from file name: {path.name}")
+    return int(year_match.group(1)), int(month_match.group(1))
+
+
+def find_aena_data_sheet(path: Path, pd):
+    workbook = pd.ExcelFile(path)
+    for sheet_name in workbook.sheet_names:
+        data = pd.read_excel(path, header=None, sheet_name=sheet_name)
+        max_row = min(20, len(data) - 2)
+        for row_index in range(max_row):
+            row_text = " ".join(normalize_text(data.iat[row_index, col]) for col in range(data.shape[1]))
+            next_row_text = " ".join(
+                normalize_text(data.iat[row_index + 1, col]) for col in range(data.shape[1])
+            )
+            if (
+                "PASAJEROS" in row_text
+                and "OPERACIONES" in row_text
+                and "MERCANCIA" in row_text
+                and "AEROPUERTOS" in next_row_text
+                and "TOTAL" in next_row_text
+            ):
+                return sheet_name, data, row_index
+    raise ValueError(f"No AENA data table found in {path.name}")
+
+
+def aena_block_pairs(data, header_row: int) -> list[tuple[int, int]]:
+    airport_columns = [
+        col for col in range(data.shape[1]) if "AEROPUERTOS" in normalize_text(data.iat[header_row, col])
+    ]
+    total_columns = [
+        col for col in range(data.shape[1]) if normalize_text(data.iat[header_row, col]) == "TOTAL"
+    ]
+    if len(airport_columns) != 3 or len(total_columns) < 3:
+        raise ValueError(f"Unexpected AENA header layout: airports={airport_columns}, totals={total_columns}")
+    pairs = []
+    for airport_col in airport_columns:
+        total_col = next((col for col in total_columns if col > airport_col), None)
+        if total_col is None:
+            raise ValueError(f"No total column found after AENA airport column {airport_col}")
+        pairs.append((airport_col, total_col))
+    return pairs
+
+
+def extract_aena_metric_block(data, title_row: int, name_col: int, total_col: int) -> dict[str, int]:
+    total_rows = [
+        row
+        for row in range(title_row + 3, len(data))
+        if normalize_text(data.iat[row, name_col]).startswith("TOTAL")
+    ]
+    if not total_rows:
+        raise ValueError("No total row found in AENA metric block")
+    end_row = total_rows[0]
+    values: dict[str, int] = {}
+    for row in range(title_row + 3, end_row):
+        airport = normalize_airport_name(data.iat[row, name_col])
+        if not airport:
+            continue
+        raw_value = data.iat[row, total_col]
+        values[airport] = int(float(raw_value)) if raw_value == raw_value else 0
+    return values
+
+
+def aggregate_aena_by_province(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    grouped: dict[tuple[str, str], dict[str, Any]] = {}
+    for row in rows:
+        key = (row["province"], row["year_month"])
+        item = grouped.setdefault(
+            key,
+            {
+                "province": row["province"],
+                "year_month": row["year_month"],
+                "passengers": 0,
+                "operations": 0,
+                "cargo_kg": 0,
+                "airport_count": 0,
+            },
+        )
+        item["passengers"] += int(row["passengers"])
+        item["operations"] += int(row["operations"])
+        item["cargo_kg"] += int(row["cargo_kg"])
+        item["airport_count"] += 1
+    return sorted(grouped.values(), key=lambda item: (item["province"], item["year_month"]))
+
+
 def write_gold_feature_table(settings: Settings) -> list[str]:
     weather_path = PROCESSED_DIR / "silver" / "open_meteo_monthly.csv"
     output_path = PROCESSED_DIR / "gold" / "tourism_weather_monthly_features.csv"
@@ -966,16 +1199,22 @@ def write_gold_feature_table(settings: Settings) -> list[str]:
         return ["skipped gold feature table: Open-Meteo silver table is missing"]
     rows = read_csv_dicts(weather_path)
     holiday_counts = monthly_holiday_counts()
+    aena_by_province = monthly_aena_by_province()
     for row in rows:
         region_code = PROVINCE_REGION_CODES.get(row["province"], "")
         national = holiday_counts.get((row["year_month"], "ES"), 0)
         regional = holiday_counts.get((row["year_month"], region_code), 0)
+        aena = aena_by_province.get((row["province"], row["year_month"]), {})
         row["region_code"] = region_code
         row["national_holiday_count"] = national
         row["regional_holiday_count"] = regional
         row["total_holiday_count"] = national + regional
+        row["aena_passengers"] = aena.get("passengers", 0)
+        row["aena_operations"] = aena.get("operations", 0)
+        row["aena_cargo_kg"] = aena.get("cargo_kg", 0)
+        row["aena_airport_count"] = aena.get("airport_count", 0)
         row["target_placeholder"] = ""
-        row["feature_source"] = "open_meteo_monthly+holidays"
+        row["feature_source"] = "open_meteo_monthly+holidays+aena"
     write_csv(output_path, rows)
     maybe_write_parquet(output_path.with_suffix(".parquet"), rows)
     upload_to_s3(settings, output_path, f"{settings.s3_gold_prefix}/tourism_weather_monthly_features.csv")
@@ -993,6 +1232,40 @@ def monthly_holiday_counts() -> dict[tuple[str, str], int]:
         key = (row["year_month"], row["region_code"])
         counts[key] = counts.get(key, 0) + 1
     return counts
+
+
+def monthly_aena_by_province() -> dict[tuple[str, str], dict[str, int]]:
+    path = PROCESSED_DIR / "silver" / "aena_monthly_air_traffic_by_province.csv"
+    if not path.exists():
+        return {}
+    values: dict[tuple[str, str], dict[str, int]] = {}
+    for row in read_csv_dicts(path):
+        values[(row["province"], row["year_month"])] = {
+            "passengers": int(float(row["passengers"] or 0)),
+            "operations": int(float(row["operations"] or 0)),
+            "cargo_kg": int(float(row["cargo_kg"] or 0)),
+            "airport_count": int(float(row["airport_count"] or 0)),
+        }
+    return values
+
+
+def normalize_text(value: Any) -> str:
+    if value is None or value != value:
+        return ""
+    text = unicodedata.normalize("NFKD", str(value).strip().upper())
+    text = text.encode("ascii", "ignore").decode("ascii")
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def normalize_airport_name(value: Any) -> str:
+    text = normalize_text(value)
+    if not text:
+        return ""
+    text = re.sub(r"\s*\(\*+\)\s*$", "", text)
+    text = re.sub(r"\s*/\s*", "-", text)
+    text = re.sub(r"\s*-\s*", "-", text)
+    text = re.sub(r"-{2,}", "-", text)
+    return re.sub(r"\s+", " ", text).strip()
 
 
 def read_csv_dicts(path: Path) -> list[dict[str, str]]:
