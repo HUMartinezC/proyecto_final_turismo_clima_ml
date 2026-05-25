@@ -4,7 +4,7 @@ Proyecto de Machine Learning para estimar la demanda turística en España a par
 
 ## Problema elegido
 
-Prediccion supervisada de ocupacion/pernoctaciones hoteleras por provincia o comunidad autonoma y mes. El objetivo es anticipar demanda turistica y explicar el impacto del clima y la estacionalidad.
+Predicción supervisada de ocupación/pernoctaciones hoteleras por provincia o comunidad autónoma y mes. El objetivo es anticipar demanda turística y explicar el impacto del clima y la estacionalidad.
 
 ## Stack principal implementado
 
@@ -17,8 +17,8 @@ Prediccion supervisada de ocupacion/pernoctaciones hoteleras por provincia o com
 
 ## Fuentes de datos elegidas
 
-1. Dataestur: demanda turistica agregada, alojamientos, gasto y transporte.
-2. Open-Meteo: clima historico diario reproducible por provincia.
+1. Dataestur: demanda turística agregada, alojamientos, gasto y transporte.
+2. Open-Meteo: clima histórico diario reproducible por provincia.
 3. Calendario laboral/festivos: estacionalidad, puentes y vacaciones.
 4. AENA Open Data: movilidad aeroportuaria como proxy de demanda.
 
@@ -59,7 +59,7 @@ descargados en `datasets/raw/`, sin subir nada a S3:
 python scripts/run_pipeline.py --process --skip-s3-upload
 ```
 
-Por defecto el script intenta el flujo completo: despliegue idempotente, ingesta y procesamiento. La ingesta por defecto usa Dataestur para turismo, Open-Meteo para clima, `holidays` para calendario laboral y los ficheros AENA locales para movilidad; AEMET queda fuera salvo ejecucion explicita con `--source aemet`. Si un recurso ya existe, se reutiliza. Las opciones `--deploy`, `--ingest`, `--process`, `--source` y `--dataestur-endpoint` quedan para depuracion o ejecuciones parciales.
+Por defecto el script intenta el flujo completo: despliegue idempotente, ingesta y procesamiento. La ingesta por defecto usa Dataestur para turismo, Open-Meteo para clima, `holidays` para calendario laboral y los ficheros AENA locales para movilidad; AEMET queda fuera salvo ejecución explícita con `--source aemet`. Si un recurso ya existe, se reutiliza. Las opciones `--deploy`, `--ingest`, `--process`, `--source` y `--dataestur-endpoint` quedan para depuración o ejecuciones parciales.
 
 ## Dataestur
 
@@ -110,7 +110,7 @@ La ingesta guarda el fichero original local en `datasets/raw/dataestur/original/
 
 ## AEMET OpenData opcional
 
-AEMET requiere una API key gratuita en `AEMET_API_KEY`. Esta fuente no se ejecuta en el flujo por defecto; Open-Meteo es la fuente climatica principal. AEMET se reserva para contraste oficial y debe lanzarse explicitamente con `--source aemet`.
+AEMET requiere una API key gratuita en `AEMET_API_KEY`. Esta fuente no se ejecuta en el flujo por defecto; Open-Meteo es la fuente climática principal. AEMET se reserva para contraste oficial y debe lanzarse explícitamente con `--source aemet`.
 
 ```env
 AEMET_API_KEY=tu_api_key
@@ -146,11 +146,11 @@ python scripts/run_pipeline.py --ingest --source holidays
 python scripts/run_pipeline.py --process --source holidays
 ```
 
-La ingesta guarda el calendario original local en `datasets/raw/holidays/original/`. El procesamiento genera `datasets/processed/silver/holidays_calendar.csv` y, si `pyarrow` esta disponible, tambien `holidays_calendar.parquet`.
+La ingesta guarda el calendario original local en `datasets/raw/holidays/original/`. El procesamiento genera `datasets/processed/silver/holidays_calendar.csv` y, si `pyarrow` está disponible, también `holidays_calendar.parquet`.
 
 ## Open-Meteo
 
-Open-Meteo es la fuente climatica principal del proyecto: no requiere API key y permite descargar el historico diario 2015-2024 por coordenadas representativas de cada provincia.
+Open-Meteo es la fuente climática principal del proyecto: no requiere API key y permite descargar el histórico diario 2015-2024 por coordenadas representativas de cada provincia.
 
 ```env
 OPEN_METEO_FROM_DATE=2015-10-01
@@ -175,11 +175,11 @@ python scripts/run_pipeline.py --ingest --source open_meteo
 ```
 
 La ingesta guarda los JSON originales locales en `datasets/raw/open_meteo/original/` y sus manifests en `datasets/raw/open_meteo/landing_manifest/`. En S3 conserva la capa `bronze/open_meteo/...`.
-Si la API devuelve `429`, el conector espera y reintenta. Si una ejecucion se corta, vuelve a lanzar el mismo comando: con `OPEN_METEO_SKIP_EXISTING=true` reutiliza los ficheros ya descargados y continua con los que faltan.
+Si la API devuelve `429`, el conector espera y reintenta. Si una ejecución se corta, vuelve a lanzar el mismo comando: con `OPEN_METEO_SKIP_EXISTING=true` reutiliza los ficheros ya descargados y continúa con los que faltan.
 
 ## AENA
 
-Los ficheros mensuales de AENA se descargan manualmente desde el portal de estadisticas de AENA y se guardan localmente en `datasets/raw/aena/`. El script no automatiza esa descarga; solo registra y procesa los Excel locales. Soporta los Excel historicos `.xls` y los `.xlsx` modernos:
+Los ficheros mensuales de AENA se descargan manualmente desde el portal de estadísticas de AENA y se guardan localmente en `datasets/raw/aena/`. El script no automatiza esa descarga; solo registra y procesa los Excel locales. Soporta los Excel históricos `.xls` y los `.xlsx` modernos:
 
 ```bash
 python scripts/run_pipeline.py --ingest --source aena --dry-run

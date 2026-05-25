@@ -1,0 +1,33 @@
+sources:
+  dataestur:
+    priority: high
+    type: rest_api
+    domain: tourism
+    storage_target: s3_bronze_and_documentdb
+    grain: month_region
+    mandatory_for_mvp: true
+    notes: "Fuente principal para demanda turistica: alojamientos, ocupacion, gasto y transporte."
+  aemet:
+    priority: high
+    type: rest_api
+    domain: weather
+    storage_target: s3_bronze_and_documentdb
+    grain: day_station
+    mandatory_for_mvp: true
+    notes: "Clima oficial: temperatura, precipitacion, viento y eventos meteorologicos."
+  holidays:
+    priority: high
+    type: csv_or_public_api
+    domain: calendar
+    storage_target: s3_bronze_and_rds
+    grain: day_region
+    mandatory_for_mvp: true
+    notes: "Festivos nacionales y autonomicos para capturar puentes y estacionalidad."
+  aena:
+    priority: medium
+    type: csv_or_api
+    domain: mobility
+    storage_target: s3_bronze_and_rds
+    grain: month_airport
+    mandatory_for_mvp: false
+    notes: "Proxy de movilidad; se incorpora tras validar turismo + clima + calendario."

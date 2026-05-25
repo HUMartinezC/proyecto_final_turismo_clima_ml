@@ -29,7 +29,7 @@ Los datos de AENA se descargan manualmente porque el portal publica informes men
 ## Riesgos
 
 - Cobertura temporal desigual entre turismo, clima y movilidad.
-- Granularidad distinta entre provincias, aeropuertos y comunidades autonomas.
+- Granularidad distinta entre provincias, aeropuertos y comunidades autónomas.
 - Necesidad de mapear aeropuertos AENA a provincias.
 - APIs con limites, cambios de esquema o autenticacion.
 - Descargas manuales de AENA pueden introducir errores de cobertura si falta algun mes.

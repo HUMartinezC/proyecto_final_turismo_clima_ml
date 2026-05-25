@@ -33,6 +33,33 @@ LOGGER = logging.getLogger("run_pipeline")
 SKIP_S3_UPLOAD = False
 
 
+ATHENA_QUERY_POLL_SECONDS = 2
+ATHENA_QUERY_TIMEOUT_SECONDS = 120
+
+
+PARQUET_STRING_COLUMNS = {
+    "airport_name",
+    "airport_normalized",
+    "ccaa",
+    "country",
+    "date",
+    "feature_source",
+    "file_name",
+    "holiday_name",
+    "local_path",
+    "modified_at",
+    "province",
+    "region_code",
+    "region_name",
+    "scope",
+    "source",
+    "source_file",
+    "source_sheet",
+    "suffix",
+    "year_month",
+}
+
+
 DATAESTUR_ENDPOINTS = {
     "EOH_PROV_DL": "hotel_occupancy_by_province",
     "EOH_CCAA_DL": "hotel_occupancy_by_region",
@@ -197,6 +224,27 @@ PROVINCE_REGION_CODES = {
     "Bizkaia": "PV",
     "Zamora": "CL",
     "Zaragoza": "AR",
+}
+
+
+DATAESTUR_PROVINCE_ALIASES = {
+    "ALAVA": "Alava",
+    "ALMERIA": "Almeria",
+    "AVILA": "Avila",
+    "CACERES": "Caceres",
+    "CADIZ": "Cadiz",
+    "CASTELLON": "Castellon",
+    "CORDOBA": "Cordoba",
+    "GERONA": "Girona",
+    "GUIPUZCOA": "Gipuzkoa",
+    "ISLAS BALEARES": "Illes Balears",
+    "JAEN": "Jaen",
+    "LA CORUNA": "A Coruna",
+    "LEON": "Leon",
+    "LERIDA": "Lleida",
+    "MALAGA": "Malaga",
+    "ORENSE": "Ourense",
+    "VIZCAYA": "Bizkaia",
 }
 
 
@@ -462,6 +510,16 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--deploy", action="store_true", help="Provision AWS resources.")
     parser.add_argument("--ingest", action="store_true", help="Ingest selected data sources.")
     parser.add_argument("--process", action="store_true", help="Process and unify datasets.")
+    parser.add_argument(
+        "--catalog",
+        action="store_true",
+        help="Create/update Athena external tables in the Glue Data Catalog for silver/gold Parquet outputs.",
+    )
+    parser.add_argument(
+        "--skip-ingest",
+        action="store_true",
+        help="Skip source ingestion/downloads when running the default deploy+ingest+process flow.",
+    )
     parser.add_argument(
         "--source",
         choices=("dataestur", "open_meteo", "aemet", "holidays", "aena"),
@@ -914,6 +972,13 @@ def upload_to_s3(settings: Settings, path: Path, key: str) -> None:
     aws_client(settings, "s3").upload_file(str(path), settings.s3_bucket_name, key)
 
 
+def upload_table_outputs_to_s3(settings: Settings, csv_path: Path, s3_prefix: str) -> None:
+    upload_to_s3(settings, csv_path, f"{s3_prefix}/csv/{csv_path.name}")
+    parquet_path = csv_path.with_suffix(".parquet")
+    if parquet_path.exists():
+        upload_to_s3(settings, parquet_path, f"{s3_prefix}/parquet/{parquet_path.name}")
+
+
 def process(settings: Settings, dry_run: bool, source: str | None = None) -> list[str]:
     actions = []
     selected = (source,) if source else ("open_meteo", "dataestur", "holidays", "aena")
@@ -921,6 +986,7 @@ def process(settings: Settings, dry_run: bool, source: str | None = None) -> lis
         actions.extend(process_open_meteo(settings, dry_run))
     if "dataestur" in selected:
         actions.extend(process_dataestur_inventory(settings, dry_run))
+        actions.extend(process_dataestur_hotel_occupancy(settings, dry_run))
     if "holidays" in selected:
         actions.extend(process_holidays(settings, dry_run))
     if "aena" in selected:
@@ -955,7 +1021,7 @@ def process_open_meteo(settings: Settings, dry_run: bool) -> list[str]:
     monthly = aggregate_weather_monthly(rows)
     write_csv(output_path, monthly)
     maybe_write_parquet(output_path.with_suffix(".parquet"), monthly)
-    upload_to_s3(settings, output_path, f"{settings.s3_silver_prefix}/open_meteo/open_meteo_monthly.csv")
+    upload_table_outputs_to_s3(settings, output_path, f"{settings.s3_silver_prefix}/open_meteo/open_meteo_monthly")
     return [f"processed Open-Meteo monthly table with {len(monthly)} rows -> {output_path}"]
 
 
@@ -999,8 +1065,65 @@ def process_dataestur_inventory(settings: Settings, dry_run: bool) -> list[str]:
             }
         )
     write_csv(output_path, rows)
-    upload_to_s3(settings, output_path, f"{settings.s3_silver_prefix}/dataestur/dataestur_inventory.csv")
+    upload_table_outputs_to_s3(settings, output_path, f"{settings.s3_silver_prefix}/dataestur/dataestur_inventory")
     return [f"processed Dataestur inventory with {len(rows)} files -> {output_path}"]
+
+
+def process_dataestur_hotel_occupancy(settings: Settings, dry_run: bool) -> list[str]:
+    input_path = latest_dataestur_hotel_file()
+    output_path = PROCESSED_DIR / "silver" / "dataestur_hotel_occupancy_by_province.csv"
+    if dry_run:
+        status = f"from {input_path}" if input_path else "missing raw hotel occupancy file"
+        return [f"DRY-RUN process Dataestur hotel occupancy ({status}) -> {output_path}"]
+    if input_path is None:
+        return ["skipped Dataestur hotel occupancy: raw hotel occupancy file is missing"]
+
+    try:
+        import pandas as pd
+    except ImportError as exc:
+        raise RuntimeError("Install Dataestur processing dependencies with `pip install pandas openpyxl`.") from exc
+
+    data = pd.read_excel(input_path)
+    data = data[data["LUGAR_RESIDENCIA"].astype(str).str.strip().eq("Total")].copy()
+    rows: list[dict[str, Any]] = []
+    for _, item in data.iterrows():
+        year = int(item["AÑO"])
+        month = int(item["MES"])
+        rows.append(
+            {
+                "province": normalize_dataestur_province(item["PROVINCIA"]),
+                "year": year,
+                "month": month,
+                "year_month": f"{year:04d}-{month:02d}",
+                "ccaa": item.get("CCAA", ""),
+                "hotel_travelers": clean_number(item.get("VIAJEROS")),
+                "hotel_overnights": clean_number(item.get("PERNOCTACIONES")),
+                "hotel_avg_stay": clean_number(item.get("ESTANCIA_MEDIA")),
+                "hotel_establishments_estimated": clean_number(item.get("ESTABLECIMIENTOS_ESTIMADOS")),
+                "hotel_rooms_estimated": clean_number(item.get("HABITACIONES_ESTIMADAS")),
+                "hotel_beds_estimated": clean_number(item.get("PLAZAS_ESTIMADAS")),
+                "hotel_occupancy_rate": clean_number(item.get("GRADO_OCUPA_PLAZAS")),
+                "hotel_weekend_occupancy_rate": clean_number(item.get("GRADO_OCUPA_PLAZAS_FIN_SEMANA")),
+                "hotel_room_occupancy_rate": clean_number(item.get("GRADO_OCUPA_POR_HABITACIONES")),
+                "hotel_staff": clean_number(item.get("PERSONAL_EMPLEADO")),
+                "source_file": input_path.name,
+            }
+        )
+
+    rows = sorted(rows, key=lambda row: (row["province"], row["year_month"]))
+    write_csv(output_path, rows)
+    maybe_write_parquet(output_path.with_suffix(".parquet"), rows)
+    upload_table_outputs_to_s3(
+        settings,
+        output_path,
+        f"{settings.s3_silver_prefix}/dataestur/dataestur_hotel_occupancy_by_province",
+    )
+    return [f"processed Dataestur hotel occupancy with {len(rows)} rows -> {output_path}"]
+
+
+def latest_dataestur_hotel_file() -> Path | None:
+    candidates = sorted((RAW_DIR / "dataestur" / "original").glob("hotel_occupancy_by_province*.xlsx"))
+    return candidates[-1] if candidates else None
 
 
 def process_holidays(settings: Settings, dry_run: bool) -> list[str]:
@@ -1031,7 +1154,7 @@ def process_holidays(settings: Settings, dry_run: bool) -> list[str]:
         )
     write_csv(output_path, enriched)
     maybe_write_parquet(output_path.with_suffix(".parquet"), enriched)
-    upload_to_s3(settings, output_path, f"{settings.s3_silver_prefix}/holidays/holidays_calendar.csv")
+    upload_table_outputs_to_s3(settings, output_path, f"{settings.s3_silver_prefix}/holidays/holidays_calendar")
     return [f"processed Spanish holidays calendar with {len(enriched)} rows -> {output_path}"]
 
 
@@ -1049,11 +1172,11 @@ def process_aena(settings: Settings, dry_run: bool) -> list[str]:
     province_rows = aggregate_aena_by_province(rows)
     write_csv(province_output_path, province_rows)
     maybe_write_parquet(province_output_path.with_suffix(".parquet"), province_rows)
-    upload_to_s3(settings, output_path, f"{settings.s3_silver_prefix}/aena/aena_monthly_air_traffic.csv")
-    upload_to_s3(
+    upload_table_outputs_to_s3(settings, output_path, f"{settings.s3_silver_prefix}/aena/aena_monthly_air_traffic")
+    upload_table_outputs_to_s3(
         settings,
         province_output_path,
-        f"{settings.s3_silver_prefix}/aena/aena_monthly_air_traffic_by_province.csv",
+        f"{settings.s3_silver_prefix}/aena/aena_monthly_air_traffic_by_province",
     )
     return [
         f"processed AENA airport-month table with {len(rows)} rows -> {output_path}",
@@ -1200,11 +1323,13 @@ def write_gold_feature_table(settings: Settings) -> list[str]:
     rows = read_csv_dicts(weather_path)
     holiday_counts = monthly_holiday_counts()
     aena_by_province = monthly_aena_by_province()
+    hotel_occupancy = monthly_hotel_occupancy_by_province()
     for row in rows:
         region_code = PROVINCE_REGION_CODES.get(row["province"], "")
         national = holiday_counts.get((row["year_month"], "ES"), 0)
         regional = holiday_counts.get((row["year_month"], region_code), 0)
         aena = aena_by_province.get((row["province"], row["year_month"]), {})
+        hotel = hotel_occupancy.get((row["province"], row["year_month"]), {})
         row["region_code"] = region_code
         row["national_holiday_count"] = national
         row["regional_holiday_count"] = regional
@@ -1213,11 +1338,21 @@ def write_gold_feature_table(settings: Settings) -> list[str]:
         row["aena_operations"] = aena.get("operations", 0)
         row["aena_cargo_kg"] = aena.get("cargo_kg", 0)
         row["aena_airport_count"] = aena.get("airport_count", 0)
-        row["target_placeholder"] = ""
-        row["feature_source"] = "open_meteo_monthly+holidays+aena"
+        row["hotel_travelers"] = hotel.get("hotel_travelers", "")
+        row["hotel_overnights"] = hotel.get("hotel_overnights", "")
+        row["hotel_avg_stay"] = hotel.get("hotel_avg_stay", "")
+        row["hotel_establishments_estimated"] = hotel.get("hotel_establishments_estimated", "")
+        row["hotel_rooms_estimated"] = hotel.get("hotel_rooms_estimated", "")
+        row["hotel_beds_estimated"] = hotel.get("hotel_beds_estimated", "")
+        row["hotel_occupancy_rate"] = hotel.get("hotel_occupancy_rate", "")
+        row["hotel_weekend_occupancy_rate"] = hotel.get("hotel_weekend_occupancy_rate", "")
+        row["hotel_room_occupancy_rate"] = hotel.get("hotel_room_occupancy_rate", "")
+        row["hotel_staff"] = hotel.get("hotel_staff", "")
+        row["target_available"] = bool(hotel.get("hotel_overnights"))
+        row["feature_source"] = "open_meteo_monthly+holidays+aena+dataestur_hotel"
     write_csv(output_path, rows)
     maybe_write_parquet(output_path.with_suffix(".parquet"), rows)
-    upload_to_s3(settings, output_path, f"{settings.s3_gold_prefix}/tourism_weather_monthly_features.csv")
+    upload_table_outputs_to_s3(settings, output_path, f"{settings.s3_gold_prefix}/tourism_weather_monthly_features")
     return [f"wrote gold feature table with {len(rows)} rows -> {output_path}"]
 
 
@@ -1249,6 +1384,206 @@ def monthly_aena_by_province() -> dict[tuple[str, str], dict[str, int]]:
     return values
 
 
+def monthly_hotel_occupancy_by_province() -> dict[tuple[str, str], dict[str, str]]:
+    path = PROCESSED_DIR / "silver" / "dataestur_hotel_occupancy_by_province.csv"
+    if not path.exists():
+        return {}
+    values: dict[tuple[str, str], dict[str, str]] = {}
+    for row in read_csv_dicts(path):
+        values[(row["province"], row["year_month"])] = row
+    return values
+
+
+ATHENA_PARQUET_TABLES: dict[str, tuple[str, list[tuple[str, str]]]] = {
+    "silver_open_meteo_monthly": (
+        "silver/open_meteo/open_meteo_monthly/parquet/",
+        [
+            ("province", "string"),
+            ("year_month", "string"),
+            ("days", "int"),
+            ("temperature_2m_mean_avg", "double"),
+            ("temperature_2m_max_avg", "double"),
+            ("temperature_2m_min_avg", "double"),
+            ("precipitation_sum_total", "double"),
+            ("rain_sum_total", "double"),
+            ("precipitation_hours_total", "double"),
+            ("wind_speed_10m_mean_avg", "double"),
+            ("wind_speed_10m_max_avg", "double"),
+        ],
+    ),
+    "silver_dataestur_hotel_occupancy_by_province": (
+        "silver/dataestur/dataestur_hotel_occupancy_by_province/parquet/",
+        [
+            ("province", "string"),
+            ("year", "int"),
+            ("month", "int"),
+            ("year_month", "string"),
+            ("ccaa", "string"),
+            ("hotel_travelers", "double"),
+            ("hotel_overnights", "double"),
+            ("hotel_avg_stay", "double"),
+            ("hotel_establishments_estimated", "double"),
+            ("hotel_rooms_estimated", "double"),
+            ("hotel_beds_estimated", "double"),
+            ("hotel_occupancy_rate", "double"),
+            ("hotel_weekend_occupancy_rate", "double"),
+            ("hotel_room_occupancy_rate", "double"),
+            ("hotel_staff", "double"),
+            ("source_file", "string"),
+        ],
+    ),
+    "silver_holidays_calendar": (
+        "silver/holidays/holidays_calendar/parquet/",
+        [
+            ("date", "string"),
+            ("country", "string"),
+            ("region_code", "string"),
+            ("region_name", "string"),
+            ("holiday_name", "string"),
+            ("scope", "string"),
+            ("year", "int"),
+            ("month", "int"),
+            ("year_month", "string"),
+            ("day_of_week", "int"),
+            ("is_weekend", "boolean"),
+        ],
+    ),
+    "silver_aena_monthly_air_traffic": (
+        "silver/aena/aena_monthly_air_traffic/parquet/",
+        [
+            ("year", "int"),
+            ("month", "int"),
+            ("year_month", "string"),
+            ("airport_name", "string"),
+            ("airport_normalized", "string"),
+            ("province", "string"),
+            ("passengers", "bigint"),
+            ("operations", "bigint"),
+            ("cargo_kg", "bigint"),
+            ("source_file", "string"),
+            ("source_sheet", "string"),
+        ],
+    ),
+    "silver_aena_monthly_air_traffic_by_province": (
+        "silver/aena/aena_monthly_air_traffic_by_province/parquet/",
+        [
+            ("province", "string"),
+            ("year_month", "string"),
+            ("passengers", "bigint"),
+            ("operations", "bigint"),
+            ("cargo_kg", "bigint"),
+            ("airport_count", "int"),
+        ],
+    ),
+    "gold_tourism_weather_monthly_features": (
+        "gold/tourism_weather_monthly_features/parquet/",
+        [
+            ("province", "string"),
+            ("year_month", "string"),
+            ("days", "int"),
+            ("temperature_2m_mean_avg", "double"),
+            ("temperature_2m_max_avg", "double"),
+            ("temperature_2m_min_avg", "double"),
+            ("precipitation_sum_total", "double"),
+            ("rain_sum_total", "double"),
+            ("precipitation_hours_total", "double"),
+            ("wind_speed_10m_mean_avg", "double"),
+            ("wind_speed_10m_max_avg", "double"),
+            ("region_code", "string"),
+            ("national_holiday_count", "int"),
+            ("regional_holiday_count", "int"),
+            ("total_holiday_count", "int"),
+            ("aena_passengers", "bigint"),
+            ("aena_operations", "bigint"),
+            ("aena_cargo_kg", "bigint"),
+            ("aena_airport_count", "int"),
+            ("hotel_travelers", "double"),
+            ("hotel_overnights", "double"),
+            ("hotel_avg_stay", "double"),
+            ("hotel_establishments_estimated", "double"),
+            ("hotel_rooms_estimated", "double"),
+            ("hotel_beds_estimated", "double"),
+            ("hotel_occupancy_rate", "double"),
+            ("hotel_weekend_occupancy_rate", "double"),
+            ("hotel_room_occupancy_rate", "double"),
+            ("hotel_staff", "double"),
+            ("target_available", "boolean"),
+            ("feature_source", "string"),
+        ],
+    ),
+}
+
+
+def catalog_athena_tables(settings: Settings, dry_run: bool) -> list[str]:
+    if not settings.s3_bucket_name:
+        raise ValueError("S3_BUCKET_NAME is required to catalog Athena tables.")
+    if not settings.athena_results_s3_uri:
+        raise ValueError("ATHENA_RESULTS_S3_URI is required to run Athena DDL.")
+    actions = [
+        f"ensure Glue database exists: {settings.glue_database}",
+        f"create/update {len(ATHENA_PARQUET_TABLES)} Athena external Parquet tables",
+    ]
+    if dry_run:
+        return [f"DRY-RUN {action}" for action in actions] + [
+            f"DRY-RUN table {name} -> s3://{settings.s3_bucket_name}/{location}"
+            for name, (location, _columns) in ATHENA_PARQUET_TABLES.items()
+        ]
+
+    ensure_glue_database(settings)
+    ensure_athena_workgroup(settings)
+    for table_name, (location, columns) in ATHENA_PARQUET_TABLES.items():
+        query = athena_create_parquet_table_sql(settings, table_name, location, columns)
+        run_athena_query(settings, query)
+        actions.append(f"cataloged Athena table {settings.glue_database}.{table_name}")
+    validation_query = (
+        "SELECT COUNT(*) AS rows, COUNT(hotel_overnights) AS target_rows "
+        "FROM gold_tourism_weather_monthly_features"
+    )
+    query_id = run_athena_query(settings, validation_query)
+    actions.append(f"validated gold table with Athena query {query_id}")
+    return actions
+
+
+def athena_create_parquet_table_sql(
+    settings: Settings,
+    table_name: str,
+    location: str,
+    columns: list[tuple[str, str]],
+) -> str:
+    column_sql = ",\n  ".join(f"`{name}` {athena_type}" for name, athena_type in columns)
+    s3_location = f"s3://{settings.s3_bucket_name}/{location}"
+    return f"""
+CREATE EXTERNAL TABLE IF NOT EXISTS `{settings.glue_database}`.`{table_name}` (
+  {column_sql}
+)
+STORED AS PARQUET
+LOCATION '{s3_location}'
+TBLPROPERTIES ('parquet.compression'='SNAPPY')
+"""
+
+
+def run_athena_query(settings: Settings, query: str) -> str:
+    athena = aws_client(settings, "athena")
+    response = athena.start_query_execution(
+        QueryString=query,
+        QueryExecutionContext={"Database": settings.glue_database},
+        WorkGroup=settings.athena_workgroup,
+        ResultConfiguration={"OutputLocation": settings.athena_results_s3_uri},
+    )
+    query_id = response["QueryExecutionId"]
+    deadline = time.monotonic() + ATHENA_QUERY_TIMEOUT_SECONDS
+    while time.monotonic() < deadline:
+        execution = athena.get_query_execution(QueryExecutionId=query_id)["QueryExecution"]
+        state = execution["Status"]["State"]
+        if state == "SUCCEEDED":
+            return query_id
+        if state in {"FAILED", "CANCELLED"}:
+            reason = execution["Status"].get("StateChangeReason", "unknown")
+            raise RuntimeError(f"Athena query {query_id} {state}: {reason}")
+        time.sleep(ATHENA_QUERY_POLL_SECONDS)
+    raise TimeoutError(f"Athena query {query_id} did not finish in time.")
+
+
 def normalize_text(value: Any) -> str:
     if value is None or value != value:
         return ""
@@ -1266,6 +1601,27 @@ def normalize_airport_name(value: Any) -> str:
     text = re.sub(r"\s*-\s*", "-", text)
     text = re.sub(r"-{2,}", "-", text)
     return re.sub(r"\s+", " ", text).strip()
+
+
+def normalize_dataestur_province(value: Any) -> str:
+    text = normalize_text(value)
+    if not text:
+        return ""
+    if text in DATAESTUR_PROVINCE_ALIASES:
+        return DATAESTUR_PROVINCE_ALIASES[text]
+    for province in PROVINCE_REGION_CODES:
+        if normalize_text(province) == text:
+            return province
+    return str(value).strip()
+
+
+def clean_number(value: Any) -> int | float | None:
+    if value is None or value != value:
+        return None
+    number = float(value)
+    if number.is_integer():
+        return int(number)
+    return round(number, 4)
 
 
 def read_csv_dicts(path: Path) -> list[dict[str, str]]:
@@ -1293,7 +1649,21 @@ def maybe_write_parquet(path: Path, rows: list[dict[str, Any]]) -> None:
     except ImportError:
         return
     path.parent.mkdir(parents=True, exist_ok=True)
-    pd.DataFrame(rows).to_parquet(path, index=False)
+    frame = pd.DataFrame(rows)
+    for column in frame.columns:
+        if column in PARQUET_STRING_COLUMNS:
+            continue
+        if column == "target_available":
+            frame[column] = frame[column].map(
+                lambda value: value
+                if isinstance(value, bool)
+                else str(value).strip().lower() in {"true", "1", "yes"}
+            )
+            continue
+        converted = pd.to_numeric(frame[column], errors="coerce")
+        if converted.notna().sum() or frame[column].isna().all():
+            frame[column] = converted
+    frame.to_parquet(path, index=False)
 
 
 def safe_stem(value: str) -> str:
@@ -1314,8 +1684,10 @@ def main() -> int:
     if args.check_config:
         print_config_check(settings)
         return 0
+    if args.ingest and args.skip_ingest:
+        raise SystemExit("Use either --ingest or --skip-ingest, not both.")
 
-    run_all = not any((args.deploy, args.ingest, args.process))
+    run_all = not any((args.deploy, args.ingest, args.process, args.catalog))
     missing = []
     if not args.dry_run and (args.deploy or run_all):
         missing.extend(settings.required_aws_values)
@@ -1327,12 +1699,15 @@ def main() -> int:
     if args.deploy or run_all:
         LOGGER.info("Deploy phase started")
         actions.extend(provision(settings, args.dry_run))
-    if args.ingest or run_all:
+    if args.ingest or (run_all and not args.skip_ingest):
         LOGGER.info("Ingestion phase started")
         actions.extend(ingest(settings, args))
     if args.process or run_all:
         LOGGER.info("Processing phase started")
         actions.extend(process(settings, args.dry_run, args.source))
+    if args.catalog:
+        LOGGER.info("Catalog phase started")
+        actions.extend(catalog_athena_tables(settings, args.dry_run))
 
     for action in actions:
         print(f"- {action}")

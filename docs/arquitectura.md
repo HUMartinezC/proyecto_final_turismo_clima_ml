@@ -26,9 +26,9 @@ s3://bucket/gold/     Tabla final de features para EDA y ML
 2. Los datos originales se guardan en S3 bronze; en local, los originales descargados o generados se conservan en `datasets/raw/`.
 3. El procesamiento local genera tablas silver y gold en CSV/Parquet.
 4. Glue Crawlers podran actualizar el Data Catalog sobre S3.
-5. Athena consulta tablas silver/gold para EDA y validacion.
+5. Athena consulta tablas silver/gold para EDA y validación.
 6. La tabla gold se usa para entrenamiento local o en SageMaker.
-7. Metricas y predicciones agregadas se pueden publicar en RDS MariaDB.
+7. Métricas y predicciones agregadas se pueden publicar en RDS MariaDB.
 8. DocumentDB, Lambda y MSK quedan definidos como componentes de arquitectura para ampliar automatizacion, trazabilidad y tiempo real en fases posteriores.
 
 ## Particionado recomendado
@@ -47,7 +47,7 @@ python scripts/run_pipeline.py --dry-run
 python scripts/run_pipeline.py
 ```
 
-La ejecucion sin argumentos intenta siempre el flujo completo: despliegue, ingesta y procesamiento. Las operaciones de despliegue deben ser idempotentes: si el bucket, prefijos o base de datos de Glue ya existen, se reutilizan.
+La ejecución sin argumentos intenta siempre el flujo completo: despliegue, ingesta y procesamiento. Las operaciones de despliegue deben ser idempotentes: si el bucket, prefijos o base de datos de Glue ya existen, se reutilizan.
 
 El modo `dry-run` permite demostrar la orquestacion sin consumir recursos AWS.
 

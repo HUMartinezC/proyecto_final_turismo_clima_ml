@@ -1,0 +1,10 @@
+{
+  "source": "dataestur",
+  "name": "resident_tourism",
+  "url": "https://dataestur.azure-api.net/API-SEGITTUR-v1/ETR_DL?desde+%28a%C3%B1o%29=2015&desde+%28mes%29=10&hasta+%28a%C3%B1o%29=2024&hasta+%28mes%29=12",
+  "downloaded_at": "20260514T111857Z",
+  "overwrite_mode": true,
+  "content_type": "application/vnd.ms-excel",
+  "bytes_written": 8965,
+  "local_path": "datasets/bronze/dataestur/original/resident_tourism_201510_202412.xlsx"
+}

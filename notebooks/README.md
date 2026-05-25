@@ -1,10 +1,9 @@
 # Notebooks
 
-Entregables sugeridos:
+Notebooks principales:
 
-1. `hito_00_vision_arquitectura.ipynb`: problema, fuentes, arquitectura AWS y script unico.
-2. `hito_01_ingesta_almacenamiento.ipynb`: resultados de ingesta y validaciones.
-3. `hito_02_eda.ipynb`: analisis exploratorio.
-4. `hito_03_preparacion_datos.ipynb`: limpieza, feature engineering y split.
-5. `hito_04_modelado_validacion.ipynb`: entrenamiento, comparacion y seleccion.
-6. `hito_05_despliegue.ipynb`: Hugging Face, Gradio y mejora del modelo.
+- `proyecto_final_turismo_clima.ipynb`: indice de las versiones disponibles.
+- `proyecto_final_turismo_clima_local.ipynb`: analisis reproducible con datos locales en `datasets/`.
+- `proyecto_final_turismo_clima_cloud.ipynb`: analisis y validacion contra S3, Glue Catalog y Athena.
+
+Los notebooks se mantienen agnosticos a entregas concretas. Las referencias por hito se conservan solo en `enunciados/`.
