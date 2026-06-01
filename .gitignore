@@ -4,16 +4,24 @@
 venv/
 __pycache__/
 *.py[cod]
+src/
 .ipynb_checkpoints/
 .pytest_cache/
 .mypy_cache/
 .DS_Store
 
 datasets/raw/*
+datasets/bronze/
 datasets/processed/*
 models/*
 logs/*
 !datasets/raw/.gitkeep
 !datasets/processed/.gitkeep
+!datasets/processed/silver/
+datasets/processed/silver/*
+!datasets/processed/silver/.gitkeep
+!datasets/processed/gold/
+datasets/processed/gold/*
+!datasets/processed/gold/.gitkeep
 !models/.gitkeep
 !logs/.gitkeep

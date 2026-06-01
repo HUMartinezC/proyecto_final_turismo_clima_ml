@@ -197,8 +197,12 @@ La tabla gold incorpora las features `aena_passengers`, `aena_operations`, `aena
 
 ```text
 config/                  Configuracion declarativa del proyecto
-datasets/                Datos locales de apoyo, no versionar grandes datasets
+datasets/raw/            Landing local de originales descargados o aportados manualmente
+datasets/processed/      Salidas locales reproducibles: silver y gold
 docs/                    Arquitectura, decisiones y fuentes
 notebooks/               Notebook principal y analisis incrementales del proyecto
 scripts/run_pipeline.py  Script unico de despliegue, ingesta y procesamiento
 ```
+
+La capa `bronze` se mantiene como prefijo del data lake en S3. En local se usa
+`datasets/raw/` para evitar duplicar el mismo concepto con dos nombres.

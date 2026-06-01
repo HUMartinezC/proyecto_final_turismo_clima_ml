@@ -61,7 +61,7 @@ El campo temporal común será `year_month`. Las fuentes diarias, como Open-Mete
 - Random Forest Regressor: robusto ante relaciones no lineales y fácil de explicar con importancia de variables.
 - XGBoost Regressor: buen rendimiento en datos tabulares con interacciones y estacionalidad.
 
-Como baseline adicional puede usarse `Ridge` o `LinearRegression` para comparar contra modelos no lineales.
+Como baseline adicional puede usarse un arbol sencillo o una configuracion ligera de modelos ensemble para comparar contra modelos no lineales mas potentes.
 
 ## Alcance del entregable inicial
 

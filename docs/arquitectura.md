@@ -52,3 +52,14 @@ La ejecución sin argumentos intenta siempre el flujo completo: despliegue, inge
 El modo `dry-run` permite demostrar la orquestacion sin consumir recursos AWS.
 
 Para AENA, el script no descarga los informes desde la web: procesa los Excel ya descargados manualmente en `datasets/raw/aena/` y genera las tablas silver por aeropuerto y provincia.
+
+## Estructura local de datos
+
+```text
+datasets/raw/              Originales locales y manifests de ingesta
+datasets/processed/silver/ Tablas normalizadas reproducibles
+datasets/processed/gold/   Tabla final de features para EDA y ML
+```
+
+No se mantiene una carpeta local `datasets/bronze/`: esa capa existe en S3, y
+en el entorno local cumple el mismo papel que `datasets/raw/`.
