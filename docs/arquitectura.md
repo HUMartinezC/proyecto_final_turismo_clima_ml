@@ -1,65 +1,79 @@
-# Arquitectura AWS
+# Arquitectura
 
 ## Vista general
 
-La arquitectura usa S3 como repositorio unico y separa las cargas segun su naturaleza:
+La arquitectura combina ejecucion local reproducible con almacenamiento y consulta en AWS:
 
-- S3 guarda todo el data lake en capas.
-- DocumentDB se reserva para conservar payloads JSON de APIs externas cuando sea necesario para trazabilidad.
-- RDS MariaDB guarda tablas estructuradas finales y metricas de modelos en entorno de pruebas.
-- Glue cataloga y transforma datos.
-- Athena permite EDA SQL sin mover datos.
-- Lambda automatiza ingestas y ejecuciones programadas en fases posteriores.
-- Amazon MSK cubre el requisito Kafka para eventos en tiempo real en fases posteriores.
+- S3 guarda el data lake por capas.
+- Glue Data Catalog registra las tablas externas.
+- Athena consulta los Parquet de S3 con SQL.
+- RDS MariaDB queda disponible para resultados estructurados y pruebas relacionales.
+- Lambda puede crearse si se configura `LAMBDA_ROLE_ARN`.
+- El procesamiento ETL se ejecuta con Python desde `scripts/run_pipeline.py`.
 
 ## Capas del data lake
 
 ```text
-s3://bucket/bronze/   Datos originales de aterrizaje y manifests
-s3://bucket/silver/   Datos limpios con tipos consistentes
-s3://bucket/gold/     Tabla final de features para EDA y ML
+s3://bucket/bronze/   Datos originales y manifests
+s3://bucket/silver/   Datos normalizados por fuente
+s3://bucket/gold/     Tabla integrada de features para EDA y ML
+```
+
+En local se usa:
+
+```text
+datasets/raw/              Originales locales y manifests
+datasets/processed/silver/ Tablas normalizadas reproducibles
+datasets/processed/gold/   Tabla final de features
 ```
 
 ## Flujo
 
-1. El script unico invoca conectores de Dataestur, Open-Meteo y festivos. AENA se incorpora desde Excel descargados manualmente en `datasets/raw/aena/`.
-2. Los datos originales se guardan en S3 bronze; en local, los originales descargados o generados se conservan en `datasets/raw/`.
-3. El procesamiento local genera tablas silver y gold en CSV/Parquet.
-4. Glue Crawlers podran actualizar el Data Catalog sobre S3.
-5. Athena consulta tablas silver/gold para EDA y validación.
-6. La tabla gold se usa para entrenamiento local o en SageMaker.
-7. Métricas y predicciones agregadas se pueden publicar en RDS MariaDB.
-8. DocumentDB, Lambda y MSK quedan definidos como componentes de arquitectura para ampliar automatizacion, trazabilidad y tiempo real en fases posteriores.
+1. `scripts/run_pipeline.py` ingiere Dataestur, Open-Meteo y festivos.
+2. Los Excel mensuales de AENA se colocan manualmente en `datasets/raw/aena/`.
+3. Los originales se guardan en `datasets/raw/` y, si procede, en `s3://bucket/bronze/`.
+4. El procesamiento genera tablas silver en CSV y Parquet.
+5. La capa gold integra turismo, clima, calendario y movilidad por `province + year_month`.
+6. Los Parquet se publican en S3 con rutas separadas por tabla y formato.
+7. `--catalog` crea o actualiza tablas externas en Glue Data Catalog mediante Athena DDL.
+8. Los notebooks consumen la tabla gold desde local o desde S3.
 
-## Particionado recomendado
+## Tablas catalogadas
 
-- Turismo: `source`, `year`, `month`, `region`.
-- Clima: `source`, `year`, `month`, `province`.
-- Movilidad: `source`, `year`, `month`, `airport`, `station` o `province`, segun la fuente.
-- Gold: `year`, `month`, `region`.
+```text
+silver_open_meteo_monthly
+silver_dataestur_hotel_occupancy_by_province
+silver_holidays_calendar
+silver_aena_monthly_air_traffic
+silver_aena_monthly_air_traffic_by_province
+gold_tourism_weather_monthly_features
+```
 
-## Script unico
+## Rutas principales en S3
 
-El punto de entrada es `scripts/run_pipeline.py`.
+```text
+bronze/dataestur/
+bronze/open_meteo/
+bronze/holidays/
+bronze/aena/
+silver/open_meteo/open_meteo_monthly/
+silver/dataestur/dataestur_hotel_occupancy_by_province/
+silver/holidays/holidays_calendar/
+silver/aena/aena_monthly_air_traffic/
+silver/aena/aena_monthly_air_traffic_by_province/
+gold/tourism_weather_monthly_features/
+```
+
+Cada salida procesada puede tener subcarpetas `csv/` y `parquet/`.
+
+## Comandos habituales
 
 ```bash
 python scripts/run_pipeline.py --dry-run
 python scripts/run_pipeline.py
+python scripts/run_pipeline.py --skip-ingest
+python scripts/run_pipeline.py --process --skip-s3-upload
+python scripts/run_pipeline.py --catalog
 ```
 
-La ejecución sin argumentos intenta siempre el flujo completo: despliegue, ingesta y procesamiento. Las operaciones de despliegue deben ser idempotentes: si el bucket, prefijos o base de datos de Glue ya existen, se reutilizan.
-
-El modo `dry-run` permite demostrar la orquestacion sin consumir recursos AWS.
-
-Para AENA, el script no descarga los informes desde la web: procesa los Excel ya descargados manualmente en `datasets/raw/aena/` y genera las tablas silver por aeropuerto y provincia.
-
-## Estructura local de datos
-
-```text
-datasets/raw/              Originales locales y manifests de ingesta
-datasets/processed/silver/ Tablas normalizadas reproducibles
-datasets/processed/gold/   Tabla final de features para EDA y ML
-```
-
-No se mantiene una carpeta local `datasets/bronze/`: esa capa existe en S3, y
-en el entorno local cumple el mismo papel que `datasets/raw/`.
+La ejecucion sin argumentos intenta despliegue, ingesta y procesamiento. Las ejecuciones parciales permiten validar o regenerar componentes concretos sin repetir descargas.

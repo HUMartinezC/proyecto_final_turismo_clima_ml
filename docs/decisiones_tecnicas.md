@@ -1,47 +1,50 @@
 # Decisiones tecnicas
 
-## Tecnologias obligatorias
+## Tecnologias usadas
 
-| Requisito | Eleccion |
+| Necesidad | Eleccion |
 |---|---|
-| ETL/ELT | AWS Glue para jobs ETL y Data Catalog; Athena para consulta |
-| S3 | Data lake principal por capas |
-| RDS | MariaDB para entorno de pruebas, tablas estructuradas finales y metricas |
-| Lambda | Automatizacion de ingesta y disparo de jobs |
-| NoSQL | Amazon DocumentDB para respuestas JSON semiestructuradas en fases posteriores |
-| Kafka | Amazon MSK como Kafka gestionado en AWS en fases posteriores |
-| boto3 | Cliente AWS usado directamente desde `scripts/run_pipeline.py` |
+| Data lake | Amazon S3 por capas `bronze`, `silver`, `gold` |
+| Catalogo | AWS Glue Data Catalog |
+| Consulta SQL | Amazon Athena sobre Parquet en S3 |
+| Procesamiento | Python con pandas, numpy y pyarrow |
+| Automatizacion AWS | `boto3` desde `scripts/run_pipeline.py` |
+| Base relacional | Amazon RDS MariaDB para pruebas y resultados estructurados |
+| Calendario | Paquete `holidays` |
+| Modelado | scikit-learn y XGBoost |
+| Visualizacion | matplotlib y seaborn |
 
-## Tecnologias utiles
+## Cobertura tecnologica
 
-- Parquet + Snappy: formato eficiente para Athena y Glue.
-- pandas/pyarrow: procesamiento local y serializacion.
-- holidays: generacion reproducible de calendario laboral sin depender de una API externa.
-- scikit-learn/XGBoost/Gradio: quedan para entrenamiento y demo en fases posteriores.
-- SageMaker: opcional si se quiere entrenar completamente dentro de AWS.
+En este proyecto se cubre con Athena y Glue Data Catalog: los datos procesados se publican en S3 en formato Parquet y se registran como tablas externas consultables por SQL.
 
-## Por que estas fuentes y no mas
+La propuesta de estructura incluye una carpeta `spark/` como ejemplo orientativo, pero el volumen y la naturaleza mensual de los datos no justifican introducir un motor distribuido.
 
-El objetivo no es acumular fuentes, sino construir una unión defendible. Dataestur explica la demanda turística, Open-Meteo aporta clima reproducible, festivos explica estacionalidad y AENA añade movilidad aeroportuaria. La movilidad terrestre se contempla como ampliación porque puede explicar mejor turismo nacional y de proximidad, pero solo se incorporará si la fuente elegida permite una agregación mensual y territorial consistente. AEMET queda como contraste oficial opcional.
+El procesamiento en tiempo real con Kafka no encaja de forma natural con las fuentes integradas. Dataestur, Open-Meteo, festivos y AENA son fuentes historicas o batch: se descargan por rango temporal, se normalizan y se agregan a nivel mensual. No existe un flujo de eventos continuo que aporte valor real al target `hotel_overnights`.
 
-Los datos de AENA se descargan manualmente porque el portal publica informes mensuales en Excel y no ofrece una API estable equivalente a las otras fuentes. Esta decision reduce fragilidad: el script unico mantiene automatizado el procesamiento, normalizacion y subida a capas silver/gold, pero no depende de scraping ni de URLs cambiantes para obtener los Excel.
+La alternativa tecnica seria generar eventos sinteticos de ingesta o publicar cada fila procesada como evento, pero eso no mejoraria el modelo ni la arquitectura de datos. Por este motivo, Kafka se documenta como tecnologia no implementada en el flujo actual.
+
+DocumentDB se mantiene tambien como componente no implementado en el flujo actual. Las respuestas originales quedan conservadas en `datasets/raw/` y S3 bronze; esa estrategia cubre la trazabilidad de los JSON sin introducir una base NoSQL adicional que no se consulta en el analisis ni en el modelado.
+
+## Decisiones de arquitectura
+
+- El ETL se mantiene en Python para que el flujo sea reproducible en local y facil de trasladar a AWS.
+- Glue se usa como catalogo, no como motor de jobs.
+- Athena se usa para validar tablas publicadas en S3 sin mover datos.
+- AENA se descarga manualmente porque el portal publica Excel mensuales y no ofrece una API estable equivalente.
+- Open-Meteo se usa como fuente climatica principal porque no requiere API key y cubre todo el periodo por coordenadas.
+- AEMET queda documentada como contraste oficial, pero no forma parte del flujo implementado.
+
+## Por que estas fuentes
+
+El objetivo es construir una union defendible, no acumular fuentes. Dataestur aporta el target, Open-Meteo explica condiciones climaticas, `holidays` introduce estacionalidad y AENA añade movilidad aeroportuaria.
+
+La movilidad terrestre se mantiene como candidata porque podria mejorar la explicacion del turismo nacional y de proximidad. Solo tendria sentido incorporarla si aporta informacion mensual y territorial compatible con `province + year_month`.
 
 ## Riesgos
 
 - Cobertura temporal desigual entre turismo, clima y movilidad.
-- Granularidad distinta entre provincias, aeropuertos y comunidades autónomas.
-- Necesidad de mapear aeropuertos AENA a provincias.
-- APIs con limites, cambios de esquema o autenticacion.
-- Descargas manuales de AENA pueden introducir errores de cobertura si falta algun mes.
-- Las fuentes de movilidad terrestre pueden no tener el detalle provincial o mensual necesario.
-- MariaDB publico en RDS facilita pruebas, pero no debe usarse asi en produccion.
-
-## Mitigacion
-
-- Definir tablas de correspondencias, especialmente aeropuerto-provincia para AENA.
-- Mantener los datos originales inmutables en la capa bronze de S3.
-- Versionar datasets procesados por fecha de ejecución.
-- Usar Athena para validar conteos y nulos antes del entrenamiento.
-- Validar que `datasets/raw/aena/` contiene 12 ficheros por año antes de procesar movilidad.
-- Evaluar la movilidad terrestre primero como fuente candidata y descartarla si no mejora la cobertura frente a AENA.
-- Restringir el security group de MariaDB a una IP concreta cuando deje de ser una prueba.
+- Granularidad distinta entre provincias, aeropuertos y comunidades autonomas.
+- Errores de mapeo aeropuerto-provincia.
+- Cambios de esquema o limites en APIs externas.
+- Faltan datos de AENA si no se descargan todos los meses necesarios.

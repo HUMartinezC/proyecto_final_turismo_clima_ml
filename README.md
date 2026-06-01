@@ -1,30 +1,48 @@
 # Tourism Weather ML
 
-Proyecto de Machine Learning para estimar la demanda turística en España a partir de datos de turismo, clima, calendario y movilidad.
+Proyecto de Machine Learning para estimar demanda hotelera mensual en España a partir de datos de turismo, clima, calendario y movilidad aeroportuaria.
 
-## Problema elegido
+## Objetivo
 
-Predicción supervisada de ocupación/pernoctaciones hoteleras por provincia o comunidad autónoma y mes. El objetivo es anticipar demanda turística y explicar el impacto del clima y la estacionalidad.
+El problema se plantea como una regresion supervisada con `province + year_month`. La variable objetivo principal es `hotel_overnights`, procedente de Dataestur. El dataset final integra variables climaticas de Open-Meteo, festivos nacionales/autonomicos y movilidad aeroportuaria de AENA.
 
-## Stack principal implementado
+## Stack implementado
 
-- AWS S3 como data lake por capas: `bronze`, `silver`, `gold`.
-- AWS Glue para catalogo, crawlers y jobs ETL.
-- Amazon Athena para consultas SQL sobre S3.
-- Amazon RDS MariaDB para datasets estructurados finales y metricas de entrenamiento en entorno de pruebas.
-- AWS Lambda para automatizaciones de ingesta y disparo de jobs.
-- Python, boto3, pandas, holidays, pyarrow y requests.
+- AWS S3 como data lake por capas: `bronze`, `silver` y `gold`.
+- AWS Glue Data Catalog para registrar las tablas externas.
+- Amazon Athena para consultar los Parquet de S3 mediante SQL.
+- Amazon RDS MariaDB como base relacional disponible para pruebas y resultados estructurados.
+- AWS Lambda como recurso opcional si se configura un `LAMBDA_ROLE_ARN`.
+- Python con `boto3`, `pandas`, `numpy`, `pyarrow`, `requests`, `holidays`, `matplotlib`, `seaborn`, `scikit-learn` y `xgboost`.
 
-## Fuentes de datos elegidas
+El procesamiento se ejecuta con Python y las tablas de Glue se crean o actualizan desde Athena mediante DDL.
 
-1. Dataestur: demanda turística agregada, alojamientos, gasto y transporte.
-2. Open-Meteo: clima histórico diario reproducible por provincia.
-3. Calendario laboral/festivos: estacionalidad, puentes y vacaciones.
-4. AENA Open Data: movilidad aeroportuaria como proxy de demanda.
+## Fuentes de datos
 
-AEMET queda como fuente oficial española de contraste y solo se descarga si se pide explícitamente con `--source aemet`.
+| Fuente | Uso actual | Entrada |
+|---|---|---|
+| Dataestur | Demanda hotelera y variables turisticas | API REST |
+| Open-Meteo | Historico meteorologico diario por provincia | API REST sin clave |
+| Festivos | Calendario nacional y autonomico | Paquete `holidays` |
+| AENA | Pasajeros, operaciones y carga por aeropuerto | Excel mensuales descargados manualmente |
 
-## Primeros pasos
+AEMET queda fuera del flujo actual. Se conserva como fuente opcional de contraste oficial, pero `scripts/run_pipeline.py --source aemet` solo registra que no forma parte del pipeline implementado.
+
+## Estructura
+
+```text
+config/                  Configuracion declarativa de fuentes
+datasets/raw/            Originales locales y manifests de ingesta
+datasets/processed/      Salidas locales reproducibles en silver y gold
+docs/                    Documentacion tecnica del proyecto
+enunciados/              Requisitos literales de las entregas
+notebooks/               Notebooks local, cloud e indice
+scripts/run_pipeline.py  Script unico de despliegue, ingesta, procesado y catalogo
+```
+
+La capa `bronze` existe en S3. En local, `datasets/raw/` cumple el mismo papel para evitar duplicar conceptos.
+
+## Instalacion
 
 ```bash
 cp .env.example .env
@@ -32,177 +50,103 @@ python -m venv .venv
 source .venv/bin/activate
 pip install -r requirements.txt
 python scripts/run_pipeline.py --check-config
-python scripts/run_pipeline.py --dry-run
 ```
 
-`scripts/run_pipeline.py` es un ejecutable unico reproducible para todo el flujo. En un solo fichero carga `.env`, despliega recursos
-basicos en AWS con `boto3`, ingiere Dataestur/Open-Meteo en `datasets/raw/` y
-procesa los ficheros locales hacia `datasets/processed/silver/` y
-`datasets/processed/gold/`. 
+El fichero `.env` debe definir, como minimo, credenciales AWS validas, `S3_BUCKET_NAME`, `ATHENA_RESULTS_S3_URI` y la configuracion temporal de las fuentes.
 
-Para ejecutar contra AWS, configura `.env` y ejecuta:
+## Ejecucion del pipeline
+
+Flujo completo:
 
 ```bash
 python scripts/run_pipeline.py
 ```
 
-Siempre se puede simular primero sin llamadas externas ni escrituras:
+Simulacion sin descargas ni escrituras:
 
 ```bash
 python scripts/run_pipeline.py --dry-run
 ```
 
-Y si solo quieres regenerar las tablas locales a partir de los ficheros ya
-descargados en `datasets/raw/`, sin subir nada a S3:
+Regenerar silver/gold usando datos ya descargados:
 
 ```bash
 python scripts/run_pipeline.py --process --skip-s3-upload
 ```
 
-Por defecto el script intenta el flujo completo: despliegue idempotente, ingesta y procesamiento. La ingesta por defecto usa Dataestur para turismo, Open-Meteo para clima, `holidays` para calendario laboral y los ficheros AENA locales para movilidad; AEMET queda fuera salvo ejecución explícita con `--source aemet`. Si un recurso ya existe, se reutiliza. Las opciones `--deploy`, `--ingest`, `--process`, `--source` y `--dataestur-endpoint` quedan para depuración o ejecuciones parciales.
-
-## Dataestur
-
-Dataestur publica una API en `https://www.dataestur.es/apidata/`. El OpenAPI usa como servidor `https://dataestur.azure-api.net/API-SEGITTUR-v1/`. El proyecto descarga por defecto una seleccion curada de endpoints:
-
-- `EOH_PROV_DL`
-- `EOH_CCAA_DL`
-- `FRONTUR_DL`
-- `ETR_DL`
-- `EGATUR_DL`
-- `AENA_DESTINOS_DL`
-- `VALORES_CLIMATOLOGICOS_TEMPERATURA_DL`
-- `VALORES_CLIMATOLOGICOS_PRECIPITACION_DL`
-
-`IND_RENTABILIDAD_PROVINCIA_DL` queda como fuente manual porque Dataestur exige seleccionar provincia. Si se quiere incorporar rentabilidad hotelera, hay que copiar desde la interfaz una `Request URL` ya filtrada y ponerla en `DATAESTUR_EXTRA_REQUEST_URLS`.
-
-Puedes ajustar la lista en `.env`:
-
-```env
-DATAESTUR_ENDPOINTS=EOH_PROV_DL,FRONTUR_DL,EGATUR_DL
-DATAESTUR_FROM_YEAR=2015
-DATAESTUR_FROM_MONTH=10
-DATAESTUR_TO_YEAR=2024
-DATAESTUR_TO_MONTH=12
-DATAESTUR_EXTRA_REQUEST_URLS=rentabilidad_madrid=https://...
-```
-
-Para una consulta con filtros concretos:
-
-1. Entra en la API de Dataestur.
-2. Selecciona la fuente, por ejemplo `Ocupación alojamientos hoteleros`.
-3. Pulsa `Pruébalo`, rellena filtros y pulsa `Execute`.
-4. Copia el `Request URL` en `.env` como `DATAESTUR_EOH_REQUEST_URL`.
-5. Ejecuta:
+Ejecutar despliegue y procesamiento sin volver a descargar fuentes:
 
 ```bash
-python scripts/run_pipeline.py --ingest --source dataestur
+python scripts/run_pipeline.py --skip-ingest
 ```
 
-Prueba recomendada de una sola llamada:
+Crear o actualizar tablas externas en Glue Data Catalog sobre los Parquet de S3:
 
 ```bash
-python scripts/run_pipeline.py --ingest --source dataestur --dataestur-endpoint EOH_PROV_DL --dry-run
-python scripts/run_pipeline.py --ingest --source dataestur --dataestur-endpoint EOH_PROV_DL
+python scripts/run_pipeline.py --catalog
 ```
 
-La ingesta guarda el fichero original local en `datasets/raw/dataestur/original/` y un manifest de trazabilidad en `datasets/raw/dataestur/landing_manifest/`. En S3 conserva la capa `bronze/dataestur/...`.
+El flujo por defecto intenta despliegue idempotente, ingesta y procesamiento. Si se pasa `--deploy`, `--ingest`, `--process` o `--catalog`, solo se ejecutan las partes indicadas. `--source` limita la ingesta o el procesamiento a una fuente concreta.
 
-## AEMET OpenData opcional
+## Salidas locales
 
-AEMET requiere una API key gratuita en `AEMET_API_KEY`. Esta fuente no se ejecuta en el flujo por defecto; Open-Meteo es la fuente climática principal. AEMET se reserva para contraste oficial y debe lanzarse explícitamente con `--source aemet`.
-
-```env
-AEMET_API_KEY=tu_api_key
-AEMET_FROM_DATE=2015-10-01T00:00:00UTC
-AEMET_TO_DATE=2024-12-31T00:00:00UTC
-AEMET_STATIONS=8178D,8050X
-AEMET_CHUNK_DAYS=15
-AEMET_SKIP_EXISTING=true
-```
-
-Si `AEMET_STATIONS` queda vacio, se solicitan todas las estaciones para el rango configurado. Para evitar descargas grandes por accidente, si las fechas estan vacias solo se descarga el inventario. Los rangos largos se dividen automaticamente en bloques de `AEMET_CHUNK_DAYS`.
-
-```bash
-python scripts/run_pipeline.py --ingest --source aemet --dry-run
-python scripts/run_pipeline.py --ingest --source aemet
-```
-
-La ingesta guarda los ficheros originales locales en `datasets/raw/aemet/original/` y un manifest de trazabilidad en `datasets/raw/aemet/landing_manifest/`.
-Si una descarga historica se corta, puedes relanzar el comando: con `AEMET_SKIP_EXISTING=true` reutiliza los bloques ya descargados y continua con los que faltan.
-
-## Festivos
-
-Los festivos se generan localmente con el paquete Python `holidays`, sin depender de una API externa. El rango se configura en `.env`:
-
-```env
-HOLIDAYS_FROM_YEAR=2015
-HOLIDAYS_TO_YEAR=2024
-```
-
-```bash
-python scripts/run_pipeline.py --ingest --source holidays --dry-run
-python scripts/run_pipeline.py --ingest --source holidays
-python scripts/run_pipeline.py --process --source holidays
-```
-
-La ingesta guarda el calendario original local en `datasets/raw/holidays/original/`. El procesamiento genera `datasets/processed/silver/holidays_calendar.csv` y, si `pyarrow` está disponible, también `holidays_calendar.parquet`.
-
-## Open-Meteo
-
-Open-Meteo es la fuente climática principal del proyecto: no requiere API key y permite descargar el histórico diario 2015-2024 por coordenadas representativas de cada provincia.
-
-```env
-OPEN_METEO_FROM_DATE=2015-10-01
-OPEN_METEO_TO_DATE=2024-12-31
-OPEN_METEO_LOCATIONS=
-OPEN_METEO_TIMEZONE=Europe/Madrid
-OPEN_METEO_MIN_SECONDS_BETWEEN_REQUESTS=5
-OPEN_METEO_RETRY_ATTEMPTS=6
-OPEN_METEO_RETRY_BASE_SECONDS=10
-OPEN_METEO_SKIP_EXISTING=true
-```
-
-Si `OPEN_METEO_LOCATIONS` queda vacio, se descargan todas las capitales de provincia, Ceuta y Melilla. Para probar con pocas provincias:
-
-```env
-OPEN_METEO_LOCATIONS=madrid,barcelona,malaga
-```
-
-```bash
-python scripts/run_pipeline.py --ingest --source open_meteo --dry-run
-python scripts/run_pipeline.py --ingest --source open_meteo
-```
-
-La ingesta guarda los JSON originales locales en `datasets/raw/open_meteo/original/` y sus manifests en `datasets/raw/open_meteo/landing_manifest/`. En S3 conserva la capa `bronze/open_meteo/...`.
-Si la API devuelve `429`, el conector espera y reintenta. Si una ejecución se corta, vuelve a lanzar el mismo comando: con `OPEN_METEO_SKIP_EXISTING=true` reutiliza los ficheros ya descargados y continúa con los que faltan.
-
-## AENA
-
-Los ficheros mensuales de AENA se descargan manualmente desde el portal de estadísticas de AENA y se guardan localmente en `datasets/raw/aena/`. El script no automatiza esa descarga; solo registra y procesa los Excel locales. Soporta los Excel históricos `.xls` y los `.xlsx` modernos:
-
-```bash
-python scripts/run_pipeline.py --ingest --source aena --dry-run
-python scripts/run_pipeline.py --process --source aena --skip-s3-upload
-```
-
-El procesamiento genera:
-
-- `datasets/processed/silver/aena_monthly_air_traffic.csv`
-- `datasets/processed/silver/aena_monthly_air_traffic_by_province.csv`
-
-La tabla gold incorpora las features `aena_passengers`, `aena_operations`, `aena_cargo_kg` y `aena_airport_count` por provincia y mes.
-
-## Estructura
+El procesamiento genera, entre otras, estas tablas:
 
 ```text
-config/                  Configuracion declarativa del proyecto
-datasets/raw/            Landing local de originales descargados o aportados manualmente
-datasets/processed/      Salidas locales reproducibles: silver y gold
-docs/                    Arquitectura, decisiones y fuentes
-notebooks/               Notebook principal y analisis incrementales del proyecto
-scripts/run_pipeline.py  Script unico de despliegue, ingesta y procesamiento
+datasets/processed/silver/open_meteo_monthly.csv
+datasets/processed/silver/dataestur_hotel_occupancy_by_province.csv
+datasets/processed/silver/holidays_calendar.csv
+datasets/processed/silver/aena_monthly_air_traffic.csv
+datasets/processed/silver/aena_monthly_air_traffic_by_province.csv
+datasets/processed/gold/tourism_weather_monthly_features.csv
 ```
 
-La capa `bronze` se mantiene como prefijo del data lake en S3. En local se usa
-`datasets/raw/` para evitar duplicar el mismo concepto con dos nombres.
+Si `pyarrow` esta disponible, tambien se generan versiones Parquet y se suben a S3 en rutas separadas por tabla y formato.
+
+## Tablas en Athena
+
+El catalogo crea tablas externas para las capas silver y gold:
+
+```text
+silver_open_meteo_monthly
+silver_dataestur_hotel_occupancy_by_province
+silver_holidays_calendar
+silver_aena_monthly_air_traffic
+silver_aena_monthly_air_traffic_by_province
+gold_tourism_weather_monthly_features
+```
+
+Athena necesita una ubicacion de resultados configurada en el workgroup o en `ATHENA_RESULTS_S3_URI`.
+
+## Notebooks
+
+- `notebooks/proyecto_final_turismo_clima.ipynb`: indice del proyecto.
+- `notebooks/proyecto_final_turismo_clima_local.ipynb`: analisis y modelado leyendo la tabla gold local.
+- `notebooks/proyecto_final_turismo_clima_cloud.ipynb`: misma logica leyendo gold desde S3 y validando Athena.
+
+Los notebooks cubren inspeccion inicial, estadisticas descriptivas, valores faltantes, duplicados, outliers, visualizaciones, correlaciones, preparacion del dataset, division temporal train/test y entrenamiento de modelos.
+
+## Modelado
+
+El target usado es `hotel_overnights`. Las filas sin target se excluyen del entrenamiento. La division se realiza por meses completos para evitar fuga temporal:
+
+- Train: 4562 filas, de 2015-10 a 2023-01.
+- Test: 1196 filas, de 2023-02 a 2024-12.
+
+Modelos entrenados:
+
+- Random Forest Regressor.
+- Extra Trees Regressor.
+- HistGradientBoosting Regressor.
+- XGBoost Regressor.
+
+Las metricas comparadas son MAE, RMSE y R2. En las ejecuciones actuales, el mejor resultado lo obtiene `ExtraTreesRegressor` con profundidad maxima 10.
+
+## Documentacion
+
+- `docs/problema_ml.md`: problema, target, grano y variables.
+- `docs/fuentes_datos.md`: fuentes usadas, fuentes descartadas y rango temporal.
+- `docs/arquitectura.md`: arquitectura local/AWS y flujo de datos.
+- `docs/decisiones_tecnicas.md`: decisiones, riesgos y mitigaciones.
+- `docs/eda_preparacion.md`: EDA, limpieza, transformaciones y split.
+- `docs/modelado.md`: modelos entrenados, metricas y seleccion.
