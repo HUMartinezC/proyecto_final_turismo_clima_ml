@@ -1,0 +1,9 @@
+gradio==4.44.1
+huggingface_hub>=0.25,<1.0
+fastapi>=0.112,<0.113
+starlette>=0.37,<0.39
+joblib>=1.4
+numpy>=1.26
+pandas>=2.2
+scikit-learn>=1.4
+audioop-lts>=0.2.1

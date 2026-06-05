@@ -761,7 +761,7 @@ def build_holiday_rows(configuracion: Settings) -> list[dict[str, Any]]:
         raise RuntimeError("Install the holidays source with `pip install holidays pandas`.") from exc
 
     anios = range(configuracion.holidays_from_year, configuracion.holidays_to_year + 1)
-    festivos_nacionales = holidays.country_holidays("ES", anios=anios, language="es")
+    festivos_nacionales = holidays.country_holidays("ES", years=anios, language="es")
     filas: list[dict[str, Any]] = []
     vistos: set[tuple[str, str, str, str]] = set()
 
@@ -780,7 +780,7 @@ def build_holiday_rows(configuracion: Settings) -> list[dict[str, Any]]:
         )
 
     for codigo_region, nombre_region in SPANISH_REGION_SUBDIVISIONS.items():
-        festivos_regionales = holidays.country_holidays("ES", subdiv=codigo_region, anios=anios, language="es")
+        festivos_regionales = holidays.country_holidays("ES", subdiv=codigo_region, years=anios, language="es")
         for dia, name in sorted(festivos_regionales.items()):
             if dia in festivos_nacionales and str(festivos_nacionales[dia]) == str(name):
                 continue
@@ -799,7 +799,7 @@ def build_holiday_rows(configuracion: Settings) -> list[dict[str, Any]]:
                 }
             )
 
-    return sorted(filas, clave=lambda fila: (fila["date"], fila["region_code"], fila["holiday_name"]))
+    return sorted(filas, key=lambda fila: (fila["date"], fila["region_code"], fila["holiday_name"]))
 
 
 def ingest_dataestur(configuracion: Settings, argumentos_cli: argparse.Namespace) -> list[str]:
@@ -1110,7 +1110,7 @@ def process_dataestur_hotel_occupancy(configuracion: Settings, dry_run: bool) ->
             }
         )
 
-    filas = sorted(filas, clave=lambda fila: (fila["province"], fila["year_month"]))
+    filas = sorted(filas, key=lambda fila: (fila["province"], fila["year_month"]))
     write_csv(ruta_salida, filas)
     maybe_write_parquet(ruta_salida.with_suffix(".parquet"), filas)
     upload_table_outputs_to_s3(
@@ -1238,7 +1238,7 @@ def parse_aena_file_date(path: Path) -> tuple[int, int]:
 def find_aena_data_sheet(path: Path, pd):
     libro = pd.ExcelFile(path)
     for nombre_hoja in libro.sheet_names:
-        datos = pd.read_excel(path, header=None, nombre_hoja=nombre_hoja)
+        datos = pd.read_excel(path, header=None, sheet_name=nombre_hoja)
         fila_maxima = min(20, len(datos) - 2)
         for indice_fila in range(fila_maxima):
             texto_fila = " ".join(normalize_text(datos.iat[indice_fila, col]) for col in range(datos.shape[1]))
@@ -1312,7 +1312,7 @@ def aggregate_aena_by_province(filas: list[dict[str, Any]]) -> list[dict[str, An
         elemento["operations"] += int(fila["operations"])
         elemento["cargo_kg"] += int(fila["cargo_kg"])
         elemento["airport_count"] += 1
-    return sorted(agrupados.values(), clave=lambda elemento: (elemento["province"], elemento["year_month"]))
+    return sorted(agrupados.values(), key=lambda elemento: (elemento["province"], elemento["year_month"]))
 
 
 def write_gold_feature_table(configuracion: Settings) -> list[str]:
@@ -1636,7 +1636,7 @@ def write_csv(path: Path, filas: list[dict[str, Any]]) -> None:
         return
     nombres_campos = list(filas[0].keys())
     with path.open("w", encoding="utf-8", newline="") as manejador:
-        escritor = csv.DictWriter(manejador, nombres_campos=nombres_campos)
+        escritor = csv.DictWriter(manejador, fieldnames=nombres_campos)
         escritor.writeheader()
         escritor.writerows(filas)
 
@@ -1663,7 +1663,7 @@ def maybe_write_parquet(path: Path, filas: list[dict[str, Any]]) -> None:
         convertida = pd.to_numeric(tabla[columna], errors="coerce")
         if convertida.notna().sum() or tabla[columna].isna().all():
             tabla[columna] = convertida
-    tabla.to_parquet(path, indice=False)
+    tabla.to_parquet(path, index=False)
 
 
 def safe_stem(valor: str) -> str:

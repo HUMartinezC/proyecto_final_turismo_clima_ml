@@ -121,8 +121,8 @@ Athena necesita una ubicacion de resultados configurada en el workgroup o en `AT
 ## Notebooks
 
 - `notebooks/proyecto_final_turismo_clima.ipynb`: indice del proyecto.
-- `notebooks/proyecto_final_turismo_clima_local.ipynb`: analisis y modelado leyendo la tabla gold local.
-- `notebooks/proyecto_final_turismo_clima_cloud.ipynb`: misma logica leyendo gold desde S3 y validando Athena.
+- `notebooks/proyecto_final_turismo_clima_cloud.ipynb`: notebook principal y fuente de verdad para resultados, leyendo gold desde S3 y validando Athena.
+- `notebooks/proyecto_final_turismo_clima_local.ipynb`: ejecucion auxiliar para trabajar sin AWS; sus resultados exploratorios no sustituyen la seleccion final del notebook cloud.
 
 Los notebooks cubren inspeccion inicial, estadisticas descriptivas, valores faltantes, duplicados, outliers, visualizaciones, correlaciones, preparacion del dataset, division temporal train/test y entrenamiento de modelos.
 
@@ -140,7 +140,29 @@ Modelos entrenados:
 - HistGradientBoosting Regressor.
 - XGBoost Regressor.
 
-Las metricas comparadas son MAE, RMSE y R2. En las ejecuciones actuales, el mejor resultado lo obtiene `ExtraTreesRegressor` con profundidad maxima 10.
+Las metricas comparadas son MAE, RMSE y R2. El notebook cloud selecciona `ExtraTrees optimizado` mediante busqueda de hiperparametros:
+
+- MAE: `47483.282`.
+- RMSE: `118515.718`.
+- R2: `0.990`.
+
+`scripts/train_export_model.py` reproduce las features, discretizaciones e hiperparametros del modelo seleccionado en el notebook cloud.
+
+## Representacion y despliegue
+
+El mejor modelo puede exportarse como pipeline completo y generar figuras de evaluacion:
+
+```bash
+python scripts/train_export_model.py
+```
+
+Para desplegar el modelo y la demo Gradio en Hugging Face Hub:
+
+```bash
+python scripts/deploy_to_huggingface.py
+```
+
+El despliegue usa `HF_TOKEN`, `HF_MODEL_REPO_ID` y `HF_SPACE_REPO_ID`.
 
 ## Documentacion
 
@@ -150,3 +172,4 @@ Las metricas comparadas son MAE, RMSE y R2. En las ejecuciones actuales, el mejo
 - `docs/decisiones_tecnicas.md`: decisiones, riesgos y mitigaciones.
 - `docs/eda_preparacion.md`: EDA, limpieza, transformaciones y split.
 - `docs/modelado.md`: modelos entrenados, metricas y seleccion.
+- `docs/despliegue_hf.md`: exportacion del modelo y despliegue en Hugging Face.

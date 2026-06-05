@@ -38,6 +38,7 @@ La comparacion usa:
 
 | Modelo | RMSE | MAE | R2 |
 |---|---:|---:|---:|
+| ExtraTrees optimizado | 118515.718 | 47483.282 | 0.990 |
 | ExtraTrees depth=10 | 119598.386 | 58741.780 | 0.990 |
 | ExtraTrees depth=None | 121145.363 | 47611.640 | 0.990 |
 | XGBoost depth=5 | 161776.414 | 65685.238 | 0.982 |
@@ -49,4 +50,33 @@ La comparacion usa:
 
 ## Seleccion
 
-El modelo seleccionado es `ExtraTreesRegressor` con profundidad maxima 10, porque obtiene el menor RMSE en test y mantiene R2 alto. El RMSE se usa como criterio principal porque penaliza con mas fuerza los errores grandes, relevantes en provincias o meses con volumen turistico elevado.
+El modelo seleccionado es `ExtraTrees optimizado`, porque obtiene el menor RMSE en test y mantiene R2 alto. Sus hiperparametros son:
+
+```text
+n_estimators=180
+max_depth=None
+min_samples_split=5
+min_samples_leaf=1
+max_features=1.0
+bootstrap=True
+random_state=42
+```
+
+El RMSE se usa como criterio principal porque penaliza con mas fuerza los errores grandes, relevantes en provincias o meses con volumen turistico elevado.
+
+## Representacion grafica
+
+La representacion del modelo diferencia datos reales y predicciones mediante:
+
+- Dispersion de `y_true` frente a `y_pred`.
+- Residuos frente a prediccion.
+- Serie mensual agregada real frente a predicha.
+- Importancia de variables del modelo seleccionado.
+
+Estas figuras se generan desde el notebook y tambien desde:
+
+```bash
+python scripts/train_export_model.py
+```
+
+Las salidas quedan en `reports/figures/`.
