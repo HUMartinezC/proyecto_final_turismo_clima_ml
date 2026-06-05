@@ -35,6 +35,7 @@ HF_SPACE_REPO_ID=usuario/tourism-weather-demo
 ```
 
 `HF_TOKEN` debe tener permisos para crear y escribir en repositorios de Hugging Face.
+`HF_MODEL_REPO_ID` y `HF_SPACE_REPO_ID` son opcionales para el script Python: si faltan, se generan como `<usuario>/tourism-weather-model` y `<usuario>/tourism-weather-demo`.
 
 ## Despliegue recomendado con HF CLI
 
@@ -91,17 +92,26 @@ El script crea o reutiliza:
 - Un repositorio de modelo para los artefactos.
 - Una Space Gradio para la aplicacion.
 
-Tambien configura `HF_MODEL_REPO_ID` como secreto de la Space para que la app descargue el modelo desde el repositorio correspondiente.
+Tambien configura `HF_MODEL_REPO_ID` como variable de la Space para que la app descargue el modelo desde el repositorio correspondiente.
 Si se usa `--private`, tambien configura `HF_TOKEN` como secreto de la Space para que pueda leer el repositorio privado del modelo.
 
 ## Estado del despliegue
 
-El token de Hugging Face esta configurado en el entorno local. Para completar el despliegue tambien deben definirse `HF_MODEL_REPO_ID` y `HF_SPACE_REPO_ID`, ejecutar el script y conservar las URLs resultantes como evidencia.
+El despliegue esta operativo:
+
+- Modelo: `https://huggingface.co/HMartinezC/tourism-weather-model`
+- Space: `https://huggingface.co/spaces/HMartinezC/tourism-weather-demo`
+
+El script elimina de la Space cualquier artefacto de modelo antiguo, publica el modelo en un repositorio separado, configura `HF_MODEL_REPO_ID`, reinicia la Space y espera hasta confirmar que el runtime esta operativo.
+
+Esta separacion evita que archivos grandes gestionados por LFS formen parte del checkout de build de la Space. La version anterior contenia el modelo dentro de la Space y fallaba durante el build con `exit code 128`, antes de arrancar la aplicacion Python.
 
 ## Comparacion con Hugging Face
 
 El modelo propio es un pipeline tabular supervisado entrenado con datos integrados del proyecto. Los modelos disponibles en Hugging Face suelen estar orientados a texto, imagen o series genericas; no contienen de forma nativa las variables especificas de turismo, clima, festivos y movilidad por provincia. Por eso la comparacion se plantea a nivel funcional: el modelo propio esta especializado en el dataset del proyecto y la Space demuestra inferencia interactiva sobre el mismo esquema de features.
 
-## Fine-tuning pendiente
+## Fine-tuning integrado localmente
 
-En modelos tabulares clasicos, el equivalente practico al fine-tuning es reentrenar o reajustar hiperparametros con un subconjunto mas especifico. Esta parte aun no esta ejecutada. Una mejora razonable seria especializar el modelo por comunidad autonoma, litoral/interior o temporada alta, y comparar las metricas frente al modelo global.
+Se ha entrenado y evaluado localmente una variante especializada en las 24 provincias costeras e insulares. El modelo ajustado reduce el RMSE un `8.19%` y el MAE un `2.20%` frente al modelo global sobre el mismo test costero.
+
+La variante esta integrada y publicada mediante `deployment/huggingface_space/app.py`; el mismo script tambien permite probarla localmente. El protocolo, los resultados y sus limitaciones se documentan en `docs/fine_tuning.md`.

@@ -1,0 +1,74 @@
+{
+  "specialization": "Spanish coastal and island provinces",
+  "source": "scripts/fine_tune_coastal_model.py",
+  "target": "hotel_overnights",
+  "coastal_provinces": [
+    "A Coruna",
+    "Alicante",
+    "Almeria",
+    "Asturias",
+    "Barcelona",
+    "Bizkaia",
+    "Cadiz",
+    "Cantabria",
+    "Castellon",
+    "Ceuta",
+    "Gipuzkoa",
+    "Girona",
+    "Granada",
+    "Huelva",
+    "Illes Balears",
+    "Las Palmas",
+    "Lugo",
+    "Malaga",
+    "Melilla",
+    "Murcia",
+    "Pontevedra",
+    "Santa Cruz de Tenerife",
+    "Tarragona",
+    "Valencia"
+  ],
+  "coastal_province_count": 24,
+  "global_train_rows": 4562,
+  "coastal_train_rows": 2108,
+  "coastal_test_rows": 552,
+  "train_month_min": "2015-10",
+  "train_month_max": "2023-01",
+  "validation_month_min": "2021-08",
+  "validation_month_max": "2023-01",
+  "test_month_min": "2023-02",
+  "test_month_max": "2024-12",
+  "search_iterations": 24,
+  "search_best_validation_RMSE": 153635.63345172745,
+  "search_best_params": {
+    "model__n_estimators": 180,
+    "model__min_samples_split": 5,
+    "model__min_samples_leaf": 1,
+    "model__max_features": 0.7,
+    "model__max_depth": null,
+    "model__bootstrap": false
+  },
+  "metrics": {
+    "Global ExtraTrees": {
+      "MAE": 79878.54145089991,
+      "RMSE": 170759.0910438888,
+      "R2": 0.9884628252656028
+    },
+    "Coastal ExtraTrees": {
+      "MAE": 85369.66061598208,
+      "RMSE": 171529.06347570271,
+      "R2": 0.9883585457879045
+    },
+    "Tuned coastal ExtraTrees": {
+      "MAE": 78121.14661751883,
+      "RMSE": 156769.87003017007,
+      "R2": 0.9902757302402121
+    }
+  },
+  "tuned_vs_global_improvement": {
+    "MAE_percent": 2.200083779022589,
+    "RMSE_percent": 8.19237261582939,
+    "R2_percent": 0.18340649018562263
+  },
+  "provinces_with_MAE_improvement": 13
+}

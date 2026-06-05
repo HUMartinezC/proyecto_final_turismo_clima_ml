@@ -12,16 +12,17 @@ import pandas as pd
 from huggingface_hub import hf_hub_download
 
 
-MODEL_FILENAME = "tourism_weather_extra_trees.joblib"
-METADATA_FILENAME = "model_metadata.json"
+GLOBAL_MODEL_FILENAME = "tourism_weather_extra_trees.joblib"
+GLOBAL_METADATA_FILENAME = "model_metadata.json"
+COASTAL_MODEL_FILENAME = "tourism_weather_coastal_extra_trees.joblib"
+COASTAL_METADATA_FILENAME = "coastal_model_metadata.json"
 HISTORY_COLUMNS = [
     "Provincia",
     "Comunidad autónoma",
     "Mes",
-    "Temperatura media (°C)",
-    "Precipitación total (mm)",
-    "Pasajeros AENA",
-    "Predicción de pernoctaciones",
+    "Modelo global",
+    "Modelo costero ajustado",
+    "Diferencia",
 ]
 
 PROVINCE_REGION_CODES = {
@@ -116,9 +117,35 @@ MONTH_CHOICES = [
     ("Diciembre", 12),
 ]
 
+MODEL_MODES = [
+    ("Comparar ambos modelos", "compare"),
+    ("Modelo global", "global"),
+    ("Modelo costero ajustado", "coastal"),
+]
+
+DEMO_PRESETS = {
+    "Illes Balears": [8, 27.0, 32.0, 22.8, 18.8, 18.8, 40, 7.8, 15.2, 1, 0, 6_258_000, 49_000, 841_000, 4],
+    "Las Palmas": [8, 23.0, 25.9, 21.0, 7.2, 7.2, 38, 13.9, 18.9, 1, 0, 2_369_000, 20_300, 1_573_000, 3],
+    "Barcelona": [8, 25.4, 28.8, 21.9, 48.7, 48.7, 69, 9.6, 19.6, 1, 0, 4_944_000, 33_700, 13_188_000, 2],
+    "Santa Cruz de Tenerife": [8, 23.0, 26.2, 20.5, 4.7, 4.7, 29, 12.9, 17.3, 1, 0, 1_621_000, 15_000, 1_137_000, 5],
+    "Madrid": [10, 15.9, 21.6, 11.0, 59.8, 59.8, 91, 9.0, 15.5, 1, 0, 4_768_000, 37_300, 50_344_000, 2],
+    "Malaga": [8, 27.3, 31.4, 23.7, 1.5, 1.5, 11, 8.2, 15.0, 1, 0, 2_119_000, 15_300, 304_000, 1],
+    "Alicante": [8, 27.0, 30.0, 24.0, 12.9, 12.9, 25, 11.6, 21.5, 1, 0, 1_562_000, 10_400, 290_000, 1],
+    "Girona": [8, 25.1, 31.0, 20.2, 45.2, 45.2, 52, 8.2, 16.7, 1, 0, 289_000, 2_400, 4_000, 1],
+    "Tarragona": [8, 25.7, 29.8, 21.8, 47.3, 47.3, 47, 9.0, 18.3, 1, 0, 179_000, 1_700, 0, 1],
+    "Cadiz": [8, 25.4, 30.0, 21.2, 0.7, 0.7, 3, 11.5, 18.6, 1, 0, 111_000, 4_900, 0, 2],
+}
+
+ARTIFACT_ENV_VARS = {
+    GLOBAL_MODEL_FILENAME: "MODEL_PATH",
+    GLOBAL_METADATA_FILENAME: "MODEL_METADATA_PATH",
+    COASTAL_MODEL_FILENAME: "COASTAL_MODEL_PATH",
+    COASTAL_METADATA_FILENAME: "COASTAL_MODEL_METADATA_PATH",
+}
+
 
 def resolve_artifact(filename: str) -> str:
-    explicit_path = os.getenv("MODEL_PATH" if filename.endswith(".joblib") else "MODEL_METADATA_PATH")
+    explicit_path = os.getenv(ARTIFACT_ENV_VARS[filename])
     if explicit_path and Path(explicit_path).exists():
         return explicit_path
 
@@ -139,13 +166,19 @@ def resolve_artifact(filename: str) -> str:
     return hf_hub_download(repo_id=model_repo_id, filename=filename, token=os.getenv("HF_TOKEN"))
 
 
-MODEL = joblib.load(resolve_artifact(MODEL_FILENAME))
+GLOBAL_MODEL = joblib.load(resolve_artifact(GLOBAL_MODEL_FILENAME))
+COASTAL_MODEL = joblib.load(resolve_artifact(COASTAL_MODEL_FILENAME))
 
 try:
-    with open(resolve_artifact(METADATA_FILENAME), encoding="utf-8") as file:
-        METADATA = json.load(file)
+    with open(resolve_artifact(GLOBAL_METADATA_FILENAME), encoding="utf-8") as file:
+        GLOBAL_METADATA = json.load(file)
 except Exception:
-    METADATA = {}
+    GLOBAL_METADATA = {}
+
+with open(resolve_artifact(COASTAL_METADATA_FILENAME), encoding="utf-8") as file:
+    COASTAL_METADATA = json.load(file)
+
+COASTAL_PROVINCES = set(COASTAL_METADATA["coastal_provinces"])
 
 
 def build_row(
@@ -215,34 +248,87 @@ def build_row(
     )
 
 
-def predict(history: list[list] | None, *values):
+def predict(model_mode: str, history: list[list] | None, *values):
     row = build_row(*values)
-    prediction = float(np.clip(MODEL.predict(row)[0], a_min=0, a_max=None))
-    metrics = ""
-    if METADATA:
-        metrics = (
-            f"Modelo: {METADATA.get('model_name', 'ExtraTreesRegressor')} | "
-            f"RMSE test: {METADATA.get('RMSE', 0):,.0f} | "
-            f"MAE test: {METADATA.get('MAE', 0):,.0f} | "
-            f"R2 test: {METADATA.get('R2', 0):.3f}"
-        )
     province = values[0]
     month = int(values[1])
-    temperature_mean = float(values[2])
-    precipitation_sum = float(values[5])
-    aena_passengers = int(values[12])
     month_name = dict((value, label) for label, value in MONTH_CHOICES)[month]
+
+    global_prediction = float(np.clip(GLOBAL_MODEL.predict(row)[0], a_min=0, a_max=None))
+    coastal_prediction = None
+    if province in COASTAL_PROVINCES:
+        coastal_prediction = float(np.clip(COASTAL_MODEL.predict(row)[0], a_min=0, a_max=None))
+
+    if model_mode == "coastal" and coastal_prediction is None:
+        prediction = global_prediction
+        interpretation = (
+            "El modelo costero no es aplicable a esta provincia. "
+            "Se devuelve el modelo global."
+        )
+    elif model_mode == "coastal":
+        prediction = coastal_prediction
+        interpretation = "Resultado mostrado: modelo costero ajustado."
+    elif model_mode == "global":
+        prediction = global_prediction
+        interpretation = "Resultado mostrado: modelo global."
+    elif coastal_prediction is None:
+        prediction = global_prediction
+        interpretation = "Solo está disponible el modelo global para esta provincia."
+    else:
+        prediction = global_prediction
+        interpretation = ""
+
+    coastal_display = (
+        f"{coastal_prediction:,.0f}" if coastal_prediction is not None else "No aplicable"
+    )
+    difference_display = (
+        f"{coastal_prediction - global_prediction:+,.0f}"
+        if coastal_prediction is not None
+        else "No aplicable"
+    )
+    difference_percent = (
+        (coastal_prediction - global_prediction) / global_prediction * 100
+        if coastal_prediction is not None and global_prediction
+        else None
+    )
+    difference_percent_display = (
+        f"{difference_percent:+.1f}%" if difference_percent is not None else "No aplicable"
+    )
+    if model_mode == "compare" and coastal_prediction is not None:
+        prediction = global_prediction
+        interpretation = (
+            "Comparación informativa; el modelo global se conserva como referencia. "
+            f"El modelo costero difiere en {difference_display} ({difference_percent_display})."
+        )
+        if abs(difference_percent) >= 20:
+            interpretation += (
+                " La divergencia es alta: revisa que los valores formen una combinación "
+                "realista antes de interpretar la predicción."
+            )
     new_history_row = [
         province,
         region_for_province(province),
         month_name,
-        round(temperature_mean, 1),
-        round(precipitation_sum, 1),
-        aena_passengers,
-        round(prediction),
+        f"{global_prediction:,.0f}",
+        coastal_display,
+        difference_display,
     ]
     updated_history = [new_history_row, *(history or [])][:5]
-    return round(prediction), metrics, row, render_history(updated_history), updated_history
+    comparison = {
+        "Modelo global": round(global_prediction),
+        "Modelo costero ajustado": round(coastal_prediction) if coastal_prediction is not None else "No aplicable",
+        "Diferencia costero - global": difference_display,
+        "Diferencia porcentual": difference_percent_display,
+        "Segmento": "Costero/insular" if province in COASTAL_PROVINCES else "Resto de provincias",
+    }
+    return (
+        round(prediction),
+        comparison,
+        interpretation,
+        row,
+        render_history(updated_history),
+        updated_history,
+    )
 
 
 def region_for_province(province: str) -> str:
@@ -250,6 +336,30 @@ def region_for_province(province: str) -> str:
         return ""
     region_code = PROVINCE_REGION_CODES[province]
     return f"{REGION_NAMES[region_code]} ({region_code})"
+
+
+def segment_status(province: str) -> str:
+    if province in COASTAL_PROVINCES:
+        return (
+            "Provincia incluida en el segmento costero/insular. "
+            "Se pueden comparar ambos modelos."
+        )
+    return (
+        "Provincia fuera del segmento costero/insular. "
+        "El modelo especializado no es aplicable."
+    )
+
+
+def apply_province_preset(province: str):
+    status = segment_status(province)
+    preset = DEMO_PRESETS.get(province)
+    if preset is None:
+        return region_for_province(province), status, *([gr.skip()] * 15)
+    status += (
+        " Se ha cargado su preset demostrativo, basado en las medianas históricas "
+        "del mes con mayor demanda turística media."
+    )
+    return region_for_province(province), status, *preset
 
 
 def render_history(history: list[list] | None) -> str:
@@ -279,50 +389,59 @@ with gr.Blocks(title="Tourism Weather ML") as demo:
     gr.Markdown("# Tourism Weather ML")
     gr.Markdown(
         "Estimación de pernoctaciones hoteleras mensuales por provincia. "
-        "Los rangos de los controles se basan en los datos históricos del proyecto."
+        "Permite comparar el modelo global con el modelo ajustado para provincias "
+        "costeras e insulares."
+    )
+    gr.Markdown(
+        "**Demostración rápida:** Illes Balears, Las Palmas, Barcelona, Santa Cruz de "
+        "Tenerife, Madrid, Málaga, Alicante, Girona, Tarragona y Cádiz tienen valores "
+        "iniciales coherentes con su histórico. Al seleccionar una de ellas se carga "
+        "automáticamente el escenario mediano de su mes con mayor demanda turística."
     )
     prediction_history = gr.State([])
 
-    with gr.Accordion("Territorio y fecha", open=True):
+    with gr.Accordion("Modelo, territorio y fecha", open=True):
+        model_mode = gr.Radio(choices=MODEL_MODES, value="compare", label="Modo de predicción")
         with gr.Row():
             province = gr.Dropdown(
                 choices=sorted(PROVINCE_REGION_CODES),
-                value="A Coruna",
+                value="Malaga",
                 label="Provincia",
             )
             region_code = gr.Textbox(
-                value="Galicia (GA)",
+                value="Andalucía (AN)",
                 label="Comunidad autónoma",
                 interactive=False,
                 info="El código autonómico usado por el modelo se completa automáticamente.",
             )
             month = gr.Dropdown(choices=MONTH_CHOICES, value=8, label="Mes")
+        segment = gr.Markdown(segment_status("Malaga"))
 
     with gr.Accordion("Clima mensual", open=True):
         with gr.Row():
             temperature_mean = gr.Slider(
-                0, 32, value=21, step=0.1, label="Temperatura media (°C)"
+                0, 32, value=27.3, step=0.1, label="Temperatura media (°C)"
             )
             temperature_max = gr.Slider(
-                4, 41, value=26, step=0.1, label="Temperatura máxima media (°C)"
+                4, 41, value=31.4, step=0.1, label="Temperatura máxima media (°C)"
             )
             temperature_min = gr.Slider(
-                -3, 26, value=16, step=0.1, label="Temperatura mínima media (°C)"
+                -3, 26, value=23.7, step=0.1, label="Temperatura mínima media (°C)"
             )
         with gr.Row():
             precipitation_sum = gr.Slider(
-                0, 470, value=35, step=1, label="Precipitación total (mm)"
+                0, 470, value=1.5, step=0.1, label="Precipitación total (mm)"
             )
-            rain_sum = gr.Slider(0, 470, value=35, step=1, label="Lluvia total (mm)")
+            rain_sum = gr.Slider(0, 470, value=1.5, step=0.1, label="Lluvia total (mm)")
             precipitation_hours = gr.Slider(
-                0, 490, value=45, step=1, label="Horas de precipitación"
+                0, 490, value=11, step=1, label="Horas de precipitación"
             )
         with gr.Row():
             wind_mean = gr.Slider(
-                4, 28, value=12, step=0.1, label="Velocidad media del viento (km/h)"
+                4, 28, value=8.2, step=0.1, label="Velocidad media del viento (km/h)"
             )
             wind_max = gr.Slider(
-                7, 38, value=22, step=0.1, label="Velocidad máxima media (km/h)"
+                7, 38, value=15, step=0.1, label="Velocidad máxima media (km/h)"
             )
 
     with gr.Accordion("Calendario y movilidad aeroportuaria", open=False):
@@ -338,21 +457,44 @@ with gr.Blocks(title="Tourism Weather ML") as demo:
             )
         with gr.Row():
             aena_passengers = gr.Slider(
-                0, 7_000_000, value=300_000, step=10_000, label="Pasajeros AENA"
+                0, 7_000_000, value=2_119_000, step=1_000, label="Pasajeros AENA"
             )
             aena_operations = gr.Slider(
-                0, 52_000, value=3_000, step=100, label="Operaciones AENA"
+                0, 52_000, value=15_300, step=100, label="Operaciones AENA"
             )
             aena_cargo_kg = gr.Slider(
-                0, 73_000_000, value=200_000, step=100_000, label="Carga AENA (kg)"
+                0, 73_000_000, value=304_000, step=1_000, label="Carga AENA (kg)"
             )
 
-    province.change(region_for_province, inputs=province, outputs=region_code)
+    province.change(
+        apply_province_preset,
+        inputs=province,
+        outputs=[
+            region_code,
+            segment,
+            month,
+            temperature_mean,
+            temperature_max,
+            temperature_min,
+            precipitation_sum,
+            rain_sum,
+            precipitation_hours,
+            wind_mean,
+            wind_max,
+            national_holidays,
+            regional_holidays,
+            aena_passengers,
+            aena_operations,
+            aena_cargo_kg,
+            aena_airport_count,
+        ],
+    )
 
-    button = gr.Button("Calcular predicción", variant="primary")
+    button = gr.Button("Calcular y comparar", variant="primary")
     with gr.Row():
         prediction = gr.Number(label="Pernoctaciones hoteleras estimadas", precision=0)
-        metrics = gr.Textbox(label="Métricas del modelo", interactive=False)
+        comparison = gr.JSON(label="Comparación de modelos")
+    interpretation = gr.Textbox(label="Interpretación", interactive=False)
     with gr.Accordion("Detalle de las variables enviadas al modelo", open=False):
         row_preview = gr.Dataframe(label="Features calculadas", interactive=False)
     gr.Markdown("## Últimas predicciones")
@@ -361,6 +503,7 @@ with gr.Blocks(title="Tourism Weather ML") as demo:
     button.click(
         predict,
         inputs=[
+            model_mode,
             prediction_history,
             province,
             month,
@@ -379,7 +522,14 @@ with gr.Blocks(title="Tourism Weather ML") as demo:
             aena_cargo_kg,
             aena_airport_count,
         ],
-        outputs=[prediction, metrics, row_preview, history_table, prediction_history],
+        outputs=[
+            prediction,
+            comparison,
+            interpretation,
+            row_preview,
+            history_table,
+            prediction_history,
+        ],
     )
 
 

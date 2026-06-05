@@ -80,3 +80,14 @@ python scripts/train_export_model.py
 ```
 
 Las salidas quedan en `reports/figures/`.
+
+## Fine-tuning con un dataset especifico
+
+Se ha reajustado un modelo ExtraTrees usando solo las 24 provincias costeras e insulares. La comparacion usa el mismo test costero para el modelo global y el especializado:
+
+| Modelo | RMSE | MAE | R2 |
+|---|---:|---:|---:|
+| Global ExtraTrees sobre test costero | 170759.091 | 79878.541 | 0.988463 |
+| ExtraTrees costero ajustado | 156769.870 | 78121.147 | 0.990276 |
+
+El ajuste reduce RMSE un `8.19%` y MAE un `2.20%`. El protocolo completo, el desglose provincial y las limitaciones se describen en `docs/fine_tuning.md`.

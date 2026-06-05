@@ -148,6 +148,20 @@ Las metricas comparadas son MAE, RMSE y R2. El notebook cloud selecciona `ExtraT
 
 `scripts/train_export_model.py` reproduce las features, discretizaciones e hiperparametros del modelo seleccionado en el notebook cloud.
 
+El fine-tuning local especializado en provincias costeras e insulares se reproduce con:
+
+```bash
+python scripts/fine_tune_coastal_model.py
+```
+
+Esta variante reduce el RMSE un `8.19%` frente al modelo global evaluado sobre el mismo test costero. Los resultados y limitaciones se documentan en `docs/fine_tuning.md`.
+
+Para comparar interactivamente ambos modelos mediante Gradio, solo en local:
+
+```bash
+python deployment/huggingface_space/app.py
+```
+
 ## Representacion y despliegue
 
 El mejor modelo puede exportarse como pipeline completo y generar figuras de evaluacion:
@@ -172,4 +186,5 @@ El despliegue usa `HF_TOKEN`, `HF_MODEL_REPO_ID` y `HF_SPACE_REPO_ID`.
 - `docs/decisiones_tecnicas.md`: decisiones, riesgos y mitigaciones.
 - `docs/eda_preparacion.md`: EDA, limpieza, transformaciones y split.
 - `docs/modelado.md`: modelos entrenados, metricas y seleccion.
+- `docs/fine_tuning.md`: especializacion costera, comparacion y limitaciones.
 - `docs/despliegue_hf.md`: exportacion del modelo y despliegue en Hugging Face.

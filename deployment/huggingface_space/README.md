@@ -4,9 +4,12 @@ emoji: 🌦️
 colorFrom: blue
 colorTo: green
 sdk: gradio
-sdk_version: 4.44.1
+sdk_version: 6.14.0
+python_version: 3.11
 app_file: app.py
 pinned: false
+models:
+  - HMartinezC/tourism-weather-model
 ---
 
 # Tourism Weather ML
@@ -14,6 +17,12 @@ pinned: false
 Aplicacion Gradio para estimar pernoctaciones hoteleras mensuales por provincia a partir de clima, calendario y movilidad aeroportuaria.
 
 La interfaz usa selectores para provincia, mes, festivos y numero de aeropuertos; completa automaticamente el codigo regional y limita las variables numericas a rangos observados razonables.
+
+Permite comparar el modelo global con una variante ajustada para las 24 provincias costeras e insulares. Para provincias fuera de ese segmento utiliza exclusivamente el modelo global.
+
+El ejemplo inicial usa valores medianos aproximados del historico de Malaga en agosto. En modo comparacion, la prediccion principal conserva el modelo global como referencia y la variante costera se muestra como contraste.
+
+Las diez provincias con mayor volumen acumulado de pernoctaciones tienen presets de demostracion. Al seleccionarlas, la interfaz carga las medianas historicas de su mes con mayor demanda turistica. Los presets permiten demostrar tanto la comparacion costera como el comportamiento exclusivamente global de Madrid.
 
 Los codigos mostrados son codigos de comunidad autonoma usados por el calendario y el modelo, no codigos provinciales. La prediccion deriva internamente la comunidad desde la provincia seleccionada para evitar inconsistencias.
 
