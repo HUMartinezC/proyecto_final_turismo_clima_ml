@@ -16,12 +16,15 @@ GLOBAL_MODEL_FILENAME = "tourism_weather_extra_trees.joblib"
 GLOBAL_METADATA_FILENAME = "model_metadata.json"
 COASTAL_MODEL_FILENAME = "tourism_weather_coastal_extra_trees.joblib"
 COASTAL_METADATA_FILENAME = "coastal_model_metadata.json"
+CHRONOS_CONTEXT_FILENAME = "chronos_context.csv"
+CHRONOS_MODEL_ID = "amazon/chronos-2"
 HISTORY_COLUMNS = [
     "Provincia",
     "Comunidad autónoma",
-    "Mes",
+    "Fecha",
     "Modelo global",
     "Modelo costero ajustado",
+    "Modelo HF Chronos-2",
     "Diferencia",
 ]
 
@@ -118,10 +121,13 @@ MONTH_CHOICES = [
 ]
 
 MODEL_MODES = [
-    ("Comparar ambos modelos", "compare"),
+    ("Comparar modelos", "compare"),
     ("Modelo global", "global"),
     ("Modelo costero ajustado", "coastal"),
+    ("Modelo HF Chronos-2", "chronos"),
 ]
+
+YEAR_CHOICES = [2023, 2024, 2025]
 
 DEMO_PRESETS = {
     "Illes Balears": [8, 27.0, 32.0, 22.8, 18.8, 18.8, 40, 7.8, 15.2, 1, 0, 6_258_000, 49_000, 841_000, 4],
@@ -141,6 +147,7 @@ ARTIFACT_ENV_VARS = {
     GLOBAL_METADATA_FILENAME: "MODEL_METADATA_PATH",
     COASTAL_MODEL_FILENAME: "COASTAL_MODEL_PATH",
     COASTAL_METADATA_FILENAME: "COASTAL_MODEL_METADATA_PATH",
+    CHRONOS_CONTEXT_FILENAME: "CHRONOS_CONTEXT_PATH",
 }
 
 
@@ -179,6 +186,118 @@ with open(resolve_artifact(COASTAL_METADATA_FILENAME), encoding="utf-8") as file
     COASTAL_METADATA = json.load(file)
 
 COASTAL_PROVINCES = set(COASTAL_METADATA["coastal_provinces"])
+CHRONOS_PIPELINE = None
+CHRONOS_LOAD_ERROR = None
+CHRONOS_CONTEXT = None
+
+
+def load_chronos_context() -> pd.DataFrame:
+    global CHRONOS_CONTEXT
+    if CHRONOS_CONTEXT is None:
+        context = pd.read_csv(resolve_artifact(CHRONOS_CONTEXT_FILENAME))
+        context["timestamp"] = pd.to_datetime(context["timestamp"])
+        context["target"] = pd.to_numeric(context["target"], errors="coerce")
+        CHRONOS_CONTEXT = context.dropna(subset=["target"]).sort_values(["item_id", "timestamp"])
+    return CHRONOS_CONTEXT
+
+
+def load_chronos_pipeline():
+    global CHRONOS_PIPELINE, CHRONOS_LOAD_ERROR
+    if CHRONOS_PIPELINE is not None:
+        return CHRONOS_PIPELINE
+    if CHRONOS_LOAD_ERROR is not None:
+        return None
+
+    try:
+        from chronos import Chronos2Pipeline
+
+        CHRONOS_PIPELINE = Chronos2Pipeline.from_pretrained(
+            CHRONOS_MODEL_ID,
+            device_map=os.getenv("CHRONOS_DEVICE", "cpu"),
+        )
+    except Exception as exc:
+        CHRONOS_LOAD_ERROR = str(exc)
+        return None
+    return CHRONOS_PIPELINE
+
+
+def month_distance(start: pd.Timestamp, end: pd.Timestamp) -> int:
+    return (end.year - start.year) * 12 + end.month - start.month
+
+
+def first_existing_column(df: pd.DataFrame, candidates: list[str]) -> str | None:
+    normalized = {str(column).lower(): column for column in df.columns}
+    for candidate in candidates:
+        if candidate.lower() in normalized:
+            return normalized[candidate.lower()]
+    for column in df.columns:
+        lowered = str(column).lower()
+        if any(candidate in lowered for candidate in candidates):
+            return column
+    return None
+
+
+def historical_actual(province: str, target_date: pd.Timestamp) -> float | None:
+    context = load_chronos_context()
+    row = context[(context["item_id"] == province) & (context["timestamp"] == target_date)]
+    if row.empty:
+        return None
+    return float(row.iloc[0]["target"])
+
+
+def predict_chronos(province: str, year: int, month: int) -> tuple[float | None, str]:
+    try:
+        context = load_chronos_context()
+    except Exception as exc:
+        return None, f"No disponible: no se pudo cargar el contexto Chronos ({exc})."
+
+    target_date = pd.Timestamp(year=int(year), month=int(month), day=1)
+    province_context = context[
+        (context["item_id"] == province) & (context["timestamp"] < target_date)
+    ].copy()
+    if len(province_context) < 24:
+        return None, "No disponible: Chronos necesita al menos 24 meses históricos previos."
+
+    last_timestamp = province_context["timestamp"].max()
+    prediction_length = month_distance(last_timestamp, target_date)
+    if prediction_length < 1:
+        return None, "No disponible: la fecha debe ser posterior al histórico usado como contexto."
+    if prediction_length > 36:
+        return None, "No disponible: la demo limita Chronos a 36 meses de horizonte."
+
+    pipeline = load_chronos_pipeline()
+    if pipeline is None:
+        detail = CHRONOS_LOAD_ERROR or "error desconocido al cargar el modelo"
+        return None, f"No disponible: no se pudo cargar {CHRONOS_MODEL_ID} ({detail})."
+
+    try:
+        forecast = pipeline.predict_df(
+            province_context[["item_id", "timestamp", "target"]],
+            prediction_length=prediction_length,
+            quantile_levels=[0.1, 0.5, 0.9],
+            id_column="item_id",
+            timestamp_column="timestamp",
+            target="target",
+        )
+    except Exception as exc:
+        return None, f"No disponible: fallo la inferencia Chronos ({exc})."
+
+    forecast["timestamp"] = pd.to_datetime(forecast["timestamp"])
+    target_rows = forecast[forecast["timestamp"] == target_date]
+    selected = target_rows.iloc[0] if not target_rows.empty else forecast.iloc[-1]
+    prediction_column = first_existing_column(forecast, ["0.5", "median", "mean"])
+    if prediction_column is None:
+        numeric_columns = [
+            column
+            for column in forecast.select_dtypes(include=[np.number]).columns
+            if column not in {"target"}
+        ]
+        prediction_column = numeric_columns[-1] if numeric_columns else None
+    if prediction_column is None:
+        return None, "No disponible: Chronos no devolvió una columna numérica interpretable."
+
+    prediction = max(float(selected[prediction_column]), 0.0)
+    return prediction, f"Forecast zero-shot con {CHRONOS_MODEL_ID} usando histórico mensual de la provincia."
 
 
 def build_row(
@@ -249,15 +368,18 @@ def build_row(
 
 
 def predict(model_mode: str, history: list[list] | None, *values):
-    row = build_row(*values)
     province = values[0]
-    month = int(values[1])
+    year = int(values[1])
+    month = int(values[2])
+    row = build_row(province, month, *values[3:])
     month_name = dict((value, label) for label, value in MONTH_CHOICES)[month]
+    date_label = f"{month_name} {year}"
 
     global_prediction = float(np.clip(GLOBAL_MODEL.predict(row)[0], a_min=0, a_max=None))
     coastal_prediction = None
     if province in COASTAL_PROVINCES:
         coastal_prediction = float(np.clip(COASTAL_MODEL.predict(row)[0], a_min=0, a_max=None))
+    chronos_prediction, chronos_detail = predict_chronos(province, year, month)
 
     if model_mode == "coastal" and coastal_prediction is None:
         prediction = global_prediction
@@ -271,6 +393,12 @@ def predict(model_mode: str, history: list[list] | None, *values):
     elif model_mode == "global":
         prediction = global_prediction
         interpretation = "Resultado mostrado: modelo global."
+    elif model_mode == "chronos" and chronos_prediction is not None:
+        prediction = chronos_prediction
+        interpretation = f"Resultado mostrado: modelo HF Chronos-2. {chronos_detail}"
+    elif model_mode == "chronos":
+        prediction = global_prediction
+        interpretation = f"Chronos-2 no está disponible para esta entrada. {chronos_detail} Se devuelve el modelo global."
     elif coastal_prediction is None:
         prediction = global_prediction
         interpretation = "Solo está disponible el modelo global para esta provincia."
@@ -294,6 +422,9 @@ def predict(model_mode: str, history: list[list] | None, *values):
     difference_percent_display = (
         f"{difference_percent:+.1f}%" if difference_percent is not None else "No aplicable"
     )
+    chronos_display = (
+        f"{chronos_prediction:,.0f}" if chronos_prediction is not None else "No disponible"
+    )
     if model_mode == "compare" and coastal_prediction is not None:
         prediction = global_prediction
         interpretation = (
@@ -305,21 +436,37 @@ def predict(model_mode: str, history: list[list] | None, *values):
                 " La divergencia es alta: revisa que los valores formen una combinación "
                 "realista antes de interpretar la predicción."
             )
+        if chronos_prediction is not None:
+            interpretation += f" Chronos-2 aporta una referencia HF de {chronos_display}."
+        else:
+            interpretation += f" {chronos_detail}"
+    elif model_mode == "compare" and chronos_prediction is not None:
+        interpretation += f" Chronos-2 aporta una referencia HF de {chronos_display}."
+    elif model_mode == "compare":
+        interpretation += f" {chronos_detail}"
+
+    target_date = pd.Timestamp(year=year, month=month, day=1)
+    actual_value = historical_actual(province, target_date)
+    actual_display = f"{actual_value:,.0f}" if actual_value is not None else "No disponible"
     new_history_row = [
         province,
         region_for_province(province),
-        month_name,
+        date_label,
         f"{global_prediction:,.0f}",
         coastal_display,
+        chronos_display,
         difference_display,
     ]
     updated_history = [new_history_row, *(history or [])][:5]
     comparison = {
         "Modelo global": round(global_prediction),
         "Modelo costero ajustado": round(coastal_prediction) if coastal_prediction is not None else "No aplicable",
+        "Modelo HF Chronos-2": round(chronos_prediction) if chronos_prediction is not None else "No disponible",
+        "Real histórico": actual_display,
         "Diferencia costero - global": difference_display,
         "Diferencia porcentual": difference_percent_display,
         "Segmento": "Costero/insular" if province in COASTAL_PROVINCES else "Resto de provincias",
+        "Detalle Chronos-2": chronos_detail,
     }
     return (
         round(prediction),
@@ -390,7 +537,7 @@ with gr.Blocks(title="Tourism Weather ML") as demo:
     gr.Markdown(
         "Estimación de pernoctaciones hoteleras mensuales por provincia. "
         "Permite comparar el modelo global con el modelo ajustado para provincias "
-        "costeras e insulares."
+        "costeras e insulares y una referencia HF basada en Chronos-2."
     )
     gr.Markdown(
         "**Demostración rápida:** Illes Balears, Las Palmas, Barcelona, Santa Cruz de "
@@ -414,6 +561,7 @@ with gr.Blocks(title="Tourism Weather ML") as demo:
                 interactive=False,
                 info="El código autonómico usado por el modelo se completa automáticamente.",
             )
+            year = gr.Dropdown(choices=YEAR_CHOICES, value=2024, label="Año para Chronos-2")
             month = gr.Dropdown(choices=MONTH_CHOICES, value=8, label="Mes")
         segment = gr.Markdown(segment_status("Malaga"))
 
@@ -506,6 +654,7 @@ with gr.Blocks(title="Tourism Weather ML") as demo:
             model_mode,
             prediction_history,
             province,
+            year,
             month,
             temperature_mean,
             temperature_max,

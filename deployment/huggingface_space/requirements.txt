@@ -1,6 +1,7 @@
 gradio==6.14.0
-huggingface_hub>=1.0,<2.0
+huggingface_hub>=0.36,<1.0
 joblib>=1.4
 numpy>=1.26
 pandas>=2.2
 scikit-learn>=1.4
+chronos-forecasting>=2.0

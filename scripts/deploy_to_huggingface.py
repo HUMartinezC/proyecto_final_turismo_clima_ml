@@ -20,6 +20,7 @@ STALE_SPACE_ARTIFACTS = [
     "model_metadata.json",
     "coastal_model_metadata.json",
     "coastal_test_predictions.csv",
+    "chronos_context.csv",
     "sample_input.json",
     "feature_importance.csv",
     "test_predictions.csv",
@@ -72,12 +73,14 @@ def main() -> None:
     sample_file = args.model_dir / "sample_input.json"
     coastal_model_file = args.model_dir / "tourism_weather_coastal_extra_trees.joblib"
     coastal_metadata_file = args.model_dir / "coastal_model_metadata.json"
+    chronos_context_file = args.model_dir / "chronos_context.csv"
     for path in (
         model_file,
         metadata_file,
         sample_file,
         coastal_model_file,
         coastal_metadata_file,
+        chronos_context_file,
     ):
         if not path.exists():
             raise SystemExit(

@@ -17,6 +17,7 @@ models/tourism_weather_extra_trees.joblib
 models/model_metadata.json
 models/sample_input.json
 models/test_predictions.csv
+models/chronos_context.csv
 models/feature_importance.csv
 reports/figures/predictions_vs_actual.png
 reports/figures/residuals.png
@@ -108,7 +109,17 @@ Esta separacion evita que archivos grandes gestionados por LFS formen parte del 
 
 ## Comparacion con Hugging Face
 
-El modelo propio es un pipeline tabular supervisado entrenado con datos integrados del proyecto. Los modelos disponibles en Hugging Face suelen estar orientados a texto, imagen o series genericas; no contienen de forma nativa las variables especificas de turismo, clima, festivos y movilidad por provincia. Por eso la comparacion se plantea a nivel funcional: el modelo propio esta especializado en el dataset del proyecto y la Space demuestra inferencia interactiva sobre el mismo esquema de features.
+La Space integra `amazon/chronos-2` como modelo externo de Hugging Face para forecasting de series temporales. Para mantener la comparacion simple y reproducible, Chronos-2 recibe un contexto compatible generado en `models/chronos_context.csv`:
+
+```text
+item_id    -> province
+timestamp  -> year_month
+target     -> hotel_overnights
+```
+
+El modelo propio y la variante costera siguen usando el formulario tabular con clima, calendario y movilidad aeroportuaria. Chronos-2 actua como referencia zero-shot basada exclusivamente en el historico mensual de pernoctaciones de la provincia seleccionada.
+
+La comparacion no fuerza a Chronos-2 a usar exactamente las mismas variables explicativas que el pipeline ExtraTrees; compara los tres modelos sobre el mismo target y deja visible la diferencia metodologica entre regresion tabular supervisada y forecasting temporal.
 
 ## Fine-tuning integrado localmente
 

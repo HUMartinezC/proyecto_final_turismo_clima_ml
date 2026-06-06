@@ -27,6 +27,7 @@ DEFAULT_MODELS_DIR = ROOT / "models"
 DEFAULT_FIGURES_DIR = ROOT / "reports" / "figures"
 
 TARGET = "hotel_overnights"
+CHRONOS_CONTEXT_FILENAME = "chronos_context.csv"
 
 NUMERIC_FEATURES = [
     "temperature_2m_mean_avg",
@@ -90,6 +91,23 @@ def temporal_split(df: pd.DataFrame, train_ratio: float = 0.8) -> tuple[pd.DataF
     train_df = df[df["year_month"].isin(train_months)].copy()
     test_df = df[~df["year_month"].isin(train_months)].copy()
     return train_df, test_df
+
+
+def save_chronos_context(df: pd.DataFrame, output_path: Path) -> None:
+    context = (
+        df[["province", "year_month", TARGET]]
+        .dropna(subset=[TARGET])
+        .rename(
+            columns={
+                "province": "item_id",
+                "year_month": "timestamp",
+                TARGET: "target",
+            }
+        )
+        .sort_values(["item_id", "timestamp"])
+    )
+    context["timestamp"] = context["timestamp"] + "-01"
+    context.to_csv(output_path, index=False)
 
 
 def build_pipeline() -> Pipeline:
@@ -254,6 +272,7 @@ def main() -> None:
     )
     predictions.to_csv(args.models_dir / "test_predictions.csv", index=False)
     importances.to_csv(args.models_dir / "feature_importance.csv", index=False)
+    save_chronos_context(df, args.models_dir / CHRONOS_CONTEXT_FILENAME)
 
     print(f"Model saved to {model_path}")
     print(f"Metadata saved to {metadata_path}")

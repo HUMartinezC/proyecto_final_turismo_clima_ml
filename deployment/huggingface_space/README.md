@@ -18,7 +18,9 @@ Aplicacion Gradio para estimar pernoctaciones hoteleras mensuales por provincia 
 
 La interfaz usa selectores para provincia, mes, festivos y numero de aeropuertos; completa automaticamente el codigo regional y limita las variables numericas a rangos observados razonables.
 
-Permite comparar el modelo global con una variante ajustada para las 24 provincias costeras e insulares. Para provincias fuera de ese segmento utiliza exclusivamente el modelo global.
+Permite comparar el modelo global con una variante ajustada para las 24 provincias costeras e insulares y con `amazon/chronos-2`, un modelo de Hugging Face para forecasting de series temporales.
+
+Chronos-2 recibe un formato compatible de serie temporal: `item_id` como provincia, `timestamp` como mes y `target` como pernoctaciones hoteleras. Esta referencia HF usa solo el historico mensual de la provincia, mientras que los modelos propios usan el formulario tabular con clima, calendario y movilidad.
 
 El ejemplo inicial usa valores medianos aproximados del historico de Malaga en agosto. En modo comparacion, la prediccion principal conserva el modelo global como referencia y la variante costera se muestra como contraste.
 

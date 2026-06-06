@@ -18,6 +18,17 @@
 
 En este proyecto se cubre con Athena y Glue Data Catalog: los datos procesados se publican en S3 en formato Parquet y se registran como tablas externas consultables por SQL.
 
+| Requisito tecnologico | Estado en el proyecto | Justificacion |
+|---|---|---|
+| ETL/ELT | Implementado con Python, S3, Glue Data Catalog y Athena | El volumen mensual permite un pipeline reproducible sin introducir jobs distribuidos innecesarios. |
+| Amazon S3 | Implementado | Actua como data lake por capas `bronze`, `silver` y `gold`. |
+| AWS Glue | Implementado como catalogo | Registra tablas externas sobre los Parquet publicados en S3. |
+| Amazon Athena | Implementado | Valida y consulta las tablas externas mediante SQL. |
+| Amazon RDS MariaDB | Preparado/provisionable | Queda disponible como base relacional para resultados estructurados o pruebas, pero el dataset analitico vive en S3/Athena. |
+| AWS Lambda | Opcional | Solo se crea si existe `LAMBDA_ROLE_ARN`; el flujo principal es batch y se ejecuta desde el script unico. |
+| MongoDB Atlas / DocumentDB | No implementado | Las respuestas originales se conservan como raw/bronze; no hay consultas documentales necesarias para el analisis ni el modelado. |
+| Apache Kafka | No implementado | Las fuentes son historicas o batch y no existe un flujo de eventos continuo que aporte valor real al target. |
+
 La propuesta de estructura incluye una carpeta `spark/` como ejemplo orientativo, pero el volumen y la naturaleza mensual de los datos no justifican introducir un motor distribuido.
 
 El procesamiento en tiempo real con Kafka no encaja de forma natural con las fuentes integradas. Dataestur, Open-Meteo, festivos y AENA son fuentes historicas o batch: se descargan por rango temporal, se normalizan y se agregan a nivel mensual. No existe un flujo de eventos continuo que aporte valor real al target `hotel_overnights`.

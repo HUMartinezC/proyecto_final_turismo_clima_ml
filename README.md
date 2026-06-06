@@ -180,6 +180,8 @@ El despliegue usa `HF_TOKEN`, `HF_MODEL_REPO_ID` y `HF_SPACE_REPO_ID`.
 
 ## Documentacion
 
+- `docs/entrega_hitos_0_3.md`: matriz de cobertura de requisitos hasta el hito 3.
+- `docs/guion_presentacion_20_min.md`: guion recomendado para la defensa final.
 - `docs/problema_ml.md`: problema, target, grano y variables.
 - `docs/fuentes_datos.md`: fuentes usadas, fuentes descartadas y rango temporal.
 - `docs/arquitectura.md`: arquitectura local/AWS y flujo de datos.
