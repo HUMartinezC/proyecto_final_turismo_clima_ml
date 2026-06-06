@@ -17,6 +17,7 @@ GLOBAL_METADATA_FILENAME = "model_metadata.json"
 COASTAL_MODEL_FILENAME = "tourism_weather_coastal_extra_trees.joblib"
 COASTAL_METADATA_FILENAME = "coastal_model_metadata.json"
 CHRONOS_CONTEXT_FILENAME = "chronos_context.csv"
+PROVINCE_MONTH_PRESETS_FILENAME = "province_month_presets.csv"
 CHRONOS_MODEL_ID = "amazon/chronos-2"
 HISTORY_COLUMNS = [
     "Provincia",
@@ -25,7 +26,7 @@ HISTORY_COLUMNS = [
     "Modelo global",
     "Modelo costero ajustado",
     "Modelo HF Chronos-2",
-    "Diferencia",
+    "Real histórico",
 ]
 
 PROVINCE_REGION_CODES = {
@@ -129,25 +130,13 @@ MODEL_MODES = [
 
 YEAR_CHOICES = [2023, 2024, 2025]
 
-DEMO_PRESETS = {
-    "Illes Balears": [8, 27.0, 32.0, 22.8, 18.8, 18.8, 40, 7.8, 15.2, 1, 0, 6_258_000, 49_000, 841_000, 4],
-    "Las Palmas": [8, 23.0, 25.9, 21.0, 7.2, 7.2, 38, 13.9, 18.9, 1, 0, 2_369_000, 20_300, 1_573_000, 3],
-    "Barcelona": [8, 25.4, 28.8, 21.9, 48.7, 48.7, 69, 9.6, 19.6, 1, 0, 4_944_000, 33_700, 13_188_000, 2],
-    "Santa Cruz de Tenerife": [8, 23.0, 26.2, 20.5, 4.7, 4.7, 29, 12.9, 17.3, 1, 0, 1_621_000, 15_000, 1_137_000, 5],
-    "Madrid": [10, 15.9, 21.6, 11.0, 59.8, 59.8, 91, 9.0, 15.5, 1, 0, 4_768_000, 37_300, 50_344_000, 2],
-    "Malaga": [8, 27.3, 31.4, 23.7, 1.5, 1.5, 11, 8.2, 15.0, 1, 0, 2_119_000, 15_300, 304_000, 1],
-    "Alicante": [8, 27.0, 30.0, 24.0, 12.9, 12.9, 25, 11.6, 21.5, 1, 0, 1_562_000, 10_400, 290_000, 1],
-    "Girona": [8, 25.1, 31.0, 20.2, 45.2, 45.2, 52, 8.2, 16.7, 1, 0, 289_000, 2_400, 4_000, 1],
-    "Tarragona": [8, 25.7, 29.8, 21.8, 47.3, 47.3, 47, 9.0, 18.3, 1, 0, 179_000, 1_700, 0, 1],
-    "Cadiz": [8, 25.4, 30.0, 21.2, 0.7, 0.7, 3, 11.5, 18.6, 1, 0, 111_000, 4_900, 0, 2],
-}
-
 ARTIFACT_ENV_VARS = {
     GLOBAL_MODEL_FILENAME: "MODEL_PATH",
     GLOBAL_METADATA_FILENAME: "MODEL_METADATA_PATH",
     COASTAL_MODEL_FILENAME: "COASTAL_MODEL_PATH",
     COASTAL_METADATA_FILENAME: "COASTAL_MODEL_METADATA_PATH",
     CHRONOS_CONTEXT_FILENAME: "CHRONOS_CONTEXT_PATH",
+    PROVINCE_MONTH_PRESETS_FILENAME: "PROVINCE_MONTH_PRESETS_PATH",
 }
 
 
@@ -189,6 +178,28 @@ COASTAL_PROVINCES = set(COASTAL_METADATA["coastal_provinces"])
 CHRONOS_PIPELINE = None
 CHRONOS_LOAD_ERROR = None
 CHRONOS_CONTEXT = None
+PROVINCE_MONTH_PRESETS = None
+PRESET_FEATURE_COLUMNS = [
+    "temperature_2m_mean_avg",
+    "temperature_2m_max_avg",
+    "temperature_2m_min_avg",
+    "precipitation_sum_total",
+    "rain_sum_total",
+    "precipitation_hours_total",
+    "wind_speed_10m_mean_avg",
+    "wind_speed_10m_max_avg",
+    "national_holiday_count",
+    "regional_holiday_count",
+    "aena_passengers",
+    "aena_operations",
+    "aena_cargo_kg",
+    "aena_airport_count",
+]
+INTEGER_PRESET_COLUMNS = {
+    "national_holiday_count",
+    "regional_holiday_count",
+    "aena_airport_count",
+}
 
 
 def load_chronos_context() -> pd.DataFrame:
@@ -199,6 +210,15 @@ def load_chronos_context() -> pd.DataFrame:
         context["target"] = pd.to_numeric(context["target"], errors="coerce")
         CHRONOS_CONTEXT = context.dropna(subset=["target"]).sort_values(["item_id", "timestamp"])
     return CHRONOS_CONTEXT
+
+
+def load_province_month_presets() -> pd.DataFrame:
+    global PROVINCE_MONTH_PRESETS
+    if PROVINCE_MONTH_PRESETS is None:
+        presets = pd.read_csv(resolve_artifact(PROVINCE_MONTH_PRESETS_FILENAME))
+        presets["month"] = presets["month"].astype(int)
+        PROVINCE_MONTH_PRESETS = presets
+    return PROVINCE_MONTH_PRESETS
 
 
 def load_chronos_pipeline():
@@ -243,6 +263,29 @@ def historical_actual(province: str, target_date: pd.Timestamp) -> float | None:
     if row.empty:
         return None
     return float(row.iloc[0]["target"])
+
+
+def format_count(value: float | int | None) -> str:
+    if value is None or pd.isna(value):
+        return "No disponible"
+    return f"{float(value):,.0f}"
+
+
+def error_display(prediction: float | None, actual: float | None) -> tuple[str, str]:
+    if prediction is None or actual is None or pd.isna(actual):
+        return "No disponible", "No disponible"
+    absolute_error = prediction - actual
+    percent_error = absolute_error / actual * 100 if actual else 0.0
+    return f"{absolute_error:+,.0f}", f"{percent_error:+.1f}%"
+
+
+def preset_value(row: pd.Series, column: str) -> int | float:
+    value = row[column]
+    if pd.isna(value):
+        return 0 if column in INTEGER_PRESET_COLUMNS else 0.0
+    if column in INTEGER_PRESET_COLUMNS:
+        return int(round(float(value)))
+    return float(value)
 
 
 def predict_chronos(province: str, year: int, month: int) -> tuple[float | None, str]:
@@ -406,9 +449,7 @@ def predict(model_mode: str, history: list[list] | None, *values):
         prediction = global_prediction
         interpretation = ""
 
-    coastal_display = (
-        f"{coastal_prediction:,.0f}" if coastal_prediction is not None else "No aplicable"
-    )
+    coastal_display = format_count(coastal_prediction) if coastal_prediction is not None else "No aplicable"
     difference_display = (
         f"{coastal_prediction - global_prediction:+,.0f}"
         if coastal_prediction is not None
@@ -423,7 +464,7 @@ def predict(model_mode: str, history: list[list] | None, *values):
         f"{difference_percent:+.1f}%" if difference_percent is not None else "No aplicable"
     )
     chronos_display = (
-        f"{chronos_prediction:,.0f}" if chronos_prediction is not None else "No disponible"
+        format_count(chronos_prediction) if chronos_prediction is not None else "No disponible"
     )
     if model_mode == "compare" and coastal_prediction is not None:
         prediction = global_prediction
@@ -447,27 +488,56 @@ def predict(model_mode: str, history: list[list] | None, *values):
 
     target_date = pd.Timestamp(year=year, month=month, day=1)
     actual_value = historical_actual(province, target_date)
-    actual_display = f"{actual_value:,.0f}" if actual_value is not None else "No disponible"
+    actual_display = format_count(actual_value)
+    global_error, global_error_pct = error_display(global_prediction, actual_value)
+    coastal_error, coastal_error_pct = error_display(coastal_prediction, actual_value)
+    chronos_error, chronos_error_pct = error_display(chronos_prediction, actual_value)
     new_history_row = [
         province,
         region_for_province(province),
         date_label,
-        f"{global_prediction:,.0f}",
+        format_count(global_prediction),
         coastal_display,
         chronos_display,
-        difference_display,
+        actual_display,
     ]
     updated_history = [new_history_row, *(history or [])][:5]
-    comparison = {
-        "Modelo global": round(global_prediction),
-        "Modelo costero ajustado": round(coastal_prediction) if coastal_prediction is not None else "No aplicable",
-        "Modelo HF Chronos-2": round(chronos_prediction) if chronos_prediction is not None else "No disponible",
-        "Real histórico": actual_display,
-        "Diferencia costero - global": difference_display,
-        "Diferencia porcentual": difference_percent_display,
-        "Segmento": "Costero/insular" if province in COASTAL_PROVINCES else "Resto de provincias",
-        "Detalle Chronos-2": chronos_detail,
-    }
+    comparison = pd.DataFrame(
+        [
+            {
+                "Modelo": "Global ExtraTrees",
+                "Predicción": format_count(global_prediction),
+                "Real histórico": actual_display,
+                "Error": global_error,
+                "Error %": global_error_pct,
+                "Uso": "Tabular general",
+            },
+            {
+                "Modelo": "Costero ajustado",
+                "Predicción": coastal_display,
+                "Real histórico": actual_display if coastal_prediction is not None else "No aplicable",
+                "Error": coastal_error if coastal_prediction is not None else "No aplicable",
+                "Error %": coastal_error_pct if coastal_prediction is not None else "No aplicable",
+                "Uso": "Solo provincias costeras/insulares",
+            },
+            {
+                "Modelo": "HF Chronos-2",
+                "Predicción": chronos_display,
+                "Real histórico": actual_display if chronos_prediction is not None else "No disponible",
+                "Error": chronos_error if chronos_prediction is not None else "No disponible",
+                "Error %": chronos_error_pct if chronos_prediction is not None else "No disponible",
+                "Uso": "Forecast con histórico de la provincia",
+            },
+        ]
+    )
+    if actual_value is not None:
+        best_rows = comparison[
+            comparison["Error"].astype(str).str.match(r"^[+-]?[0-9,]+$")
+        ].copy()
+        if not best_rows.empty:
+            best_rows["abs_error"] = best_rows["Error"].str.replace(",", "", regex=False).astype(float).abs()
+            best_model = best_rows.sort_values("abs_error").iloc[0]["Modelo"]
+            interpretation += f" En este mes histórico, el menor error lo tiene {best_model}."
     return (
         round(prediction),
         comparison,
@@ -498,15 +568,25 @@ def segment_status(province: str) -> str:
 
 
 def apply_province_preset(province: str):
+    return apply_historical_preset(province, 8)
+
+
+def apply_historical_preset(province: str, month: int):
     status = segment_status(province)
-    preset = DEMO_PRESETS.get(province)
-    if preset is None:
-        return region_for_province(province), status, *([gr.skip()] * 15)
+    presets = load_province_month_presets()
+    preset = presets[(presets["province"] == province) & (presets["month"] == int(month))]
+    if preset.empty:
+        preset = presets[presets["province"] == province]
+    if preset.empty:
+        return region_for_province(province), status, *([gr.skip()] * len(PRESET_FEATURE_COLUMNS))
+    values = preset.iloc[0]
     status += (
-        " Se ha cargado su preset demostrativo, basado en las medianas históricas "
-        "del mes con mayor demanda turística media."
+        " Se han cargado medianas históricas para esta provincia y mes. "
+        "Puedes modificarlas manualmente si quieres simular otro escenario."
     )
-    return region_for_province(province), status, *preset
+    return region_for_province(province), status, *[
+        preset_value(values, column) for column in PRESET_FEATURE_COLUMNS
+    ]
 
 
 def render_history(history: list[list] | None) -> str:
@@ -540,10 +620,8 @@ with gr.Blocks(title="Tourism Weather ML") as demo:
         "costeras e insulares y una referencia HF basada en Chronos-2."
     )
     gr.Markdown(
-        "**Demostración rápida:** Illes Balears, Las Palmas, Barcelona, Santa Cruz de "
-        "Tenerife, Madrid, Málaga, Alicante, Girona, Tarragona y Cádiz tienen valores "
-        "iniciales coherentes con su histórico. Al seleccionar una de ellas se carga "
-        "automáticamente el escenario mediano de su mes con mayor demanda turística."
+        "**Demostración rápida:** al seleccionar una provincia o cambiar el mes, la app "
+        "carga medianas históricas coherentes para evitar combinaciones irreales de entrada."
     )
     prediction_history = gr.State([])
 
@@ -615,12 +693,33 @@ with gr.Blocks(title="Tourism Weather ML") as demo:
             )
 
     province.change(
-        apply_province_preset,
-        inputs=province,
+        apply_historical_preset,
+        inputs=[province, month],
         outputs=[
             region_code,
             segment,
-            month,
+            temperature_mean,
+            temperature_max,
+            temperature_min,
+            precipitation_sum,
+            rain_sum,
+            precipitation_hours,
+            wind_mean,
+            wind_max,
+            national_holidays,
+            regional_holidays,
+            aena_passengers,
+            aena_operations,
+            aena_cargo_kg,
+            aena_airport_count,
+        ],
+    )
+    month.change(
+        apply_historical_preset,
+        inputs=[province, month],
+        outputs=[
+            region_code,
+            segment,
             temperature_mean,
             temperature_max,
             temperature_min,
@@ -641,7 +740,7 @@ with gr.Blocks(title="Tourism Weather ML") as demo:
     button = gr.Button("Calcular y comparar", variant="primary")
     with gr.Row():
         prediction = gr.Number(label="Pernoctaciones hoteleras estimadas", precision=0)
-        comparison = gr.JSON(label="Comparación de modelos")
+    comparison = gr.Dataframe(label="Comparación de modelos", interactive=False)
     interpretation = gr.Textbox(label="Interpretación", interactive=False)
     with gr.Accordion("Detalle de las variables enviadas al modelo", open=False):
         row_preview = gr.Dataframe(label="Features calculadas", interactive=False)

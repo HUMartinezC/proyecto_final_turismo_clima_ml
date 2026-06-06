@@ -28,6 +28,7 @@ DEFAULT_FIGURES_DIR = ROOT / "reports" / "figures"
 
 TARGET = "hotel_overnights"
 CHRONOS_CONTEXT_FILENAME = "chronos_context.csv"
+PROVINCE_MONTH_PRESETS_FILENAME = "province_month_presets.csv"
 
 NUMERIC_FEATURES = [
     "temperature_2m_mean_avg",
@@ -108,6 +109,40 @@ def save_chronos_context(df: pd.DataFrame, output_path: Path) -> None:
     )
     context["timestamp"] = context["timestamp"] + "-01"
     context.to_csv(output_path, index=False)
+
+
+def save_province_month_presets(df: pd.DataFrame, output_path: Path) -> None:
+    preset_columns = [
+        "province",
+        "month",
+        "temperature_2m_mean_avg",
+        "temperature_2m_max_avg",
+        "temperature_2m_min_avg",
+        "precipitation_sum_total",
+        "rain_sum_total",
+        "precipitation_hours_total",
+        "wind_speed_10m_mean_avg",
+        "wind_speed_10m_max_avg",
+        "national_holiday_count",
+        "regional_holiday_count",
+        "aena_passengers",
+        "aena_operations",
+        "aena_cargo_kg",
+        "aena_airport_count",
+    ]
+    presets = (
+        df[preset_columns]
+        .groupby(["province", "month"], as_index=False)
+        .median(numeric_only=True)
+        .sort_values(["province", "month"])
+    )
+    for column in [
+        "national_holiday_count",
+        "regional_holiday_count",
+        "aena_airport_count",
+    ]:
+        presets[column] = presets[column].round().astype(int)
+    presets.to_csv(output_path, index=False)
 
 
 def build_pipeline() -> Pipeline:
@@ -217,6 +252,7 @@ def main() -> None:
 
     df = pd.read_csv(args.gold_path)
     df = add_features(df)
+    full_feature_df = df.copy()
     df = df.dropna(subset=[TARGET]).sort_values(["date", "province"]).reset_index(drop=True)
 
     train_df, test_df = temporal_split(df)
@@ -273,6 +309,7 @@ def main() -> None:
     predictions.to_csv(args.models_dir / "test_predictions.csv", index=False)
     importances.to_csv(args.models_dir / "feature_importance.csv", index=False)
     save_chronos_context(df, args.models_dir / CHRONOS_CONTEXT_FILENAME)
+    save_province_month_presets(full_feature_df, args.models_dir / PROVINCE_MONTH_PRESETS_FILENAME)
 
     print(f"Model saved to {model_path}")
     print(f"Metadata saved to {metadata_path}")

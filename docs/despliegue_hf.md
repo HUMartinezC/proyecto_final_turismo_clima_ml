@@ -18,6 +18,7 @@ models/model_metadata.json
 models/sample_input.json
 models/test_predictions.csv
 models/chronos_context.csv
+models/province_month_presets.csv
 models/feature_importance.csv
 reports/figures/predictions_vs_actual.png
 reports/figures/residuals.png
@@ -120,6 +121,8 @@ target     -> hotel_overnights
 El modelo propio y la variante costera siguen usando el formulario tabular con clima, calendario y movilidad aeroportuaria. Chronos-2 actua como referencia zero-shot basada exclusivamente en el historico mensual de pernoctaciones de la provincia seleccionada.
 
 La comparacion no fuerza a Chronos-2 a usar exactamente las mismas variables explicativas que el pipeline ExtraTrees; compara los tres modelos sobre el mismo target y deja visible la diferencia metodologica entre regresion tabular supervisada y forecasting temporal.
+
+Para evitar comparaciones artificiales, la Space carga `models/province_month_presets.csv`, una tabla de medianas historicas por provincia y mes. Asi, al cambiar de provincia o de mes, los campos de clima, calendario y movilidad se actualizan con valores plausibles para ese territorio.
 
 ## Fine-tuning integrado localmente
 
