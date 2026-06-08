@@ -148,7 +148,12 @@ Las metricas comparadas son MAE, RMSE y R2. El notebook cloud selecciona `ExtraT
 - RMSE: `118515.718`.
 - R2: `0.990`.
 
-`scripts/train_export_model.py` reproduce las features, discretizaciones e hiperparametros del modelo seleccionado en el notebook cloud.
+El notebook cloud es la ejecucion principal usada durante el trabajo. Como apoyo reproducible, `scripts/train_export_model.py` encapsula la exportacion del modelo seleccionado y genera los artefactos necesarios para Hugging Face.
+
+Los artefactos binarios generados en `models/` no se versionan en Git para evitar subir ficheros pesados o reproducibles. En la entrega quedan disponibles en Hugging Face y, si fuese necesario, pueden regenerarse localmente desde los notebooks o desde los scripts auxiliares:
+
+- Modelo: `https://huggingface.co/HMartinezC/tourism-weather-model`
+- Space: `https://huggingface.co/spaces/HMartinezC/tourism-weather-demo`
 
 El fine-tuning local especializado en provincias costeras e insulares se reproduce con:
 
@@ -182,8 +187,6 @@ El despliegue usa `HF_TOKEN`, `HF_MODEL_REPO_ID` y `HF_SPACE_REPO_ID`.
 
 ## Documentacion
 
-- `docs/entrega_final_hito_4.md`: checklist de artefactos finales y ubicacion de entregables.
-- `docs/guion_presentacion_20_min.md`: guion recomendado para la defensa final.
 - `docs/problema_ml.md`: problema, target, grano y variables.
 - `docs/fuentes_datos.md`: fuentes usadas, fuentes descartadas y rango temporal.
 - `docs/arquitectura.md`: arquitectura local/AWS y flujo de datos.
