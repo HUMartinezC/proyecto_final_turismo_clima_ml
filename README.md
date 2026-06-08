@@ -26,8 +26,6 @@ El procesamiento se ejecuta con Python y las tablas de Glue se crean o actualiza
 | Festivos | Calendario nacional y autonomico | Paquete `holidays` |
 | AENA | Pasajeros, operaciones y carga por aeropuerto | Excel mensuales descargados manualmente |
 
-AEMET queda fuera del flujo actual. Se conserva como fuente opcional de contraste oficial, pero `scripts/run_pipeline.py --source aemet` solo registra que no forma parte del pipeline implementado.
-
 ## Estructura
 
 ```text
@@ -36,7 +34,7 @@ datasets/raw/            Originales locales y manifests de ingesta
 datasets/processed/      Salidas locales reproducibles en silver y gold
 docs/                    Documentacion tecnica del proyecto
 enunciados/              Requisitos literales de las entregas
-notebooks/               Notebooks local, cloud e indice
+notebooks/               Notebooks local, cloud y explicativos por hito
 scripts/run_pipeline.py  Script unico de despliegue, ingesta, procesado y catalogo
 ```
 
@@ -120,9 +118,13 @@ Athena necesita una ubicacion de resultados configurada en el workgroup o en `AT
 
 ## Notebooks
 
-- `notebooks/proyecto_final_turismo_clima.ipynb`: indice del proyecto.
 - `notebooks/proyecto_final_turismo_clima_cloud.ipynb`: notebook principal y fuente de verdad para resultados, leyendo gold desde S3 y validando Athena.
 - `notebooks/proyecto_final_turismo_clima_local.ipynb`: ejecucion auxiliar para trabajar sin AWS; sus resultados exploratorios no sustituyen la seleccion final del notebook cloud.
+- `notebooks/hito_0_explicativo.ipynb`: problema, datos y arquitectura.
+- `notebooks/hito_1_explicativo.ipynb`: EDA y preparacion.
+- `notebooks/hito_2_explicativo.ipynb`: modelado y validacion.
+- `notebooks/hito_3_explicativo.ipynb`: graficas, despliegue, comparacion y fine-tuning.
+- `notebooks/hito_4_explicativo.ipynb`: indice de entrega final.
 
 Los notebooks cubren inspeccion inicial, estadisticas descriptivas, valores faltantes, duplicados, outliers, visualizaciones, correlaciones, preparacion del dataset, division temporal train/test y entrenamiento de modelos.
 
@@ -180,7 +182,7 @@ El despliegue usa `HF_TOKEN`, `HF_MODEL_REPO_ID` y `HF_SPACE_REPO_ID`.
 
 ## Documentacion
 
-- `docs/entrega_hitos_0_3.md`: matriz de cobertura de requisitos hasta el hito 3.
+- `docs/entrega_final_hito_4.md`: checklist de artefactos finales y ubicacion de entregables.
 - `docs/guion_presentacion_20_min.md`: guion recomendado para la defensa final.
 - `docs/problema_ml.md`: problema, target, grano y variables.
 - `docs/fuentes_datos.md`: fuentes usadas, fuentes descartadas y rango temporal.

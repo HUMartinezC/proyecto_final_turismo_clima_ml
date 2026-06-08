@@ -522,7 +522,7 @@ def parse_args() -> argparse.Namespace:
     )
     parser.add_argument(
         "--source",
-        choices=("dataestur", "open_meteo", "aemet", "holidays", "aena"),
+        choices=("dataestur", "open_meteo", "holidays", "aena"),
         help="Limit ingestion or processing to one source.",
     )
     parser.add_argument("--list-dataestur", action="store_true", help="List Dataestur endpoints.")
@@ -694,11 +694,6 @@ def ingest(configuracion: Settings, argumentos_cli: argparse.Namespace) -> list[
                 acciones.extend(ingest_holidays(configuracion, argumentos_cli.dry_run))
             elif fuente == "aena":
                 acciones.extend(ingest_aena(configuracion, argumentos_cli.dry_run))
-            elif fuente == "aemet":
-                acciones.append(
-                    "skipped aemet: optional contrast source, not part of the default "
-                    "single-file pipeline"
-                )
             else:
                 acciones.append(f"skipped {fuente}: connector not implemented in this single-file MVP")
         except Exception as exc:

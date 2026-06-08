@@ -31,14 +31,6 @@ sources:
     grain: month_airport
     integrated: true
     notes: "Proxy de movilidad aeroportuaria; Excel descargados manualmente y procesados por el pipeline."
-  aemet:
-    priority: low
-    type: rest_api
-    domain: weather
-    storage_target: s3_bronze
-    grain: day_station
-    integrated: false
-    notes: "Fuente oficial de contraste. No forma parte del pipeline implementado."
   land_mobility:
     priority: candidate
     type: external_dataset

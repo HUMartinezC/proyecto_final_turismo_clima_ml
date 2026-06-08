@@ -11,7 +11,6 @@
 
 ## Fuentes no integradas
 
-- AEMET OpenData: fuente oficial de contraste meteorologico. No forma parte del pipeline actual.
 - Movilidad terrestre: candidata para mejorar turismo nacional y de proximidad si se encuentra una fuente mensual y territorialmente compatible.
 - Copernicus ERA5: potente, pero innecesaria frente a Open-Meteo para el alcance actual.
 - OpenStreetMap: util para features geoespaciales, pero no imprescindible para el modelo tabular mensual.
