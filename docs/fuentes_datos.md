@@ -95,8 +95,11 @@ El calendario se genera con el paquete `holidays`, cubriendo festivos nacionales
 Los ficheros de AENA se descargan manualmente desde el portal de estadisticas. El script procesa Excel `.xls` y `.xlsx` colocados en:
 
 ```text
-datasets/raw/aena/
+datasets/bronze/aena/
+datasets/bronze/aena/original/
 ```
+
+Por compatibilidad con versiones anteriores, el pipeline tambien acepta ficheros en `datasets/raw/aena/`.
 
 Las tablas silver generadas son:
 

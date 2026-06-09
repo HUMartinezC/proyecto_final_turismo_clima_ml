@@ -1,0 +1,21 @@
+{
+  "source": "open_meteo",
+  "location_code": "girona",
+  "province": "Girona",
+  "latitude": 41.9794,
+  "longitude": 2.8214,
+  "url": "https://archive-api.open-meteo.com/v1/archive?latitude=41.9794&longitude=2.8214&start_date=2015-10-01&end_date=2024-12-31&daily=temperature_2m_mean%2Ctemperature_2m_max%2Ctemperature_2m_min%2Cprecipitation_sum%2Crain_sum%2Cprecipitation_hours%2Cwind_speed_10m_mean%2Cwind_speed_10m_max&timezone=Europe%2FMadrid",
+  "downloaded_at": "20260515T101805Z",
+  "bytes_written": 171742,
+  "local_path": "datasets\\bronze\\open_meteo\\original\\girona_20151001_20241231_20260515T101805Z.json",
+  "daily_variables": [
+    "temperature_2m_mean",
+    "temperature_2m_max",
+    "temperature_2m_min",
+    "precipitation_sum",
+    "rain_sum",
+    "precipitation_hours",
+    "wind_speed_10m_mean",
+    "wind_speed_10m_max"
+  ]
+}

@@ -28,6 +28,7 @@ from urllib.parse import urlencode, urljoin, urlparse
 
 PROJECT_ROOT = Path(__file__).resolve().parents[1]
 RAW_DIR = PROJECT_ROOT / "datasets" / "raw"
+BRONZE_DIR = PROJECT_ROOT / "datasets" / "bronze"
 PROCESSED_DIR = PROJECT_ROOT / "datasets" / "processed"
 LOGGER = logging.getLogger("run_pipeline")
 SKIP_S3_UPLOAD = False
@@ -494,6 +495,48 @@ def aws_client(configuracion: Settings, service: str):
     return boto3_session(configuracion).client(service)
 
 
+def first_existing_input_dir(candidates: tuple[Path, ...], patterns: tuple[str, ...]) -> Path:
+    for directory in candidates:
+        if any(next(directory.glob(pattern), None) is not None for pattern in patterns):
+            return directory
+    return candidates[0]
+
+
+def list_input_files(candidates: tuple[Path, ...], patterns: tuple[str, ...]) -> tuple[Path, tuple[Path, ...]]:
+    directory = first_existing_input_dir(candidates, patterns)
+    files: list[Path] = []
+    for pattern in patterns:
+        files.extend(sorted(directory.glob(pattern)))
+    return directory, tuple(files)
+
+
+def original_data_dir(source: str) -> Path:
+    return BRONZE_DIR / source / "original"
+
+
+def landing_manifest_dir(source: str) -> Path:
+    return BRONZE_DIR / source / "landing_manifest"
+
+
+def source_original_candidates(source: str) -> tuple[Path, ...]:
+    return (
+        BRONZE_DIR / source / "original",
+        RAW_DIR / source / "original",
+    )
+
+
+def aena_input_files() -> tuple[Path, tuple[Path, ...]]:
+    return list_input_files(
+        (
+            BRONZE_DIR / "aena" / "original",
+            BRONZE_DIR / "aena",
+            RAW_DIR / "aena" / "original",
+            RAW_DIR / "aena",
+        ),
+        ("*.xls", "*.xlsx"),
+    )
+
+
 def configure_logging(level: str) -> None:
     logging.basicConfig(
         level=getattr(logging, level),
@@ -705,16 +748,16 @@ def ingest(configuracion: Settings, argumentos_cli: argparse.Namespace) -> list[
 
 
 def ingest_aena(configuracion: Settings, dry_run: bool) -> list[str]:
-    archivos = sorted((RAW_DIR / "aena").glob("*.xls")) + sorted((RAW_DIR / "aena").glob("*.xlsx"))
+    directorio, archivos = aena_input_files()
     if dry_run:
-        return [f"DRY-RUN register {len(archivos)} local AENA Excel files from {RAW_DIR / 'aena'}"]
+        return [f"DRY-RUN register {len(archivos)} local AENA Excel files from {directorio}"]
     for path in archivos:
         upload_to_s3(configuracion, path, f"{configuracion.s3_bronze_prefix}/aena/original/{path.name}")
-    return [f"registered {len(archivos)} local AENA Excel files from {RAW_DIR / 'aena'}"]
+    return [f"registered {len(archivos)} local AENA Excel files from {directorio}"]
 
 
 def ingest_holidays(configuracion: Settings, dry_run: bool) -> list[str]:
-    directorio_salida = RAW_DIR / "holidays" / "original"
+    directorio_salida = original_data_dir("holidays")
     directorio_salida.mkdir(parents=True, exist_ok=True)
     ruta_csv = directorio_salida / f"spanish_holidays_{configuracion.holidays_from_year}_{configuracion.holidays_to_year}.csv"
     ruta_metadatos = ruta_csv.with_suffix(ruta_csv.suffix + ".metadata.json")
@@ -802,8 +845,8 @@ def ingest_dataestur(configuracion: Settings, argumentos_cli: argparse.Namespace
     if argumentos_cli.dataestur_limit is not None:
         fuentes = fuentes[: argumentos_cli.dataestur_limit]
     acciones = []
-    directorio_salida = RAW_DIR / "dataestur" / "original"
-    directorio_manifiestos = RAW_DIR / "dataestur" / "landing_manifest"
+    directorio_salida = original_data_dir("dataestur")
+    directorio_manifiestos = landing_manifest_dir("dataestur")
     directorio_salida.mkdir(parents=True, exist_ok=True)
     directorio_manifiestos.mkdir(parents=True, exist_ok=True)
     for indice, (name, url) in enumerate(fuentes):
@@ -846,8 +889,8 @@ def build_dataestur_url(configuracion: Settings, endpoint: str) -> str:
 
 def ingest_open_meteo(configuracion: Settings, dry_run: bool) -> list[str]:
     acciones = []
-    directorio_salida = RAW_DIR / "open_meteo" / "original"
-    directorio_manifiestos = RAW_DIR / "open_meteo" / "landing_manifest"
+    directorio_salida = original_data_dir("open_meteo")
+    directorio_manifiestos = landing_manifest_dir("open_meteo")
     directorio_salida.mkdir(parents=True, exist_ok=True)
     directorio_manifiestos.mkdir(parents=True, exist_ok=True)
     for indice, ubicacion in enumerate(select_locations(configuracion.open_meteo_locations)):
@@ -995,11 +1038,12 @@ def process(configuracion: Settings, dry_run: bool, fuente: str | None = None) -
 
 
 def process_open_meteo(configuracion: Settings, dry_run: bool) -> list[str]:
-    archivos = sorted((RAW_DIR / "open_meteo" / "original").glob("*.json"))
+    directorio, archivos_todos = list_input_files(source_original_candidates("open_meteo"), ("*.json",))
+    archivos = list(archivos_todos)
     archivos = [path for path in archivos if not path.name.endswith(".metadata.json")]
     ruta_salida = PROCESSED_DIR / "silver" / "open_meteo_monthly.csv"
     if dry_run:
-        return [f"DRY-RUN process {len(archivos)} Open-Meteo JSON files -> {ruta_salida}"]
+        return [f"DRY-RUN process {len(archivos)} Open-Meteo JSON files from {directorio} -> {ruta_salida}"]
     filas = []
     for path in archivos:
         carga = json.loads(path.read_text(encoding="utf-8"))
@@ -1041,14 +1085,15 @@ def aggregate_weather_monthly(filas: list[dict[str, Any]]) -> list[dict[str, Any
 
 
 def process_dataestur_inventory(configuracion: Settings, dry_run: bool) -> list[str]:
+    directorio, archivos_todos = list_input_files(source_original_candidates("dataestur"), ("*",))
     archivos = [
         path
-        for path in sorted((RAW_DIR / "dataestur" / "original").glob("*"))
+        for path in archivos_todos
         if path.is_file() and not path.name.endswith(".metadata.json")
     ]
     ruta_salida = PROCESSED_DIR / "silver" / "dataestur_inventory.csv"
     if dry_run:
-        return [f"DRY-RUN process {len(archivos)} Dataestur raw files -> {ruta_salida}"]
+        return [f"DRY-RUN process {len(archivos)} Dataestur raw files from {directorio} -> {ruta_salida}"]
     filas = []
     for path in archivos:
         filas.append(
@@ -1117,12 +1162,20 @@ def process_dataestur_hotel_occupancy(configuracion: Settings, dry_run: bool) ->
 
 
 def latest_dataestur_hotel_file() -> Path | None:
-    candidates = sorted((RAW_DIR / "dataestur" / "original").glob("hotel_occupancy_by_province*.xlsx"))
+    directorio = first_existing_input_dir(
+        source_original_candidates("dataestur"),
+        ("hotel_occupancy_by_province*.xlsx",),
+    )
+    candidates = sorted(directorio.glob("hotel_occupancy_by_province*.xlsx"))
     return candidates[-1] if candidates else None
 
 
 def process_holidays(configuracion: Settings, dry_run: bool) -> list[str]:
-    ruta_entrada = RAW_DIR / "holidays" / "original" / (
+    directorio = first_existing_input_dir(
+        source_original_candidates("holidays"),
+        (f"spanish_holidays_{configuracion.holidays_from_year}_{configuracion.holidays_to_year}.csv",),
+    )
+    ruta_entrada = directorio / (
         f"spanish_holidays_{configuracion.holidays_from_year}_{configuracion.holidays_to_year}.csv"
     )
     ruta_salida = PROCESSED_DIR / "silver" / "holidays_calendar.csv"
@@ -1154,11 +1207,11 @@ def process_holidays(configuracion: Settings, dry_run: bool) -> list[str]:
 
 
 def process_aena(configuracion: Settings, dry_run: bool) -> list[str]:
-    archivos = sorted((RAW_DIR / "aena").glob("*.xls")) + sorted((RAW_DIR / "aena").glob("*.xlsx"))
+    directorio, archivos = aena_input_files()
     ruta_salida = PROCESSED_DIR / "silver" / "aena_monthly_air_traffic.csv"
     ruta_salida_provincia = PROCESSED_DIR / "silver" / "aena_monthly_air_traffic_by_province.csv"
     if dry_run:
-        return [f"DRY-RUN process {len(archivos)} AENA Excel files -> {ruta_salida}"]
+        return [f"DRY-RUN process {len(archivos)} AENA Excel files from {directorio} -> {ruta_salida}"]
     filas: list[dict[str, Any]] = []
     for path in archivos:
         filas.extend(parse_aena_file(path))

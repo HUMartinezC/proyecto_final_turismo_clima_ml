@@ -30,6 +30,7 @@ El procesamiento se ejecuta con Python y las tablas de Glue se crean o actualiza
 
 ```text
 config/                  Configuracion declarativa de fuentes
+datasets/bronze/         Originales locales por fuente
 datasets/raw/            Originales locales y manifests de ingesta
 datasets/processed/      Salidas locales reproducibles en silver y gold
 docs/                    Documentacion tecnica del proyecto
@@ -38,7 +39,7 @@ notebooks/               Notebooks local, cloud y explicativos por hito
 scripts/run_pipeline.py  Script unico de despliegue, ingesta, procesado y catalogo
 ```
 
-La capa `bronze` existe en S3. En local, `datasets/raw/` cumple el mismo papel para evitar duplicar conceptos.
+La capa `bronze` existe en S3 y tambien puede reproducirse en local en `datasets/bronze/`. `datasets/raw/` se mantiene como ruta compatible con versiones anteriores del pipeline.
 
 ## Instalacion
 
@@ -50,7 +51,7 @@ pip install -r requirements.txt
 python scripts/run_pipeline.py --check-config
 ```
 
-El fichero `.env` debe definir, como minimo, credenciales AWS validas, `S3_BUCKET_NAME`, `ATHENA_RESULTS_S3_URI` y la configuracion temporal de las fuentes.
+El fichero `.env` debe definir, como minimo, credenciales AWS validas, `S3_BUCKET_NAME`, `ATHENA_RESULTS_S3_URI` y la configuracion temporal de las fuentes. Con el `.env` completo, el pipeline se puede reproducir sin parametros ejecutando `python scripts/run_pipeline.py`.
 
 ## Ejecucion del pipeline
 
@@ -85,6 +86,8 @@ python scripts/run_pipeline.py --catalog
 ```
 
 El flujo por defecto intenta despliegue idempotente, ingesta y procesamiento. Si se pasa `--deploy`, `--ingest`, `--process` o `--catalog`, solo se ejecutan las partes indicadas. `--source` limita la ingesta o el procesamiento a una fuente concreta.
+
+Los Excel manuales de AENA se leen desde `datasets/bronze/aena/` o `datasets/bronze/aena/original/`. Por compatibilidad, el script tambien acepta `datasets/raw/aena/`.
 
 ## Salidas locales
 
@@ -184,6 +187,15 @@ python scripts/deploy_to_huggingface.py
 ```
 
 El despliegue usa `HF_TOKEN`, `HF_MODEL_REPO_ID` y `HF_SPACE_REPO_ID`.
+
+## Hugging Face
+
+El proyecto incluye una demo Gradio publicada en Hugging Face Spaces y un repositorio separado para los artefactos del modelo:
+
+- Modelo: `https://huggingface.co/HMartinezC/tourism-weather-model`
+- Space: `https://huggingface.co/spaces/HMartinezC/tourism-weather-demo`
+
+La aplicacion de la Space vive en `deployment/huggingface_space/`. Su README especifico esta en `deployment/huggingface_space/README.md` y la documentacion tecnica completa del despliegue esta en `docs/despliegue_hf.md`.
 
 ## Documentacion
 

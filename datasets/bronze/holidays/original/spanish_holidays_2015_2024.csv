@@ -1,0 +1,2409 @@
+date,country,region_code,region_name,holiday_name,scope
+2015-01-01,ES,AN,Andalucia,Año Nuevo,national
+2015-01-01,ES,AR,Aragon,Año Nuevo,national
+2015-01-01,ES,AS,Asturias,Año Nuevo,national
+2015-01-01,ES,CB,Cantabria,Año Nuevo,national
+2015-01-01,ES,CE,Ceuta,Año Nuevo,national
+2015-01-01,ES,CL,Castilla y Leon,Año Nuevo,national
+2015-01-01,ES,CM,Castilla-La Mancha,Año Nuevo,national
+2015-01-01,ES,CN,Canarias,Año Nuevo,national
+2015-01-01,ES,CT,Cataluna,Año Nuevo,national
+2015-01-01,ES,ES,Espana,Año Nuevo,national
+2015-01-01,ES,EX,Extremadura,Año Nuevo,national
+2015-01-01,ES,GA,Galicia,Año Nuevo,national
+2015-01-01,ES,IB,Illes Balears,Año Nuevo,national
+2015-01-01,ES,MC,Murcia,Año Nuevo,national
+2015-01-01,ES,MD,Madrid,Año Nuevo,national
+2015-01-01,ES,ML,Melilla,Año Nuevo,national
+2015-01-01,ES,NC,Navarra,Año Nuevo,national
+2015-01-01,ES,PV,Pais Vasco,Año Nuevo,national
+2015-01-01,ES,RI,La Rioja,Año Nuevo,national
+2015-01-01,ES,VC,Comunitat Valenciana,Año Nuevo,national
+2015-01-06,ES,AN,Andalucia,Epifanía del Señor,national
+2015-01-06,ES,AR,Aragon,Epifanía del Señor,national
+2015-01-06,ES,AS,Asturias,Epifanía del Señor,national
+2015-01-06,ES,CB,Cantabria,Epifanía del Señor,national
+2015-01-06,ES,CE,Ceuta,Epifanía del Señor,national
+2015-01-06,ES,CL,Castilla y Leon,Epifanía del Señor,national
+2015-01-06,ES,CM,Castilla-La Mancha,Epifanía del Señor,national
+2015-01-06,ES,CN,Canarias,Epifanía del Señor,national
+2015-01-06,ES,CT,Cataluna,Epifanía del Señor,national
+2015-01-06,ES,ES,Espana,Epifanía del Señor,national
+2015-01-06,ES,EX,Extremadura,Epifanía del Señor,national
+2015-01-06,ES,GA,Galicia,Epifanía del Señor,national
+2015-01-06,ES,IB,Illes Balears,Epifanía del Señor,national
+2015-01-06,ES,MC,Murcia,Epifanía del Señor,national
+2015-01-06,ES,MD,Madrid,Epifanía del Señor,national
+2015-01-06,ES,ML,Melilla,Epifanía del Señor,national
+2015-01-06,ES,NC,Navarra,Epifanía del Señor,national
+2015-01-06,ES,PV,Pais Vasco,Epifanía del Señor,national
+2015-01-06,ES,RI,La Rioja,Epifanía del Señor,national
+2015-01-06,ES,VC,Comunitat Valenciana,Epifanía del Señor,national
+2015-02-28,ES,AN,Andalucia,Día de Andalucía,regional
+2015-03-19,ES,MC,Murcia,San José,regional
+2015-03-19,ES,MD,Madrid,San José,regional
+2015-03-19,ES,ML,Melilla,San José,regional
+2015-03-19,ES,NC,Navarra,San José,regional
+2015-03-19,ES,PV,Pais Vasco,San José,regional
+2015-03-19,ES,VC,Comunitat Valenciana,San José,regional
+2015-03-20,ES,GA,Galicia,Día siguiente a San José,regional
+2015-04-02,ES,AN,Andalucia,Jueves Santo,regional
+2015-04-02,ES,AR,Aragon,Jueves Santo,regional
+2015-04-02,ES,AS,Asturias,Jueves Santo,regional
+2015-04-02,ES,CB,Cantabria,Jueves Santo,regional
+2015-04-02,ES,CE,Ceuta,Jueves Santo,regional
+2015-04-02,ES,CL,Castilla y Leon,Jueves Santo,regional
+2015-04-02,ES,CM,Castilla-La Mancha,Jueves Santo,regional
+2015-04-02,ES,CN,Canarias,Jueves Santo,regional
+2015-04-02,ES,EX,Extremadura,Jueves Santo,regional
+2015-04-02,ES,GA,Galicia,Jueves Santo,regional
+2015-04-02,ES,IB,Illes Balears,Jueves Santo,regional
+2015-04-02,ES,MC,Murcia,Jueves Santo,regional
+2015-04-02,ES,MD,Madrid,Jueves Santo,regional
+2015-04-02,ES,ML,Melilla,Jueves Santo,regional
+2015-04-02,ES,NC,Navarra,Jueves Santo,regional
+2015-04-02,ES,PV,Pais Vasco,Jueves Santo,regional
+2015-04-02,ES,RI,La Rioja,Jueves Santo,regional
+2015-04-03,ES,AN,Andalucia,Viernes Santo,national
+2015-04-03,ES,AR,Aragon,Viernes Santo,national
+2015-04-03,ES,AS,Asturias,Viernes Santo,national
+2015-04-03,ES,CB,Cantabria,Viernes Santo,national
+2015-04-03,ES,CE,Ceuta,Viernes Santo,national
+2015-04-03,ES,CL,Castilla y Leon,Viernes Santo,national
+2015-04-03,ES,CM,Castilla-La Mancha,Viernes Santo,national
+2015-04-03,ES,CN,Canarias,Viernes Santo,national
+2015-04-03,ES,CT,Cataluna,Viernes Santo,national
+2015-04-03,ES,ES,Espana,Viernes Santo,national
+2015-04-03,ES,EX,Extremadura,Viernes Santo,national
+2015-04-03,ES,GA,Galicia,Viernes Santo,national
+2015-04-03,ES,IB,Illes Balears,Viernes Santo,national
+2015-04-03,ES,MC,Murcia,Viernes Santo,national
+2015-04-03,ES,MD,Madrid,Viernes Santo,national
+2015-04-03,ES,ML,Melilla,Viernes Santo,national
+2015-04-03,ES,NC,Navarra,Viernes Santo,national
+2015-04-03,ES,PV,Pais Vasco,Viernes Santo,national
+2015-04-03,ES,RI,La Rioja,Viernes Santo,national
+2015-04-03,ES,VC,Comunitat Valenciana,Viernes Santo,national
+2015-04-06,ES,CB,Cantabria,Lunes de Pascua,regional
+2015-04-06,ES,CM,Castilla-La Mancha,Lunes de Pascua,regional
+2015-04-06,ES,CT,Cataluna,Lunes de Pascua,regional
+2015-04-06,ES,IB,Illes Balears,Lunes de Pascua,regional
+2015-04-06,ES,NC,Navarra,Lunes de Pascua,regional
+2015-04-06,ES,PV,Pais Vasco,Lunes de Pascua,regional
+2015-04-06,ES,RI,La Rioja,Lunes de Pascua,regional
+2015-04-06,ES,VC,Comunitat Valenciana,Lunes de Pascua,regional
+2015-04-23,ES,AR,Aragon,Día de San Jorge,regional
+2015-04-23,ES,CL,Castilla y Leon,Fiesta de Castilla y León,regional
+2015-05-01,ES,AN,Andalucia,Fiesta del Trabajo,national
+2015-05-01,ES,AR,Aragon,Fiesta del Trabajo,national
+2015-05-01,ES,AS,Asturias,Fiesta del Trabajo,national
+2015-05-01,ES,CB,Cantabria,Fiesta del Trabajo,national
+2015-05-01,ES,CE,Ceuta,Fiesta del Trabajo,national
+2015-05-01,ES,CL,Castilla y Leon,Fiesta del Trabajo,national
+2015-05-01,ES,CM,Castilla-La Mancha,Fiesta del Trabajo,national
+2015-05-01,ES,CN,Canarias,Fiesta del Trabajo,national
+2015-05-01,ES,CT,Cataluna,Fiesta del Trabajo,national
+2015-05-01,ES,ES,Espana,Fiesta del Trabajo,national
+2015-05-01,ES,EX,Extremadura,Fiesta del Trabajo,national
+2015-05-01,ES,GA,Galicia,Fiesta del Trabajo,national
+2015-05-01,ES,IB,Illes Balears,Fiesta del Trabajo,national
+2015-05-01,ES,MC,Murcia,Fiesta del Trabajo,national
+2015-05-01,ES,MD,Madrid,Fiesta del Trabajo,national
+2015-05-01,ES,ML,Melilla,Fiesta del Trabajo,national
+2015-05-01,ES,NC,Navarra,Fiesta del Trabajo,national
+2015-05-01,ES,PV,Pais Vasco,Fiesta del Trabajo,national
+2015-05-01,ES,RI,La Rioja,Fiesta del Trabajo,national
+2015-05-01,ES,VC,Comunitat Valenciana,Fiesta del Trabajo,national
+2015-05-02,ES,MD,Madrid,Fiesta de la Comunidad de Madrid,regional
+2015-05-30,ES,CN,Canarias,Día de Canarias,regional
+2015-06-04,ES,CM,Castilla-La Mancha,Corpus Christi,regional
+2015-06-09,ES,MC,Murcia,Día de la Región de Murcia,regional
+2015-06-09,ES,RI,La Rioja,Día de La Rioja,regional
+2015-06-13,ES,CE,Ceuta,San Antonio,regional
+2015-06-24,ES,CT,Cataluna,San Juan,regional
+2015-07-25,ES,GA,Galicia,Día Nacional de Galicia,regional
+2015-07-25,ES,NC,Navarra,Santiago Apóstol,regional
+2015-07-25,ES,PV,Pais Vasco,Santiago Apóstol,regional
+2015-08-15,ES,AN,Andalucia,Asunción de la Virgen,national
+2015-08-15,ES,AR,Aragon,Asunción de la Virgen,national
+2015-08-15,ES,AS,Asturias,Asunción de la Virgen,national
+2015-08-15,ES,CB,Cantabria,Asunción de la Virgen,national
+2015-08-15,ES,CE,Ceuta,Asunción de la Virgen,national
+2015-08-15,ES,CL,Castilla y Leon,Asunción de la Virgen,national
+2015-08-15,ES,CM,Castilla-La Mancha,Asunción de la Virgen,national
+2015-08-15,ES,CN,Canarias,Asunción de la Virgen,national
+2015-08-15,ES,CT,Cataluna,Asunción de la Virgen,national
+2015-08-15,ES,ES,Espana,Asunción de la Virgen,national
+2015-08-15,ES,EX,Extremadura,Asunción de la Virgen,national
+2015-08-15,ES,GA,Galicia,Asunción de la Virgen,national
+2015-08-15,ES,IB,Illes Balears,Asunción de la Virgen,national
+2015-08-15,ES,MC,Murcia,Asunción de la Virgen,national
+2015-08-15,ES,MD,Madrid,Asunción de la Virgen,national
+2015-08-15,ES,ML,Melilla,Asunción de la Virgen,national
+2015-08-15,ES,NC,Navarra,Asunción de la Virgen,national
+2015-08-15,ES,PV,Pais Vasco,Asunción de la Virgen,national
+2015-08-15,ES,RI,La Rioja,Asunción de la Virgen,national
+2015-08-15,ES,VC,Comunitat Valenciana,Asunción de la Virgen,national
+2015-09-08,ES,AS,Asturias,Día de Asturias,regional
+2015-09-08,ES,EX,Extremadura,Día de Extremadura,regional
+2015-09-08,ES,ML,Melilla,Día de Nuestra Señora la Virgen de la Victoria,regional
+2015-09-11,ES,CT,Cataluna,Fiesta Nacional de Cataluña,regional
+2015-09-15,ES,CB,Cantabria,La Bien Aparecida,regional
+2015-09-17,ES,ML,Melilla,Día de Melilla,regional
+2015-09-25,ES,CE,Ceuta,Fiesta del Sacrificio-Eidul Adha,regional
+2015-09-25,ES,ML,Melilla,Fiesta del Sacrificio-Aid Al Adha,regional
+2015-10-09,ES,VC,Comunitat Valenciana,Día de la Comunidad Valenciana,regional
+2015-10-12,ES,AN,Andalucia,Fiesta Nacional de España,national
+2015-10-12,ES,AR,Aragon,Fiesta Nacional de España,national
+2015-10-12,ES,AS,Asturias,Fiesta Nacional de España,national
+2015-10-12,ES,CB,Cantabria,Fiesta Nacional de España,national
+2015-10-12,ES,CE,Ceuta,Fiesta Nacional de España,national
+2015-10-12,ES,CL,Castilla y Leon,Fiesta Nacional de España,national
+2015-10-12,ES,CM,Castilla-La Mancha,Fiesta Nacional de España,national
+2015-10-12,ES,CN,Canarias,Fiesta Nacional de España,national
+2015-10-12,ES,CT,Cataluna,Fiesta Nacional de España,national
+2015-10-12,ES,ES,Espana,Fiesta Nacional de España,national
+2015-10-12,ES,EX,Extremadura,Fiesta Nacional de España,national
+2015-10-12,ES,GA,Galicia,Fiesta Nacional de España,national
+2015-10-12,ES,IB,Illes Balears,Fiesta Nacional de España,national
+2015-10-12,ES,MC,Murcia,Fiesta Nacional de España,national
+2015-10-12,ES,MD,Madrid,Fiesta Nacional de España,national
+2015-10-12,ES,ML,Melilla,Fiesta Nacional de España,national
+2015-10-12,ES,NC,Navarra,Fiesta Nacional de España,national
+2015-10-12,ES,PV,Pais Vasco,Fiesta Nacional de España,national
+2015-10-12,ES,RI,La Rioja,Fiesta Nacional de España,national
+2015-10-12,ES,VC,Comunitat Valenciana,Fiesta Nacional de España,national
+2015-11-02,ES,AN,Andalucia,Lunes siguiente a Todos los Santos,regional
+2015-11-02,ES,AR,Aragon,Lunes siguiente a Todos los Santos,regional
+2015-11-02,ES,AS,Asturias,Lunes siguiente a Todos los Santos,regional
+2015-11-02,ES,CB,Cantabria,Lunes siguiente a Todos los Santos,regional
+2015-11-02,ES,CE,Ceuta,Lunes siguiente a Todos los Santos,regional
+2015-11-02,ES,CL,Castilla y Leon,Lunes siguiente a Todos los Santos,regional
+2015-11-02,ES,CN,Canarias,Lunes siguiente a Todos los Santos,regional
+2015-11-02,ES,EX,Extremadura,Lunes siguiente a Todos los Santos,regional
+2015-11-02,ES,GA,Galicia,Lunes siguiente a Todos los Santos,regional
+2015-11-02,ES,IB,Illes Balears,Lunes siguiente a Todos los Santos,regional
+2015-12-03,ES,NC,Navarra,San Francisco Javier,regional
+2015-12-07,ES,AN,Andalucia,Lunes siguiente a Día de la Constitución Española,regional
+2015-12-07,ES,AR,Aragon,Lunes siguiente a Día de la Constitución Española,regional
+2015-12-07,ES,AS,Asturias,Lunes siguiente a Día de la Constitución Española,regional
+2015-12-07,ES,CE,Ceuta,Lunes siguiente a Día de la Constitución Española,regional
+2015-12-07,ES,CL,Castilla y Leon,Lunes siguiente a Día de la Constitución Española,regional
+2015-12-07,ES,CM,Castilla-La Mancha,Lunes siguiente a Día de la Constitución Española,regional
+2015-12-07,ES,EX,Extremadura,Lunes siguiente a Día de la Constitución Española,regional
+2015-12-07,ES,IB,Illes Balears,Lunes siguiente a Día de la Constitución Española,regional
+2015-12-07,ES,MC,Murcia,Lunes siguiente a Día de la Constitución Española,regional
+2015-12-07,ES,ML,Melilla,Lunes siguiente a Día de la Constitución Española,regional
+2015-12-07,ES,RI,La Rioja,Lunes siguiente a Día de la Constitución Española,regional
+2015-12-07,ES,VC,Comunitat Valenciana,Lunes siguiente a Día de la Constitución Española,regional
+2015-12-08,ES,AN,Andalucia,Inmaculada Concepción,national
+2015-12-08,ES,AR,Aragon,Inmaculada Concepción,national
+2015-12-08,ES,AS,Asturias,Inmaculada Concepción,national
+2015-12-08,ES,CB,Cantabria,Inmaculada Concepción,national
+2015-12-08,ES,CE,Ceuta,Inmaculada Concepción,national
+2015-12-08,ES,CL,Castilla y Leon,Inmaculada Concepción,national
+2015-12-08,ES,CM,Castilla-La Mancha,Inmaculada Concepción,national
+2015-12-08,ES,CN,Canarias,Inmaculada Concepción,national
+2015-12-08,ES,CT,Cataluna,Inmaculada Concepción,national
+2015-12-08,ES,ES,Espana,Inmaculada Concepción,national
+2015-12-08,ES,EX,Extremadura,Inmaculada Concepción,national
+2015-12-08,ES,GA,Galicia,Inmaculada Concepción,national
+2015-12-08,ES,IB,Illes Balears,Inmaculada Concepción,national
+2015-12-08,ES,MC,Murcia,Inmaculada Concepción,national
+2015-12-08,ES,MD,Madrid,Inmaculada Concepción,national
+2015-12-08,ES,ML,Melilla,Inmaculada Concepción,national
+2015-12-08,ES,NC,Navarra,Inmaculada Concepción,national
+2015-12-08,ES,PV,Pais Vasco,Inmaculada Concepción,national
+2015-12-08,ES,RI,La Rioja,Inmaculada Concepción,national
+2015-12-08,ES,VC,Comunitat Valenciana,Inmaculada Concepción,national
+2015-12-25,ES,AN,Andalucia,Natividad del Señor,national
+2015-12-25,ES,AR,Aragon,Natividad del Señor,national
+2015-12-25,ES,AS,Asturias,Natividad del Señor,national
+2015-12-25,ES,CB,Cantabria,Natividad del Señor,national
+2015-12-25,ES,CE,Ceuta,Natividad del Señor,national
+2015-12-25,ES,CL,Castilla y Leon,Natividad del Señor,national
+2015-12-25,ES,CM,Castilla-La Mancha,Natividad del Señor,national
+2015-12-25,ES,CN,Canarias,Natividad del Señor,national
+2015-12-25,ES,CT,Cataluna,Natividad del Señor,national
+2015-12-25,ES,ES,Espana,Natividad del Señor,national
+2015-12-25,ES,EX,Extremadura,Natividad del Señor,national
+2015-12-25,ES,GA,Galicia,Natividad del Señor,national
+2015-12-25,ES,IB,Illes Balears,Natividad del Señor,national
+2015-12-25,ES,MC,Murcia,Natividad del Señor,national
+2015-12-25,ES,MD,Madrid,Natividad del Señor,national
+2015-12-25,ES,ML,Melilla,Natividad del Señor,national
+2015-12-25,ES,NC,Navarra,Natividad del Señor,national
+2015-12-25,ES,PV,Pais Vasco,Natividad del Señor,national
+2015-12-25,ES,RI,La Rioja,Natividad del Señor,national
+2015-12-25,ES,VC,Comunitat Valenciana,Natividad del Señor,national
+2015-12-26,ES,CT,Cataluna,San Esteban,regional
+2016-01-01,ES,AN,Andalucia,Año Nuevo,national
+2016-01-01,ES,AR,Aragon,Año Nuevo,national
+2016-01-01,ES,AS,Asturias,Año Nuevo,national
+2016-01-01,ES,CB,Cantabria,Año Nuevo,national
+2016-01-01,ES,CE,Ceuta,Año Nuevo,national
+2016-01-01,ES,CL,Castilla y Leon,Año Nuevo,national
+2016-01-01,ES,CM,Castilla-La Mancha,Año Nuevo,national
+2016-01-01,ES,CN,Canarias,Año Nuevo,national
+2016-01-01,ES,CT,Cataluna,Año Nuevo,national
+2016-01-01,ES,ES,Espana,Año Nuevo,national
+2016-01-01,ES,EX,Extremadura,Año Nuevo,national
+2016-01-01,ES,GA,Galicia,Año Nuevo,national
+2016-01-01,ES,IB,Illes Balears,Año Nuevo,national
+2016-01-01,ES,MC,Murcia,Año Nuevo,national
+2016-01-01,ES,MD,Madrid,Año Nuevo,national
+2016-01-01,ES,ML,Melilla,Año Nuevo,national
+2016-01-01,ES,NC,Navarra,Año Nuevo,national
+2016-01-01,ES,PV,Pais Vasco,Año Nuevo,national
+2016-01-01,ES,RI,La Rioja,Año Nuevo,national
+2016-01-01,ES,VC,Comunitat Valenciana,Año Nuevo,national
+2016-01-06,ES,AN,Andalucia,Epifanía del Señor,national
+2016-01-06,ES,AR,Aragon,Epifanía del Señor,national
+2016-01-06,ES,AS,Asturias,Epifanía del Señor,national
+2016-01-06,ES,CB,Cantabria,Epifanía del Señor,national
+2016-01-06,ES,CE,Ceuta,Epifanía del Señor,national
+2016-01-06,ES,CL,Castilla y Leon,Epifanía del Señor,national
+2016-01-06,ES,CM,Castilla-La Mancha,Epifanía del Señor,national
+2016-01-06,ES,CN,Canarias,Epifanía del Señor,national
+2016-01-06,ES,CT,Cataluna,Epifanía del Señor,national
+2016-01-06,ES,ES,Espana,Epifanía del Señor,national
+2016-01-06,ES,EX,Extremadura,Epifanía del Señor,national
+2016-01-06,ES,GA,Galicia,Epifanía del Señor,national
+2016-01-06,ES,IB,Illes Balears,Epifanía del Señor,national
+2016-01-06,ES,MC,Murcia,Epifanía del Señor,national
+2016-01-06,ES,MD,Madrid,Epifanía del Señor,national
+2016-01-06,ES,ML,Melilla,Epifanía del Señor,national
+2016-01-06,ES,NC,Navarra,Epifanía del Señor,national
+2016-01-06,ES,PV,Pais Vasco,Epifanía del Señor,national
+2016-01-06,ES,RI,La Rioja,Epifanía del Señor,national
+2016-01-06,ES,VC,Comunitat Valenciana,Epifanía del Señor,national
+2016-02-29,ES,AN,Andalucia,Lunes siguiente a Día de Andalucía,regional
+2016-03-01,ES,IB,Illes Balears,Día de las Islas Baleares,regional
+2016-03-19,ES,MC,Murcia,San José,regional
+2016-03-19,ES,ML,Melilla,San José,regional
+2016-03-19,ES,VC,Comunitat Valenciana,San José,regional
+2016-03-24,ES,AN,Andalucia,Jueves Santo,regional
+2016-03-24,ES,AR,Aragon,Jueves Santo,regional
+2016-03-24,ES,AS,Asturias,Jueves Santo,regional
+2016-03-24,ES,CB,Cantabria,Jueves Santo,regional
+2016-03-24,ES,CE,Ceuta,Jueves Santo,regional
+2016-03-24,ES,CL,Castilla y Leon,Jueves Santo,regional
+2016-03-24,ES,CM,Castilla-La Mancha,Jueves Santo,regional
+2016-03-24,ES,CN,Canarias,Jueves Santo,regional
+2016-03-24,ES,EX,Extremadura,Jueves Santo,regional
+2016-03-24,ES,GA,Galicia,Jueves Santo,regional
+2016-03-24,ES,IB,Illes Balears,Jueves Santo,regional
+2016-03-24,ES,MC,Murcia,Jueves Santo,regional
+2016-03-24,ES,MD,Madrid,Jueves Santo,regional
+2016-03-24,ES,ML,Melilla,Jueves Santo,regional
+2016-03-24,ES,NC,Navarra,Jueves Santo,regional
+2016-03-24,ES,PV,Pais Vasco,Jueves Santo,regional
+2016-03-24,ES,RI,La Rioja,Jueves Santo,regional
+2016-03-24,ES,VC,Comunitat Valenciana,Jueves Santo,regional
+2016-03-25,ES,AN,Andalucia,Viernes Santo,national
+2016-03-25,ES,AR,Aragon,Viernes Santo,national
+2016-03-25,ES,AS,Asturias,Viernes Santo,national
+2016-03-25,ES,CB,Cantabria,Viernes Santo,national
+2016-03-25,ES,CE,Ceuta,Viernes Santo,national
+2016-03-25,ES,CL,Castilla y Leon,Viernes Santo,national
+2016-03-25,ES,CM,Castilla-La Mancha,Viernes Santo,national
+2016-03-25,ES,CN,Canarias,Viernes Santo,national
+2016-03-25,ES,CT,Cataluna,Viernes Santo,national
+2016-03-25,ES,ES,Espana,Viernes Santo,national
+2016-03-25,ES,EX,Extremadura,Viernes Santo,national
+2016-03-25,ES,GA,Galicia,Viernes Santo,national
+2016-03-25,ES,IB,Illes Balears,Viernes Santo,national
+2016-03-25,ES,MC,Murcia,Viernes Santo,national
+2016-03-25,ES,MD,Madrid,Viernes Santo,national
+2016-03-25,ES,ML,Melilla,Viernes Santo,national
+2016-03-25,ES,NC,Navarra,Viernes Santo,national
+2016-03-25,ES,PV,Pais Vasco,Viernes Santo,national
+2016-03-25,ES,RI,La Rioja,Viernes Santo,national
+2016-03-25,ES,VC,Comunitat Valenciana,Viernes Santo,national
+2016-03-28,ES,CT,Cataluna,Lunes de Pascua,regional
+2016-03-28,ES,IB,Illes Balears,Lunes de Pascua,regional
+2016-03-28,ES,NC,Navarra,Lunes de Pascua,regional
+2016-03-28,ES,PV,Pais Vasco,Lunes de Pascua,regional
+2016-03-28,ES,RI,La Rioja,Lunes de Pascua,regional
+2016-03-28,ES,VC,Comunitat Valenciana,Lunes de Pascua,regional
+2016-04-23,ES,AR,Aragon,Día de San Jorge,regional
+2016-04-23,ES,CL,Castilla y Leon,Fiesta de Castilla y León,regional
+2016-05-02,ES,AN,Andalucia,Lunes siguiente a Fiesta del Trabajo,regional
+2016-05-02,ES,AR,Aragon,Lunes siguiente a Fiesta del Trabajo,regional
+2016-05-02,ES,AS,Asturias,Lunes siguiente a Fiesta del Trabajo,regional
+2016-05-02,ES,CL,Castilla y Leon,Lunes siguiente a Fiesta del Trabajo,regional
+2016-05-02,ES,CN,Canarias,Lunes siguiente a Fiesta del Trabajo,regional
+2016-05-02,ES,EX,Extremadura,Lunes siguiente a Fiesta del Trabajo,regional
+2016-05-02,ES,MD,Madrid,Fiesta de la Comunidad de Madrid,regional
+2016-05-16,ES,CT,Cataluna,Día de la Pascua Granada,regional
+2016-05-17,ES,GA,Galicia,Día de las Letras Gallegas,regional
+2016-05-26,ES,CM,Castilla-La Mancha,Corpus Christi,regional
+2016-05-30,ES,CN,Canarias,Día de Canarias,regional
+2016-05-31,ES,CM,Castilla-La Mancha,Día de Castilla-La Mancha,regional
+2016-06-09,ES,MC,Murcia,Día de la Región de Murcia,regional
+2016-06-09,ES,RI,La Rioja,Día de La Rioja,regional
+2016-06-13,ES,CE,Ceuta,San Antonio,regional
+2016-06-24,ES,CT,Cataluna,San Juan,regional
+2016-06-24,ES,GA,Galicia,San Juan,regional
+2016-07-25,ES,GA,Galicia,Día Nacional de Galicia,regional
+2016-07-25,ES,MD,Madrid,Santiago Apóstol,regional
+2016-07-25,ES,NC,Navarra,Santiago Apóstol,regional
+2016-07-25,ES,PV,Pais Vasco,Santiago Apóstol,regional
+2016-07-25,ES,RI,La Rioja,Santiago Apóstol,regional
+2016-07-28,ES,CB,Cantabria,Día de las Instituciones de Cantabria,regional
+2016-08-15,ES,AN,Andalucia,Asunción de la Virgen,national
+2016-08-15,ES,AR,Aragon,Asunción de la Virgen,national
+2016-08-15,ES,AS,Asturias,Asunción de la Virgen,national
+2016-08-15,ES,CB,Cantabria,Asunción de la Virgen,national
+2016-08-15,ES,CE,Ceuta,Asunción de la Virgen,national
+2016-08-15,ES,CL,Castilla y Leon,Asunción de la Virgen,national
+2016-08-15,ES,CM,Castilla-La Mancha,Asunción de la Virgen,national
+2016-08-15,ES,CN,Canarias,Asunción de la Virgen,national
+2016-08-15,ES,CT,Cataluna,Asunción de la Virgen,national
+2016-08-15,ES,ES,Espana,Asunción de la Virgen,national
+2016-08-15,ES,EX,Extremadura,Asunción de la Virgen,national
+2016-08-15,ES,GA,Galicia,Asunción de la Virgen,national
+2016-08-15,ES,IB,Illes Balears,Asunción de la Virgen,national
+2016-08-15,ES,MC,Murcia,Asunción de la Virgen,national
+2016-08-15,ES,MD,Madrid,Asunción de la Virgen,national
+2016-08-15,ES,ML,Melilla,Asunción de la Virgen,national
+2016-08-15,ES,NC,Navarra,Asunción de la Virgen,national
+2016-08-15,ES,PV,Pais Vasco,Asunción de la Virgen,national
+2016-08-15,ES,RI,La Rioja,Asunción de la Virgen,national
+2016-08-15,ES,VC,Comunitat Valenciana,Asunción de la Virgen,national
+2016-09-02,ES,CE,Ceuta,Día de Ceuta,regional
+2016-09-08,ES,AS,Asturias,Día de Asturias,regional
+2016-09-08,ES,EX,Extremadura,Día de Extremadura,regional
+2016-09-08,ES,ML,Melilla,Día de Nuestra Señora la Virgen de la Victoria,regional
+2016-09-12,ES,CE,Ceuta,Fiesta del Sacrificio-Eidul Adha,regional
+2016-09-12,ES,ML,Melilla,Fiesta del Sacrificio-Aid Al Adha,regional
+2016-09-15,ES,CB,Cantabria,La Bien Aparecida,regional
+2016-09-17,ES,ML,Melilla,Día de Melilla,regional
+2016-10-07,ES,PV,Pais Vasco,80 Aniversario del primer Gobierno Vasco,regional
+2016-10-12,ES,AN,Andalucia,Fiesta Nacional de España,national
+2016-10-12,ES,AR,Aragon,Fiesta Nacional de España,national
+2016-10-12,ES,AS,Asturias,Fiesta Nacional de España,national
+2016-10-12,ES,CB,Cantabria,Fiesta Nacional de España,national
+2016-10-12,ES,CE,Ceuta,Fiesta Nacional de España,national
+2016-10-12,ES,CL,Castilla y Leon,Fiesta Nacional de España,national
+2016-10-12,ES,CM,Castilla-La Mancha,Fiesta Nacional de España,national
+2016-10-12,ES,CN,Canarias,Fiesta Nacional de España,national
+2016-10-12,ES,CT,Cataluna,Fiesta Nacional de España,national
+2016-10-12,ES,ES,Espana,Fiesta Nacional de España,national
+2016-10-12,ES,EX,Extremadura,Fiesta Nacional de España,national
+2016-10-12,ES,GA,Galicia,Fiesta Nacional de España,national
+2016-10-12,ES,IB,Illes Balears,Fiesta Nacional de España,national
+2016-10-12,ES,MC,Murcia,Fiesta Nacional de España,national
+2016-10-12,ES,MD,Madrid,Fiesta Nacional de España,national
+2016-10-12,ES,ML,Melilla,Fiesta Nacional de España,national
+2016-10-12,ES,NC,Navarra,Fiesta Nacional de España,national
+2016-10-12,ES,PV,Pais Vasco,Fiesta Nacional de España,national
+2016-10-12,ES,RI,La Rioja,Fiesta Nacional de España,national
+2016-10-12,ES,VC,Comunitat Valenciana,Fiesta Nacional de España,national
+2016-11-01,ES,AN,Andalucia,Todos los Santos,national
+2016-11-01,ES,AR,Aragon,Todos los Santos,national
+2016-11-01,ES,AS,Asturias,Todos los Santos,national
+2016-11-01,ES,CB,Cantabria,Todos los Santos,national
+2016-11-01,ES,CE,Ceuta,Todos los Santos,national
+2016-11-01,ES,CL,Castilla y Leon,Todos los Santos,national
+2016-11-01,ES,CM,Castilla-La Mancha,Todos los Santos,national
+2016-11-01,ES,CN,Canarias,Todos los Santos,national
+2016-11-01,ES,CT,Cataluna,Todos los Santos,national
+2016-11-01,ES,ES,Espana,Todos los Santos,national
+2016-11-01,ES,EX,Extremadura,Todos los Santos,national
+2016-11-01,ES,GA,Galicia,Todos los Santos,national
+2016-11-01,ES,IB,Illes Balears,Todos los Santos,national
+2016-11-01,ES,MC,Murcia,Todos los Santos,national
+2016-11-01,ES,MD,Madrid,Todos los Santos,national
+2016-11-01,ES,ML,Melilla,Todos los Santos,national
+2016-11-01,ES,NC,Navarra,Todos los Santos,national
+2016-11-01,ES,PV,Pais Vasco,Todos los Santos,national
+2016-11-01,ES,RI,La Rioja,Todos los Santos,national
+2016-11-01,ES,VC,Comunitat Valenciana,Todos los Santos,national
+2016-12-03,ES,NC,Navarra,San Francisco Javier,regional
+2016-12-06,ES,AN,Andalucia,Día de la Constitución Española,national
+2016-12-06,ES,AR,Aragon,Día de la Constitución Española,national
+2016-12-06,ES,AS,Asturias,Día de la Constitución Española,national
+2016-12-06,ES,CB,Cantabria,Día de la Constitución Española,national
+2016-12-06,ES,CE,Ceuta,Día de la Constitución Española,national
+2016-12-06,ES,CL,Castilla y Leon,Día de la Constitución Española,national
+2016-12-06,ES,CM,Castilla-La Mancha,Día de la Constitución Española,national
+2016-12-06,ES,CN,Canarias,Día de la Constitución Española,national
+2016-12-06,ES,CT,Cataluna,Día de la Constitución Española,national
+2016-12-06,ES,ES,Espana,Día de la Constitución Española,national
+2016-12-06,ES,EX,Extremadura,Día de la Constitución Española,national
+2016-12-06,ES,GA,Galicia,Día de la Constitución Española,national
+2016-12-06,ES,IB,Illes Balears,Día de la Constitución Española,national
+2016-12-06,ES,MC,Murcia,Día de la Constitución Española,national
+2016-12-06,ES,MD,Madrid,Día de la Constitución Española,national
+2016-12-06,ES,ML,Melilla,Día de la Constitución Española,national
+2016-12-06,ES,NC,Navarra,Día de la Constitución Española,national
+2016-12-06,ES,PV,Pais Vasco,Día de la Constitución Española,national
+2016-12-06,ES,RI,La Rioja,Día de la Constitución Española,national
+2016-12-06,ES,VC,Comunitat Valenciana,Día de la Constitución Española,national
+2016-12-08,ES,AN,Andalucia,Inmaculada Concepción,national
+2016-12-08,ES,AR,Aragon,Inmaculada Concepción,national
+2016-12-08,ES,AS,Asturias,Inmaculada Concepción,national
+2016-12-08,ES,CB,Cantabria,Inmaculada Concepción,national
+2016-12-08,ES,CE,Ceuta,Inmaculada Concepción,national
+2016-12-08,ES,CL,Castilla y Leon,Inmaculada Concepción,national
+2016-12-08,ES,CM,Castilla-La Mancha,Inmaculada Concepción,national
+2016-12-08,ES,CN,Canarias,Inmaculada Concepción,national
+2016-12-08,ES,CT,Cataluna,Inmaculada Concepción,national
+2016-12-08,ES,ES,Espana,Inmaculada Concepción,national
+2016-12-08,ES,EX,Extremadura,Inmaculada Concepción,national
+2016-12-08,ES,GA,Galicia,Inmaculada Concepción,national
+2016-12-08,ES,IB,Illes Balears,Inmaculada Concepción,national
+2016-12-08,ES,MC,Murcia,Inmaculada Concepción,national
+2016-12-08,ES,MD,Madrid,Inmaculada Concepción,national
+2016-12-08,ES,ML,Melilla,Inmaculada Concepción,national
+2016-12-08,ES,NC,Navarra,Inmaculada Concepción,national
+2016-12-08,ES,PV,Pais Vasco,Inmaculada Concepción,national
+2016-12-08,ES,RI,La Rioja,Inmaculada Concepción,national
+2016-12-08,ES,VC,Comunitat Valenciana,Inmaculada Concepción,national
+2016-12-26,ES,AN,Andalucia,Lunes siguiente a Natividad del Señor,regional
+2016-12-26,ES,AR,Aragon,Lunes siguiente a Natividad del Señor,regional
+2016-12-26,ES,AS,Asturias,Lunes siguiente a Natividad del Señor,regional
+2016-12-26,ES,CB,Cantabria,Lunes siguiente a Natividad del Señor,regional
+2016-12-26,ES,CE,Ceuta,Lunes siguiente a Natividad del Señor,regional
+2016-12-26,ES,CL,Castilla y Leon,Lunes siguiente a Natividad del Señor,regional
+2016-12-26,ES,CM,Castilla-La Mancha,Lunes siguiente a Natividad del Señor,regional
+2016-12-26,ES,CT,Cataluna,San Esteban,regional
+2016-12-26,ES,EX,Extremadura,Lunes siguiente a Natividad del Señor,regional
+2016-12-26,ES,IB,Illes Balears,Lunes siguiente a Natividad del Señor,regional
+2016-12-26,ES,MC,Murcia,Lunes siguiente a Natividad del Señor,regional
+2016-12-26,ES,MD,Madrid,Lunes siguiente a Natividad del Señor,regional
+2016-12-26,ES,ML,Melilla,Lunes siguiente a Natividad del Señor,regional
+2016-12-26,ES,NC,Navarra,Lunes siguiente a Natividad del Señor,regional
+2016-12-26,ES,VC,Comunitat Valenciana,Lunes siguiente a Natividad del Señor,regional
+2017-01-02,ES,AN,Andalucia,Lunes siguiente a Año Nuevo,regional
+2017-01-02,ES,AR,Aragon,Lunes siguiente a Año Nuevo,regional
+2017-01-02,ES,AS,Asturias,Lunes siguiente a Año Nuevo,regional
+2017-01-02,ES,CL,Castilla y Leon,Lunes siguiente a Año Nuevo,regional
+2017-01-02,ES,MC,Murcia,Lunes siguiente a Año Nuevo,regional
+2017-01-02,ES,ML,Melilla,Lunes siguiente a Año Nuevo,regional
+2017-01-06,ES,AN,Andalucia,Epifanía del Señor,national
+2017-01-06,ES,AR,Aragon,Epifanía del Señor,national
+2017-01-06,ES,AS,Asturias,Epifanía del Señor,national
+2017-01-06,ES,CB,Cantabria,Epifanía del Señor,national
+2017-01-06,ES,CE,Ceuta,Epifanía del Señor,national
+2017-01-06,ES,CL,Castilla y Leon,Epifanía del Señor,national
+2017-01-06,ES,CM,Castilla-La Mancha,Epifanía del Señor,national
+2017-01-06,ES,CN,Canarias,Epifanía del Señor,national
+2017-01-06,ES,CT,Cataluna,Epifanía del Señor,national
+2017-01-06,ES,ES,Espana,Epifanía del Señor,national
+2017-01-06,ES,EX,Extremadura,Epifanía del Señor,national
+2017-01-06,ES,GA,Galicia,Epifanía del Señor,national
+2017-01-06,ES,IB,Illes Balears,Epifanía del Señor,national
+2017-01-06,ES,MC,Murcia,Epifanía del Señor,national
+2017-01-06,ES,MD,Madrid,Epifanía del Señor,national
+2017-01-06,ES,ML,Melilla,Epifanía del Señor,national
+2017-01-06,ES,NC,Navarra,Epifanía del Señor,national
+2017-01-06,ES,PV,Pais Vasco,Epifanía del Señor,national
+2017-01-06,ES,RI,La Rioja,Epifanía del Señor,national
+2017-01-06,ES,VC,Comunitat Valenciana,Epifanía del Señor,national
+2017-02-28,ES,AN,Andalucia,Día de Andalucía,regional
+2017-03-01,ES,IB,Illes Balears,Día de las Islas Baleares,regional
+2017-03-20,ES,EX,Extremadura,Lunes siguiente a San José,regional
+2017-03-20,ES,MD,Madrid,Lunes siguiente a San José,regional
+2017-04-13,ES,AN,Andalucia,Jueves Santo,regional
+2017-04-13,ES,AR,Aragon,Jueves Santo,regional
+2017-04-13,ES,AS,Asturias,Jueves Santo,regional
+2017-04-13,ES,CB,Cantabria,Jueves Santo,regional
+2017-04-13,ES,CE,Ceuta,Jueves Santo,regional
+2017-04-13,ES,CL,Castilla y Leon,Jueves Santo,regional
+2017-04-13,ES,CM,Castilla-La Mancha,Jueves Santo,regional
+2017-04-13,ES,CN,Canarias,Jueves Santo,regional
+2017-04-13,ES,EX,Extremadura,Jueves Santo,regional
+2017-04-13,ES,GA,Galicia,Jueves Santo,regional
+2017-04-13,ES,IB,Illes Balears,Jueves Santo,regional
+2017-04-13,ES,MC,Murcia,Jueves Santo,regional
+2017-04-13,ES,MD,Madrid,Jueves Santo,regional
+2017-04-13,ES,ML,Melilla,Jueves Santo,regional
+2017-04-13,ES,NC,Navarra,Jueves Santo,regional
+2017-04-13,ES,PV,Pais Vasco,Jueves Santo,regional
+2017-04-13,ES,RI,La Rioja,Jueves Santo,regional
+2017-04-13,ES,VC,Comunitat Valenciana,Jueves Santo,regional
+2017-04-14,ES,AN,Andalucia,Viernes Santo,national
+2017-04-14,ES,AR,Aragon,Viernes Santo,national
+2017-04-14,ES,AS,Asturias,Viernes Santo,national
+2017-04-14,ES,CB,Cantabria,Viernes Santo,national
+2017-04-14,ES,CE,Ceuta,Viernes Santo,national
+2017-04-14,ES,CL,Castilla y Leon,Viernes Santo,national
+2017-04-14,ES,CM,Castilla-La Mancha,Viernes Santo,national
+2017-04-14,ES,CN,Canarias,Viernes Santo,national
+2017-04-14,ES,CT,Cataluna,Viernes Santo,national
+2017-04-14,ES,ES,Espana,Viernes Santo,national
+2017-04-14,ES,EX,Extremadura,Viernes Santo,national
+2017-04-14,ES,GA,Galicia,Viernes Santo,national
+2017-04-14,ES,IB,Illes Balears,Viernes Santo,national
+2017-04-14,ES,MC,Murcia,Viernes Santo,national
+2017-04-14,ES,MD,Madrid,Viernes Santo,national
+2017-04-14,ES,ML,Melilla,Viernes Santo,national
+2017-04-14,ES,NC,Navarra,Viernes Santo,national
+2017-04-14,ES,PV,Pais Vasco,Viernes Santo,national
+2017-04-14,ES,RI,La Rioja,Viernes Santo,national
+2017-04-14,ES,VC,Comunitat Valenciana,Viernes Santo,national
+2017-04-17,ES,CT,Cataluna,Lunes de Pascua,regional
+2017-04-17,ES,IB,Illes Balears,Lunes de Pascua,regional
+2017-04-17,ES,NC,Navarra,Lunes de Pascua,regional
+2017-04-17,ES,PV,Pais Vasco,Lunes de Pascua,regional
+2017-04-17,ES,RI,La Rioja,Lunes de Pascua,regional
+2017-04-17,ES,VC,Comunitat Valenciana,Lunes de Pascua,regional
+2017-04-24,ES,AR,Aragon,Lunes siguiente a Día de San Jorge,regional
+2017-04-24,ES,CL,Castilla y Leon,Lunes siguiente a Fiesta de Castilla y León,regional
+2017-05-01,ES,AN,Andalucia,Fiesta del Trabajo,national
+2017-05-01,ES,AR,Aragon,Fiesta del Trabajo,national
+2017-05-01,ES,AS,Asturias,Fiesta del Trabajo,national
+2017-05-01,ES,CB,Cantabria,Fiesta del Trabajo,national
+2017-05-01,ES,CE,Ceuta,Fiesta del Trabajo,national
+2017-05-01,ES,CL,Castilla y Leon,Fiesta del Trabajo,national
+2017-05-01,ES,CM,Castilla-La Mancha,Fiesta del Trabajo,national
+2017-05-01,ES,CN,Canarias,Fiesta del Trabajo,national
+2017-05-01,ES,CT,Cataluna,Fiesta del Trabajo,national
+2017-05-01,ES,ES,Espana,Fiesta del Trabajo,national
+2017-05-01,ES,EX,Extremadura,Fiesta del Trabajo,national
+2017-05-01,ES,GA,Galicia,Fiesta del Trabajo,national
+2017-05-01,ES,IB,Illes Balears,Fiesta del Trabajo,national
+2017-05-01,ES,MC,Murcia,Fiesta del Trabajo,national
+2017-05-01,ES,MD,Madrid,Fiesta del Trabajo,national
+2017-05-01,ES,ML,Melilla,Fiesta del Trabajo,national
+2017-05-01,ES,NC,Navarra,Fiesta del Trabajo,national
+2017-05-01,ES,PV,Pais Vasco,Fiesta del Trabajo,national
+2017-05-01,ES,RI,La Rioja,Fiesta del Trabajo,national
+2017-05-01,ES,VC,Comunitat Valenciana,Fiesta del Trabajo,national
+2017-05-02,ES,MD,Madrid,Fiesta de la Comunidad de Madrid,regional
+2017-05-17,ES,GA,Galicia,Día de las Letras Gallegas,regional
+2017-05-30,ES,CN,Canarias,Día de Canarias,regional
+2017-05-31,ES,CM,Castilla-La Mancha,Día de Castilla-La Mancha,regional
+2017-06-09,ES,MC,Murcia,Día de la Región de Murcia,regional
+2017-06-09,ES,RI,La Rioja,Día de La Rioja,regional
+2017-06-13,ES,CE,Ceuta,San Antonio,regional
+2017-06-15,ES,CM,Castilla-La Mancha,Corpus Christi,regional
+2017-06-24,ES,CT,Cataluna,San Juan,regional
+2017-07-25,ES,GA,Galicia,Día Nacional de Galicia,regional
+2017-07-25,ES,NC,Navarra,Santiago Apóstol,regional
+2017-07-25,ES,PV,Pais Vasco,Santiago Apóstol,regional
+2017-07-28,ES,CB,Cantabria,Día de las Instituciones de Cantabria,regional
+2017-08-15,ES,AN,Andalucia,Asunción de la Virgen,national
+2017-08-15,ES,AR,Aragon,Asunción de la Virgen,national
+2017-08-15,ES,AS,Asturias,Asunción de la Virgen,national
+2017-08-15,ES,CB,Cantabria,Asunción de la Virgen,national
+2017-08-15,ES,CE,Ceuta,Asunción de la Virgen,national
+2017-08-15,ES,CL,Castilla y Leon,Asunción de la Virgen,national
+2017-08-15,ES,CM,Castilla-La Mancha,Asunción de la Virgen,national
+2017-08-15,ES,CN,Canarias,Asunción de la Virgen,national
+2017-08-15,ES,CT,Cataluna,Asunción de la Virgen,national
+2017-08-15,ES,ES,Espana,Asunción de la Virgen,national
+2017-08-15,ES,EX,Extremadura,Asunción de la Virgen,national
+2017-08-15,ES,GA,Galicia,Asunción de la Virgen,national
+2017-08-15,ES,IB,Illes Balears,Asunción de la Virgen,national
+2017-08-15,ES,MC,Murcia,Asunción de la Virgen,national
+2017-08-15,ES,MD,Madrid,Asunción de la Virgen,national
+2017-08-15,ES,ML,Melilla,Asunción de la Virgen,national
+2017-08-15,ES,NC,Navarra,Asunción de la Virgen,national
+2017-08-15,ES,PV,Pais Vasco,Asunción de la Virgen,national
+2017-08-15,ES,RI,La Rioja,Asunción de la Virgen,national
+2017-08-15,ES,VC,Comunitat Valenciana,Asunción de la Virgen,national
+2017-09-01,ES,CE,Ceuta,Fiesta del Sacrificio-Eidul Adha,regional
+2017-09-01,ES,ML,Melilla,Fiesta del Sacrificio-Aid Al Adha,regional
+2017-09-02,ES,CE,Ceuta,Día de Ceuta,regional
+2017-09-08,ES,AS,Asturias,Día de Asturias,regional
+2017-09-08,ES,EX,Extremadura,Día de Extremadura,regional
+2017-09-08,ES,ML,Melilla,Día de Nuestra Señora la Virgen de la Victoria,regional
+2017-09-11,ES,CT,Cataluna,Fiesta Nacional de Cataluña,regional
+2017-09-15,ES,CB,Cantabria,La Bien Aparecida,regional
+2017-09-18,ES,ML,Melilla,Lunes siguiente a Día de Melilla,regional
+2017-10-09,ES,VC,Comunitat Valenciana,Día de la Comunidad Valenciana,regional
+2017-10-12,ES,AN,Andalucia,Fiesta Nacional de España,national
+2017-10-12,ES,AR,Aragon,Fiesta Nacional de España,national
+2017-10-12,ES,AS,Asturias,Fiesta Nacional de España,national
+2017-10-12,ES,CB,Cantabria,Fiesta Nacional de España,national
+2017-10-12,ES,CE,Ceuta,Fiesta Nacional de España,national
+2017-10-12,ES,CL,Castilla y Leon,Fiesta Nacional de España,national
+2017-10-12,ES,CM,Castilla-La Mancha,Fiesta Nacional de España,national
+2017-10-12,ES,CN,Canarias,Fiesta Nacional de España,national
+2017-10-12,ES,CT,Cataluna,Fiesta Nacional de España,national
+2017-10-12,ES,ES,Espana,Fiesta Nacional de España,national
+2017-10-12,ES,EX,Extremadura,Fiesta Nacional de España,national
+2017-10-12,ES,GA,Galicia,Fiesta Nacional de España,national
+2017-10-12,ES,IB,Illes Balears,Fiesta Nacional de España,national
+2017-10-12,ES,MC,Murcia,Fiesta Nacional de España,national
+2017-10-12,ES,MD,Madrid,Fiesta Nacional de España,national
+2017-10-12,ES,ML,Melilla,Fiesta Nacional de España,national
+2017-10-12,ES,NC,Navarra,Fiesta Nacional de España,national
+2017-10-12,ES,PV,Pais Vasco,Fiesta Nacional de España,national
+2017-10-12,ES,RI,La Rioja,Fiesta Nacional de España,national
+2017-10-12,ES,VC,Comunitat Valenciana,Fiesta Nacional de España,national
+2017-11-01,ES,AN,Andalucia,Todos los Santos,national
+2017-11-01,ES,AR,Aragon,Todos los Santos,national
+2017-11-01,ES,AS,Asturias,Todos los Santos,national
+2017-11-01,ES,CB,Cantabria,Todos los Santos,national
+2017-11-01,ES,CE,Ceuta,Todos los Santos,national
+2017-11-01,ES,CL,Castilla y Leon,Todos los Santos,national
+2017-11-01,ES,CM,Castilla-La Mancha,Todos los Santos,national
+2017-11-01,ES,CN,Canarias,Todos los Santos,national
+2017-11-01,ES,CT,Cataluna,Todos los Santos,national
+2017-11-01,ES,ES,Espana,Todos los Santos,national
+2017-11-01,ES,EX,Extremadura,Todos los Santos,national
+2017-11-01,ES,GA,Galicia,Todos los Santos,national
+2017-11-01,ES,IB,Illes Balears,Todos los Santos,national
+2017-11-01,ES,MC,Murcia,Todos los Santos,national
+2017-11-01,ES,MD,Madrid,Todos los Santos,national
+2017-11-01,ES,ML,Melilla,Todos los Santos,national
+2017-11-01,ES,NC,Navarra,Todos los Santos,national
+2017-11-01,ES,PV,Pais Vasco,Todos los Santos,national
+2017-11-01,ES,RI,La Rioja,Todos los Santos,national
+2017-11-01,ES,VC,Comunitat Valenciana,Todos los Santos,national
+2017-12-04,ES,NC,Navarra,Lunes siguiente a San Francisco Javier,regional
+2017-12-06,ES,AN,Andalucia,Día de la Constitución Española,national
+2017-12-06,ES,AR,Aragon,Día de la Constitución Española,national
+2017-12-06,ES,AS,Asturias,Día de la Constitución Española,national
+2017-12-06,ES,CB,Cantabria,Día de la Constitución Española,national
+2017-12-06,ES,CE,Ceuta,Día de la Constitución Española,national
+2017-12-06,ES,CL,Castilla y Leon,Día de la Constitución Española,national
+2017-12-06,ES,CM,Castilla-La Mancha,Día de la Constitución Española,national
+2017-12-06,ES,CN,Canarias,Día de la Constitución Española,national
+2017-12-06,ES,CT,Cataluna,Día de la Constitución Española,national
+2017-12-06,ES,ES,Espana,Día de la Constitución Española,national
+2017-12-06,ES,EX,Extremadura,Día de la Constitución Española,national
+2017-12-06,ES,GA,Galicia,Día de la Constitución Española,national
+2017-12-06,ES,IB,Illes Balears,Día de la Constitución Española,national
+2017-12-06,ES,MC,Murcia,Día de la Constitución Española,national
+2017-12-06,ES,MD,Madrid,Día de la Constitución Española,national
+2017-12-06,ES,ML,Melilla,Día de la Constitución Española,national
+2017-12-06,ES,NC,Navarra,Día de la Constitución Española,national
+2017-12-06,ES,PV,Pais Vasco,Día de la Constitución Española,national
+2017-12-06,ES,RI,La Rioja,Día de la Constitución Española,national
+2017-12-06,ES,VC,Comunitat Valenciana,Día de la Constitución Española,national
+2017-12-08,ES,AN,Andalucia,Inmaculada Concepción,national
+2017-12-08,ES,AR,Aragon,Inmaculada Concepción,national
+2017-12-08,ES,AS,Asturias,Inmaculada Concepción,national
+2017-12-08,ES,CB,Cantabria,Inmaculada Concepción,national
+2017-12-08,ES,CE,Ceuta,Inmaculada Concepción,national
+2017-12-08,ES,CL,Castilla y Leon,Inmaculada Concepción,national
+2017-12-08,ES,CM,Castilla-La Mancha,Inmaculada Concepción,national
+2017-12-08,ES,CN,Canarias,Inmaculada Concepción,national
+2017-12-08,ES,CT,Cataluna,Inmaculada Concepción,national
+2017-12-08,ES,ES,Espana,Inmaculada Concepción,national
+2017-12-08,ES,EX,Extremadura,Inmaculada Concepción,national
+2017-12-08,ES,GA,Galicia,Inmaculada Concepción,national
+2017-12-08,ES,IB,Illes Balears,Inmaculada Concepción,national
+2017-12-08,ES,MC,Murcia,Inmaculada Concepción,national
+2017-12-08,ES,MD,Madrid,Inmaculada Concepción,national
+2017-12-08,ES,ML,Melilla,Inmaculada Concepción,national
+2017-12-08,ES,NC,Navarra,Inmaculada Concepción,national
+2017-12-08,ES,PV,Pais Vasco,Inmaculada Concepción,national
+2017-12-08,ES,RI,La Rioja,Inmaculada Concepción,national
+2017-12-08,ES,VC,Comunitat Valenciana,Inmaculada Concepción,national
+2017-12-25,ES,AN,Andalucia,Natividad del Señor,national
+2017-12-25,ES,AR,Aragon,Natividad del Señor,national
+2017-12-25,ES,AS,Asturias,Natividad del Señor,national
+2017-12-25,ES,CB,Cantabria,Natividad del Señor,national
+2017-12-25,ES,CE,Ceuta,Natividad del Señor,national
+2017-12-25,ES,CL,Castilla y Leon,Natividad del Señor,national
+2017-12-25,ES,CM,Castilla-La Mancha,Natividad del Señor,national
+2017-12-25,ES,CN,Canarias,Natividad del Señor,national
+2017-12-25,ES,CT,Cataluna,Natividad del Señor,national
+2017-12-25,ES,ES,Espana,Natividad del Señor,national
+2017-12-25,ES,EX,Extremadura,Natividad del Señor,national
+2017-12-25,ES,GA,Galicia,Natividad del Señor,national
+2017-12-25,ES,IB,Illes Balears,Natividad del Señor,national
+2017-12-25,ES,MC,Murcia,Natividad del Señor,national
+2017-12-25,ES,MD,Madrid,Natividad del Señor,national
+2017-12-25,ES,ML,Melilla,Natividad del Señor,national
+2017-12-25,ES,NC,Navarra,Natividad del Señor,national
+2017-12-25,ES,PV,Pais Vasco,Natividad del Señor,national
+2017-12-25,ES,RI,La Rioja,Natividad del Señor,national
+2017-12-25,ES,VC,Comunitat Valenciana,Natividad del Señor,national
+2017-12-26,ES,CT,Cataluna,San Esteban,regional
+2018-01-01,ES,AN,Andalucia,Año Nuevo,national
+2018-01-01,ES,AR,Aragon,Año Nuevo,national
+2018-01-01,ES,AS,Asturias,Año Nuevo,national
+2018-01-01,ES,CB,Cantabria,Año Nuevo,national
+2018-01-01,ES,CE,Ceuta,Año Nuevo,national
+2018-01-01,ES,CL,Castilla y Leon,Año Nuevo,national
+2018-01-01,ES,CM,Castilla-La Mancha,Año Nuevo,national
+2018-01-01,ES,CN,Canarias,Año Nuevo,national
+2018-01-01,ES,CT,Cataluna,Año Nuevo,national
+2018-01-01,ES,ES,Espana,Año Nuevo,national
+2018-01-01,ES,EX,Extremadura,Año Nuevo,national
+2018-01-01,ES,GA,Galicia,Año Nuevo,national
+2018-01-01,ES,IB,Illes Balears,Año Nuevo,national
+2018-01-01,ES,MC,Murcia,Año Nuevo,national
+2018-01-01,ES,MD,Madrid,Año Nuevo,national
+2018-01-01,ES,ML,Melilla,Año Nuevo,national
+2018-01-01,ES,NC,Navarra,Año Nuevo,national
+2018-01-01,ES,PV,Pais Vasco,Año Nuevo,national
+2018-01-01,ES,RI,La Rioja,Año Nuevo,national
+2018-01-01,ES,VC,Comunitat Valenciana,Año Nuevo,national
+2018-01-06,ES,AN,Andalucia,Epifanía del Señor,national
+2018-01-06,ES,AR,Aragon,Epifanía del Señor,national
+2018-01-06,ES,AS,Asturias,Epifanía del Señor,national
+2018-01-06,ES,CB,Cantabria,Epifanía del Señor,national
+2018-01-06,ES,CE,Ceuta,Epifanía del Señor,national
+2018-01-06,ES,CL,Castilla y Leon,Epifanía del Señor,national
+2018-01-06,ES,CM,Castilla-La Mancha,Epifanía del Señor,national
+2018-01-06,ES,CN,Canarias,Epifanía del Señor,national
+2018-01-06,ES,CT,Cataluna,Epifanía del Señor,national
+2018-01-06,ES,ES,Espana,Epifanía del Señor,national
+2018-01-06,ES,EX,Extremadura,Epifanía del Señor,national
+2018-01-06,ES,GA,Galicia,Epifanía del Señor,national
+2018-01-06,ES,IB,Illes Balears,Epifanía del Señor,national
+2018-01-06,ES,MC,Murcia,Epifanía del Señor,national
+2018-01-06,ES,MD,Madrid,Epifanía del Señor,national
+2018-01-06,ES,ML,Melilla,Epifanía del Señor,national
+2018-01-06,ES,NC,Navarra,Epifanía del Señor,national
+2018-01-06,ES,PV,Pais Vasco,Epifanía del Señor,national
+2018-01-06,ES,RI,La Rioja,Epifanía del Señor,national
+2018-01-06,ES,VC,Comunitat Valenciana,Epifanía del Señor,national
+2018-02-28,ES,AN,Andalucia,Día de Andalucía,regional
+2018-03-01,ES,IB,Illes Balears,Día de las Islas Baleares,regional
+2018-03-19,ES,MC,Murcia,San José,regional
+2018-03-19,ES,VC,Comunitat Valenciana,San José,regional
+2018-03-29,ES,AN,Andalucia,Jueves Santo,regional
+2018-03-29,ES,AR,Aragon,Jueves Santo,regional
+2018-03-29,ES,AS,Asturias,Jueves Santo,regional
+2018-03-29,ES,CE,Ceuta,Jueves Santo,regional
+2018-03-29,ES,CL,Castilla y Leon,Jueves Santo,regional
+2018-03-29,ES,CM,Castilla-La Mancha,Jueves Santo,regional
+2018-03-29,ES,CN,Canarias,Jueves Santo,regional
+2018-03-29,ES,EX,Extremadura,Jueves Santo,regional
+2018-03-29,ES,GA,Galicia,Jueves Santo,regional
+2018-03-29,ES,IB,Illes Balears,Jueves Santo,regional
+2018-03-29,ES,MC,Murcia,Jueves Santo,regional
+2018-03-29,ES,MD,Madrid,Jueves Santo,regional
+2018-03-29,ES,ML,Melilla,Jueves Santo,regional
+2018-03-29,ES,NC,Navarra,Jueves Santo,regional
+2018-03-29,ES,PV,Pais Vasco,Jueves Santo,regional
+2018-03-29,ES,RI,La Rioja,Jueves Santo,regional
+2018-03-30,ES,AN,Andalucia,Viernes Santo,national
+2018-03-30,ES,AR,Aragon,Viernes Santo,national
+2018-03-30,ES,AS,Asturias,Viernes Santo,national
+2018-03-30,ES,CB,Cantabria,Viernes Santo,national
+2018-03-30,ES,CE,Ceuta,Viernes Santo,national
+2018-03-30,ES,CL,Castilla y Leon,Viernes Santo,national
+2018-03-30,ES,CM,Castilla-La Mancha,Viernes Santo,national
+2018-03-30,ES,CN,Canarias,Viernes Santo,national
+2018-03-30,ES,CT,Cataluna,Viernes Santo,national
+2018-03-30,ES,ES,Espana,Viernes Santo,national
+2018-03-30,ES,EX,Extremadura,Viernes Santo,national
+2018-03-30,ES,GA,Galicia,Viernes Santo,national
+2018-03-30,ES,IB,Illes Balears,Viernes Santo,national
+2018-03-30,ES,MC,Murcia,Viernes Santo,national
+2018-03-30,ES,MD,Madrid,Viernes Santo,national
+2018-03-30,ES,ML,Melilla,Viernes Santo,national
+2018-03-30,ES,NC,Navarra,Viernes Santo,national
+2018-03-30,ES,PV,Pais Vasco,Viernes Santo,national
+2018-03-30,ES,RI,La Rioja,Viernes Santo,national
+2018-03-30,ES,VC,Comunitat Valenciana,Viernes Santo,national
+2018-04-02,ES,CT,Cataluna,Lunes de Pascua,regional
+2018-04-02,ES,IB,Illes Balears,Lunes de Pascua,regional
+2018-04-02,ES,NC,Navarra,Lunes de Pascua,regional
+2018-04-02,ES,PV,Pais Vasco,Lunes de Pascua,regional
+2018-04-02,ES,VC,Comunitat Valenciana,Lunes de Pascua,regional
+2018-04-23,ES,AR,Aragon,Día de San Jorge,regional
+2018-04-23,ES,CL,Castilla y Leon,Fiesta de Castilla y León,regional
+2018-05-01,ES,AN,Andalucia,Fiesta del Trabajo,national
+2018-05-01,ES,AR,Aragon,Fiesta del Trabajo,national
+2018-05-01,ES,AS,Asturias,Fiesta del Trabajo,national
+2018-05-01,ES,CB,Cantabria,Fiesta del Trabajo,national
+2018-05-01,ES,CE,Ceuta,Fiesta del Trabajo,national
+2018-05-01,ES,CL,Castilla y Leon,Fiesta del Trabajo,national
+2018-05-01,ES,CM,Castilla-La Mancha,Fiesta del Trabajo,national
+2018-05-01,ES,CN,Canarias,Fiesta del Trabajo,national
+2018-05-01,ES,CT,Cataluna,Fiesta del Trabajo,national
+2018-05-01,ES,ES,Espana,Fiesta del Trabajo,national
+2018-05-01,ES,EX,Extremadura,Fiesta del Trabajo,national
+2018-05-01,ES,GA,Galicia,Fiesta del Trabajo,national
+2018-05-01,ES,IB,Illes Balears,Fiesta del Trabajo,national
+2018-05-01,ES,MC,Murcia,Fiesta del Trabajo,national
+2018-05-01,ES,MD,Madrid,Fiesta del Trabajo,national
+2018-05-01,ES,ML,Melilla,Fiesta del Trabajo,national
+2018-05-01,ES,NC,Navarra,Fiesta del Trabajo,national
+2018-05-01,ES,PV,Pais Vasco,Fiesta del Trabajo,national
+2018-05-01,ES,RI,La Rioja,Fiesta del Trabajo,national
+2018-05-01,ES,VC,Comunitat Valenciana,Fiesta del Trabajo,national
+2018-05-02,ES,MD,Madrid,Fiesta de la Comunidad de Madrid,regional
+2018-05-17,ES,GA,Galicia,Día de las Letras Gallegas,regional
+2018-05-30,ES,CN,Canarias,Día de Canarias,regional
+2018-05-31,ES,CM,Castilla-La Mancha,Día de Castilla-La Mancha,regional
+2018-06-09,ES,MC,Murcia,Día de la Región de Murcia,regional
+2018-06-09,ES,RI,La Rioja,Día de La Rioja,regional
+2018-06-13,ES,CE,Ceuta,San Antonio,regional
+2018-07-25,ES,GA,Galicia,Día Nacional de Galicia,regional
+2018-07-28,ES,CB,Cantabria,Día de las Instituciones de Cantabria,regional
+2018-08-15,ES,AN,Andalucia,Asunción de la Virgen,national
+2018-08-15,ES,AR,Aragon,Asunción de la Virgen,national
+2018-08-15,ES,AS,Asturias,Asunción de la Virgen,national
+2018-08-15,ES,CB,Cantabria,Asunción de la Virgen,national
+2018-08-15,ES,CE,Ceuta,Asunción de la Virgen,national
+2018-08-15,ES,CL,Castilla y Leon,Asunción de la Virgen,national
+2018-08-15,ES,CM,Castilla-La Mancha,Asunción de la Virgen,national
+2018-08-15,ES,CN,Canarias,Asunción de la Virgen,national
+2018-08-15,ES,CT,Cataluna,Asunción de la Virgen,national
+2018-08-15,ES,ES,Espana,Asunción de la Virgen,national
+2018-08-15,ES,EX,Extremadura,Asunción de la Virgen,national
+2018-08-15,ES,GA,Galicia,Asunción de la Virgen,national
+2018-08-15,ES,IB,Illes Balears,Asunción de la Virgen,national
+2018-08-15,ES,MC,Murcia,Asunción de la Virgen,national
+2018-08-15,ES,MD,Madrid,Asunción de la Virgen,national
+2018-08-15,ES,ML,Melilla,Asunción de la Virgen,national
+2018-08-15,ES,NC,Navarra,Asunción de la Virgen,national
+2018-08-15,ES,PV,Pais Vasco,Asunción de la Virgen,national
+2018-08-15,ES,RI,La Rioja,Asunción de la Virgen,national
+2018-08-15,ES,VC,Comunitat Valenciana,Asunción de la Virgen,national
+2018-08-22,ES,CE,Ceuta,Fiesta del Sacrificio-Eidul Adha,regional
+2018-08-22,ES,ML,Melilla,Fiesta del Sacrificio-Aid Al Adha,regional
+2018-09-08,ES,AS,Asturias,Día de Asturias,regional
+2018-09-08,ES,EX,Extremadura,Día de Extremadura,regional
+2018-09-08,ES,ML,Melilla,Día de Nuestra Señora la Virgen de la Victoria,regional
+2018-09-11,ES,CT,Cataluna,Fiesta Nacional de Cataluña,regional
+2018-09-15,ES,CB,Cantabria,La Bien Aparecida,regional
+2018-09-17,ES,ML,Melilla,Día de Melilla,regional
+2018-10-09,ES,VC,Comunitat Valenciana,Día de la Comunidad Valenciana,regional
+2018-10-12,ES,AN,Andalucia,Fiesta Nacional de España,national
+2018-10-12,ES,AR,Aragon,Fiesta Nacional de España,national
+2018-10-12,ES,AS,Asturias,Fiesta Nacional de España,national
+2018-10-12,ES,CB,Cantabria,Fiesta Nacional de España,national
+2018-10-12,ES,CE,Ceuta,Fiesta Nacional de España,national
+2018-10-12,ES,CL,Castilla y Leon,Fiesta Nacional de España,national
+2018-10-12,ES,CM,Castilla-La Mancha,Fiesta Nacional de España,national
+2018-10-12,ES,CN,Canarias,Fiesta Nacional de España,national
+2018-10-12,ES,CT,Cataluna,Fiesta Nacional de España,national
+2018-10-12,ES,ES,Espana,Fiesta Nacional de España,national
+2018-10-12,ES,EX,Extremadura,Fiesta Nacional de España,national
+2018-10-12,ES,GA,Galicia,Fiesta Nacional de España,national
+2018-10-12,ES,IB,Illes Balears,Fiesta Nacional de España,national
+2018-10-12,ES,MC,Murcia,Fiesta Nacional de España,national
+2018-10-12,ES,MD,Madrid,Fiesta Nacional de España,national
+2018-10-12,ES,ML,Melilla,Fiesta Nacional de España,national
+2018-10-12,ES,NC,Navarra,Fiesta Nacional de España,national
+2018-10-12,ES,PV,Pais Vasco,Fiesta Nacional de España,national
+2018-10-12,ES,RI,La Rioja,Fiesta Nacional de España,national
+2018-10-12,ES,VC,Comunitat Valenciana,Fiesta Nacional de España,national
+2018-11-01,ES,AN,Andalucia,Todos los Santos,national
+2018-11-01,ES,AR,Aragon,Todos los Santos,national
+2018-11-01,ES,AS,Asturias,Todos los Santos,national
+2018-11-01,ES,CB,Cantabria,Todos los Santos,national
+2018-11-01,ES,CE,Ceuta,Todos los Santos,national
+2018-11-01,ES,CL,Castilla y Leon,Todos los Santos,national
+2018-11-01,ES,CM,Castilla-La Mancha,Todos los Santos,national
+2018-11-01,ES,CN,Canarias,Todos los Santos,national
+2018-11-01,ES,CT,Cataluna,Todos los Santos,national
+2018-11-01,ES,ES,Espana,Todos los Santos,national
+2018-11-01,ES,EX,Extremadura,Todos los Santos,national
+2018-11-01,ES,GA,Galicia,Todos los Santos,national
+2018-11-01,ES,IB,Illes Balears,Todos los Santos,national
+2018-11-01,ES,MC,Murcia,Todos los Santos,national
+2018-11-01,ES,MD,Madrid,Todos los Santos,national
+2018-11-01,ES,ML,Melilla,Todos los Santos,national
+2018-11-01,ES,NC,Navarra,Todos los Santos,national
+2018-11-01,ES,PV,Pais Vasco,Todos los Santos,national
+2018-11-01,ES,RI,La Rioja,Todos los Santos,national
+2018-11-01,ES,VC,Comunitat Valenciana,Todos los Santos,national
+2018-12-03,ES,NC,Navarra,San Francisco Javier,regional
+2018-12-06,ES,AN,Andalucia,Día de la Constitución Española,national
+2018-12-06,ES,AR,Aragon,Día de la Constitución Española,national
+2018-12-06,ES,AS,Asturias,Día de la Constitución Española,national
+2018-12-06,ES,CB,Cantabria,Día de la Constitución Española,national
+2018-12-06,ES,CE,Ceuta,Día de la Constitución Española,national
+2018-12-06,ES,CL,Castilla y Leon,Día de la Constitución Española,national
+2018-12-06,ES,CM,Castilla-La Mancha,Día de la Constitución Española,national
+2018-12-06,ES,CN,Canarias,Día de la Constitución Española,national
+2018-12-06,ES,CT,Cataluna,Día de la Constitución Española,national
+2018-12-06,ES,ES,Espana,Día de la Constitución Española,national
+2018-12-06,ES,EX,Extremadura,Día de la Constitución Española,national
+2018-12-06,ES,GA,Galicia,Día de la Constitución Española,national
+2018-12-06,ES,IB,Illes Balears,Día de la Constitución Española,national
+2018-12-06,ES,MC,Murcia,Día de la Constitución Española,national
+2018-12-06,ES,MD,Madrid,Día de la Constitución Española,national
+2018-12-06,ES,ML,Melilla,Día de la Constitución Española,national
+2018-12-06,ES,NC,Navarra,Día de la Constitución Española,national
+2018-12-06,ES,PV,Pais Vasco,Día de la Constitución Española,national
+2018-12-06,ES,RI,La Rioja,Día de la Constitución Española,national
+2018-12-06,ES,VC,Comunitat Valenciana,Día de la Constitución Española,national
+2018-12-08,ES,AN,Andalucia,Inmaculada Concepción,national
+2018-12-08,ES,AR,Aragon,Inmaculada Concepción,national
+2018-12-08,ES,AS,Asturias,Inmaculada Concepción,national
+2018-12-08,ES,CB,Cantabria,Inmaculada Concepción,national
+2018-12-08,ES,CE,Ceuta,Inmaculada Concepción,national
+2018-12-08,ES,CL,Castilla y Leon,Inmaculada Concepción,national
+2018-12-08,ES,CM,Castilla-La Mancha,Inmaculada Concepción,national
+2018-12-08,ES,CN,Canarias,Inmaculada Concepción,national
+2018-12-08,ES,CT,Cataluna,Inmaculada Concepción,national
+2018-12-08,ES,ES,Espana,Inmaculada Concepción,national
+2018-12-08,ES,EX,Extremadura,Inmaculada Concepción,national
+2018-12-08,ES,GA,Galicia,Inmaculada Concepción,national
+2018-12-08,ES,IB,Illes Balears,Inmaculada Concepción,national
+2018-12-08,ES,MC,Murcia,Inmaculada Concepción,national
+2018-12-08,ES,MD,Madrid,Inmaculada Concepción,national
+2018-12-08,ES,ML,Melilla,Inmaculada Concepción,national
+2018-12-08,ES,NC,Navarra,Inmaculada Concepción,national
+2018-12-08,ES,PV,Pais Vasco,Inmaculada Concepción,national
+2018-12-08,ES,RI,La Rioja,Inmaculada Concepción,national
+2018-12-08,ES,VC,Comunitat Valenciana,Inmaculada Concepción,national
+2018-12-25,ES,AN,Andalucia,Natividad del Señor,national
+2018-12-25,ES,AR,Aragon,Natividad del Señor,national
+2018-12-25,ES,AS,Asturias,Natividad del Señor,national
+2018-12-25,ES,CB,Cantabria,Natividad del Señor,national
+2018-12-25,ES,CE,Ceuta,Natividad del Señor,national
+2018-12-25,ES,CL,Castilla y Leon,Natividad del Señor,national
+2018-12-25,ES,CM,Castilla-La Mancha,Natividad del Señor,national
+2018-12-25,ES,CN,Canarias,Natividad del Señor,national
+2018-12-25,ES,CT,Cataluna,Natividad del Señor,national
+2018-12-25,ES,ES,Espana,Natividad del Señor,national
+2018-12-25,ES,EX,Extremadura,Natividad del Señor,national
+2018-12-25,ES,GA,Galicia,Natividad del Señor,national
+2018-12-25,ES,IB,Illes Balears,Natividad del Señor,national
+2018-12-25,ES,MC,Murcia,Natividad del Señor,national
+2018-12-25,ES,MD,Madrid,Natividad del Señor,national
+2018-12-25,ES,ML,Melilla,Natividad del Señor,national
+2018-12-25,ES,NC,Navarra,Natividad del Señor,national
+2018-12-25,ES,PV,Pais Vasco,Natividad del Señor,national
+2018-12-25,ES,RI,La Rioja,Natividad del Señor,national
+2018-12-25,ES,VC,Comunitat Valenciana,Natividad del Señor,national
+2018-12-26,ES,CT,Cataluna,San Esteban,regional
+2019-01-01,ES,AN,Andalucia,Año Nuevo,national
+2019-01-01,ES,AR,Aragon,Año Nuevo,national
+2019-01-01,ES,AS,Asturias,Año Nuevo,national
+2019-01-01,ES,CB,Cantabria,Año Nuevo,national
+2019-01-01,ES,CE,Ceuta,Año Nuevo,national
+2019-01-01,ES,CL,Castilla y Leon,Año Nuevo,national
+2019-01-01,ES,CM,Castilla-La Mancha,Año Nuevo,national
+2019-01-01,ES,CN,Canarias,Año Nuevo,national
+2019-01-01,ES,CT,Cataluna,Año Nuevo,national
+2019-01-01,ES,ES,Espana,Año Nuevo,national
+2019-01-01,ES,EX,Extremadura,Año Nuevo,national
+2019-01-01,ES,GA,Galicia,Año Nuevo,national
+2019-01-01,ES,IB,Illes Balears,Año Nuevo,national
+2019-01-01,ES,MC,Murcia,Año Nuevo,national
+2019-01-01,ES,MD,Madrid,Año Nuevo,national
+2019-01-01,ES,ML,Melilla,Año Nuevo,national
+2019-01-01,ES,NC,Navarra,Año Nuevo,national
+2019-01-01,ES,PV,Pais Vasco,Año Nuevo,national
+2019-01-01,ES,RI,La Rioja,Año Nuevo,national
+2019-01-01,ES,VC,Comunitat Valenciana,Año Nuevo,national
+2019-01-07,ES,AN,Andalucia,Lunes siguiente a Epifanía del Señor,regional
+2019-01-07,ES,AR,Aragon,Lunes siguiente a Epifanía del Señor,regional
+2019-01-07,ES,AS,Asturias,Lunes siguiente a Epifanía del Señor,regional
+2019-01-07,ES,CE,Ceuta,Lunes siguiente a Epifanía del Señor,regional
+2019-01-07,ES,CL,Castilla y Leon,Lunes siguiente a Epifanía del Señor,regional
+2019-01-07,ES,CN,Canarias,Lunes siguiente a Epifanía del Señor,regional
+2019-01-07,ES,EX,Extremadura,Lunes siguiente a Epifanía del Señor,regional
+2019-01-07,ES,MC,Murcia,Lunes siguiente a Epifanía del Señor,regional
+2019-01-07,ES,MD,Madrid,Lunes siguiente a Epifanía del Señor,regional
+2019-01-07,ES,ML,Melilla,Lunes siguiente a Epifanía del Señor,regional
+2019-01-07,ES,NC,Navarra,Lunes siguiente a Epifanía del Señor,regional
+2019-02-28,ES,AN,Andalucia,Día de Andalucía,regional
+2019-03-01,ES,IB,Illes Balears,Día de las Islas Baleares,regional
+2019-03-19,ES,GA,Galicia,San José,regional
+2019-03-19,ES,MC,Murcia,San José,regional
+2019-03-19,ES,NC,Navarra,San José,regional
+2019-03-19,ES,PV,Pais Vasco,San José,regional
+2019-03-19,ES,VC,Comunitat Valenciana,San José,regional
+2019-04-18,ES,AN,Andalucia,Jueves Santo,regional
+2019-04-18,ES,AR,Aragon,Jueves Santo,regional
+2019-04-18,ES,AS,Asturias,Jueves Santo,regional
+2019-04-18,ES,CB,Cantabria,Jueves Santo,regional
+2019-04-18,ES,CE,Ceuta,Jueves Santo,regional
+2019-04-18,ES,CL,Castilla y Leon,Jueves Santo,regional
+2019-04-18,ES,CM,Castilla-La Mancha,Jueves Santo,regional
+2019-04-18,ES,CN,Canarias,Jueves Santo,regional
+2019-04-18,ES,EX,Extremadura,Jueves Santo,regional
+2019-04-18,ES,GA,Galicia,Jueves Santo,regional
+2019-04-18,ES,IB,Illes Balears,Jueves Santo,regional
+2019-04-18,ES,MC,Murcia,Jueves Santo,regional
+2019-04-18,ES,MD,Madrid,Jueves Santo,regional
+2019-04-18,ES,ML,Melilla,Jueves Santo,regional
+2019-04-18,ES,NC,Navarra,Jueves Santo,regional
+2019-04-18,ES,PV,Pais Vasco,Jueves Santo,regional
+2019-04-18,ES,RI,La Rioja,Jueves Santo,regional
+2019-04-19,ES,AN,Andalucia,Viernes Santo,national
+2019-04-19,ES,AR,Aragon,Viernes Santo,national
+2019-04-19,ES,AS,Asturias,Viernes Santo,national
+2019-04-19,ES,CB,Cantabria,Viernes Santo,national
+2019-04-19,ES,CE,Ceuta,Viernes Santo,national
+2019-04-19,ES,CL,Castilla y Leon,Viernes Santo,national
+2019-04-19,ES,CM,Castilla-La Mancha,Viernes Santo,national
+2019-04-19,ES,CN,Canarias,Viernes Santo,national
+2019-04-19,ES,CT,Cataluna,Viernes Santo,national
+2019-04-19,ES,ES,Espana,Viernes Santo,national
+2019-04-19,ES,EX,Extremadura,Viernes Santo,national
+2019-04-19,ES,GA,Galicia,Viernes Santo,national
+2019-04-19,ES,IB,Illes Balears,Viernes Santo,national
+2019-04-19,ES,MC,Murcia,Viernes Santo,national
+2019-04-19,ES,MD,Madrid,Viernes Santo,national
+2019-04-19,ES,ML,Melilla,Viernes Santo,national
+2019-04-19,ES,NC,Navarra,Viernes Santo,national
+2019-04-19,ES,PV,Pais Vasco,Viernes Santo,national
+2019-04-19,ES,RI,La Rioja,Viernes Santo,national
+2019-04-19,ES,VC,Comunitat Valenciana,Viernes Santo,national
+2019-04-22,ES,CB,Cantabria,Lunes de Pascua,regional
+2019-04-22,ES,CM,Castilla-La Mancha,Lunes de Pascua,regional
+2019-04-22,ES,CT,Cataluna,Lunes de Pascua,regional
+2019-04-22,ES,IB,Illes Balears,Lunes de Pascua,regional
+2019-04-22,ES,NC,Navarra,Lunes de Pascua,regional
+2019-04-22,ES,PV,Pais Vasco,Lunes de Pascua,regional
+2019-04-22,ES,RI,La Rioja,Lunes de Pascua,regional
+2019-04-22,ES,VC,Comunitat Valenciana,Lunes de Pascua,regional
+2019-04-23,ES,AR,Aragon,Día de San Jorge,regional
+2019-04-23,ES,CL,Castilla y Leon,Fiesta de Castilla y León,regional
+2019-05-01,ES,AN,Andalucia,Fiesta del Trabajo,national
+2019-05-01,ES,AR,Aragon,Fiesta del Trabajo,national
+2019-05-01,ES,AS,Asturias,Fiesta del Trabajo,national
+2019-05-01,ES,CB,Cantabria,Fiesta del Trabajo,national
+2019-05-01,ES,CE,Ceuta,Fiesta del Trabajo,national
+2019-05-01,ES,CL,Castilla y Leon,Fiesta del Trabajo,national
+2019-05-01,ES,CM,Castilla-La Mancha,Fiesta del Trabajo,national
+2019-05-01,ES,CN,Canarias,Fiesta del Trabajo,national
+2019-05-01,ES,CT,Cataluna,Fiesta del Trabajo,national
+2019-05-01,ES,ES,Espana,Fiesta del Trabajo,national
+2019-05-01,ES,EX,Extremadura,Fiesta del Trabajo,national
+2019-05-01,ES,GA,Galicia,Fiesta del Trabajo,national
+2019-05-01,ES,IB,Illes Balears,Fiesta del Trabajo,national
+2019-05-01,ES,MC,Murcia,Fiesta del Trabajo,national
+2019-05-01,ES,MD,Madrid,Fiesta del Trabajo,national
+2019-05-01,ES,ML,Melilla,Fiesta del Trabajo,national
+2019-05-01,ES,NC,Navarra,Fiesta del Trabajo,national
+2019-05-01,ES,PV,Pais Vasco,Fiesta del Trabajo,national
+2019-05-01,ES,RI,La Rioja,Fiesta del Trabajo,national
+2019-05-01,ES,VC,Comunitat Valenciana,Fiesta del Trabajo,national
+2019-05-02,ES,MD,Madrid,Fiesta de la Comunidad de Madrid,regional
+2019-05-17,ES,GA,Galicia,Día de las Letras Gallegas,regional
+2019-05-30,ES,CN,Canarias,Día de Canarias,regional
+2019-05-31,ES,CM,Castilla-La Mancha,Día de Castilla-La Mancha,regional
+2019-06-10,ES,MC,Murcia,Lunes siguiente a Día de la Región de Murcia,regional
+2019-06-10,ES,RI,La Rioja,Lunes siguiente a Día de La Rioja,regional
+2019-06-13,ES,CE,Ceuta,San Antonio,regional
+2019-06-20,ES,CM,Castilla-La Mancha,Corpus Christi,regional
+2019-06-24,ES,CT,Cataluna,San Juan,regional
+2019-06-24,ES,VC,Comunitat Valenciana,San Juan,regional
+2019-07-25,ES,CB,Cantabria,Santiago Apóstol,regional
+2019-07-25,ES,GA,Galicia,Día Nacional de Galicia,regional
+2019-07-25,ES,PV,Pais Vasco,Santiago Apóstol,regional
+2019-08-12,ES,CE,Ceuta,Fiesta del Sacrificio-Eidul Adha,regional
+2019-08-12,ES,ML,Melilla,Fiesta del Sacrificio-Aid Al Adha,regional
+2019-08-15,ES,AN,Andalucia,Asunción de la Virgen,national
+2019-08-15,ES,AR,Aragon,Asunción de la Virgen,national
+2019-08-15,ES,AS,Asturias,Asunción de la Virgen,national
+2019-08-15,ES,CB,Cantabria,Asunción de la Virgen,national
+2019-08-15,ES,CE,Ceuta,Asunción de la Virgen,national
+2019-08-15,ES,CL,Castilla y Leon,Asunción de la Virgen,national
+2019-08-15,ES,CM,Castilla-La Mancha,Asunción de la Virgen,national
+2019-08-15,ES,CN,Canarias,Asunción de la Virgen,national
+2019-08-15,ES,CT,Cataluna,Asunción de la Virgen,national
+2019-08-15,ES,ES,Espana,Asunción de la Virgen,national
+2019-08-15,ES,EX,Extremadura,Asunción de la Virgen,national
+2019-08-15,ES,GA,Galicia,Asunción de la Virgen,national
+2019-08-15,ES,IB,Illes Balears,Asunción de la Virgen,national
+2019-08-15,ES,MC,Murcia,Asunción de la Virgen,national
+2019-08-15,ES,MD,Madrid,Asunción de la Virgen,national
+2019-08-15,ES,ML,Melilla,Asunción de la Virgen,national
+2019-08-15,ES,NC,Navarra,Asunción de la Virgen,national
+2019-08-15,ES,PV,Pais Vasco,Asunción de la Virgen,national
+2019-08-15,ES,RI,La Rioja,Asunción de la Virgen,national
+2019-08-15,ES,VC,Comunitat Valenciana,Asunción de la Virgen,national
+2019-09-02,ES,CE,Ceuta,Día de Ceuta,regional
+2019-09-09,ES,AS,Asturias,Lunes siguiente a Día de Asturias,regional
+2019-09-09,ES,EX,Extremadura,Lunes siguiente a Día de Extremadura,regional
+2019-09-09,ES,ML,Melilla,Lunes siguiente a Día de Nuestra Señora la Virgen de la Victoria,regional
+2019-09-11,ES,CT,Cataluna,Fiesta Nacional de Cataluña,regional
+2019-09-17,ES,ML,Melilla,Día de Melilla,regional
+2019-10-09,ES,VC,Comunitat Valenciana,Día de la Comunidad Valenciana,regional
+2019-10-12,ES,AN,Andalucia,Fiesta Nacional de España,national
+2019-10-12,ES,AR,Aragon,Fiesta Nacional de España,national
+2019-10-12,ES,AS,Asturias,Fiesta Nacional de España,national
+2019-10-12,ES,CB,Cantabria,Fiesta Nacional de España,national
+2019-10-12,ES,CE,Ceuta,Fiesta Nacional de España,national
+2019-10-12,ES,CL,Castilla y Leon,Fiesta Nacional de España,national
+2019-10-12,ES,CM,Castilla-La Mancha,Fiesta Nacional de España,national
+2019-10-12,ES,CN,Canarias,Fiesta Nacional de España,national
+2019-10-12,ES,CT,Cataluna,Fiesta Nacional de España,national
+2019-10-12,ES,ES,Espana,Fiesta Nacional de España,national
+2019-10-12,ES,EX,Extremadura,Fiesta Nacional de España,national
+2019-10-12,ES,GA,Galicia,Fiesta Nacional de España,national
+2019-10-12,ES,IB,Illes Balears,Fiesta Nacional de España,national
+2019-10-12,ES,MC,Murcia,Fiesta Nacional de España,national
+2019-10-12,ES,MD,Madrid,Fiesta Nacional de España,national
+2019-10-12,ES,ML,Melilla,Fiesta Nacional de España,national
+2019-10-12,ES,NC,Navarra,Fiesta Nacional de España,national
+2019-10-12,ES,PV,Pais Vasco,Fiesta Nacional de España,national
+2019-10-12,ES,RI,La Rioja,Fiesta Nacional de España,national
+2019-10-12,ES,VC,Comunitat Valenciana,Fiesta Nacional de España,national
+2019-11-01,ES,AN,Andalucia,Todos los Santos,national
+2019-11-01,ES,AR,Aragon,Todos los Santos,national
+2019-11-01,ES,AS,Asturias,Todos los Santos,national
+2019-11-01,ES,CB,Cantabria,Todos los Santos,national
+2019-11-01,ES,CE,Ceuta,Todos los Santos,national
+2019-11-01,ES,CL,Castilla y Leon,Todos los Santos,national
+2019-11-01,ES,CM,Castilla-La Mancha,Todos los Santos,national
+2019-11-01,ES,CN,Canarias,Todos los Santos,national
+2019-11-01,ES,CT,Cataluna,Todos los Santos,national
+2019-11-01,ES,ES,Espana,Todos los Santos,national
+2019-11-01,ES,EX,Extremadura,Todos los Santos,national
+2019-11-01,ES,GA,Galicia,Todos los Santos,national
+2019-11-01,ES,IB,Illes Balears,Todos los Santos,national
+2019-11-01,ES,MC,Murcia,Todos los Santos,national
+2019-11-01,ES,MD,Madrid,Todos los Santos,national
+2019-11-01,ES,ML,Melilla,Todos los Santos,national
+2019-11-01,ES,NC,Navarra,Todos los Santos,national
+2019-11-01,ES,PV,Pais Vasco,Todos los Santos,national
+2019-11-01,ES,RI,La Rioja,Todos los Santos,national
+2019-11-01,ES,VC,Comunitat Valenciana,Todos los Santos,national
+2019-12-03,ES,NC,Navarra,San Francisco Javier,regional
+2019-12-06,ES,AN,Andalucia,Día de la Constitución Española,national
+2019-12-06,ES,AR,Aragon,Día de la Constitución Española,national
+2019-12-06,ES,AS,Asturias,Día de la Constitución Española,national
+2019-12-06,ES,CB,Cantabria,Día de la Constitución Española,national
+2019-12-06,ES,CE,Ceuta,Día de la Constitución Española,national
+2019-12-06,ES,CL,Castilla y Leon,Día de la Constitución Española,national
+2019-12-06,ES,CM,Castilla-La Mancha,Día de la Constitución Española,national
+2019-12-06,ES,CN,Canarias,Día de la Constitución Española,national
+2019-12-06,ES,CT,Cataluna,Día de la Constitución Española,national
+2019-12-06,ES,ES,Espana,Día de la Constitución Española,national
+2019-12-06,ES,EX,Extremadura,Día de la Constitución Española,national
+2019-12-06,ES,GA,Galicia,Día de la Constitución Española,national
+2019-12-06,ES,IB,Illes Balears,Día de la Constitución Española,national
+2019-12-06,ES,MC,Murcia,Día de la Constitución Española,national
+2019-12-06,ES,MD,Madrid,Día de la Constitución Española,national
+2019-12-06,ES,ML,Melilla,Día de la Constitución Española,national
+2019-12-06,ES,NC,Navarra,Día de la Constitución Española,national
+2019-12-06,ES,PV,Pais Vasco,Día de la Constitución Española,national
+2019-12-06,ES,RI,La Rioja,Día de la Constitución Española,national
+2019-12-06,ES,VC,Comunitat Valenciana,Día de la Constitución Española,national
+2019-12-09,ES,AN,Andalucia,Lunes siguiente a Inmaculada Concepción,regional
+2019-12-09,ES,AR,Aragon,Lunes siguiente a Inmaculada Concepción,regional
+2019-12-09,ES,AS,Asturias,Lunes siguiente a Inmaculada Concepción,regional
+2019-12-09,ES,CB,Cantabria,Lunes siguiente a Inmaculada Concepción,regional
+2019-12-09,ES,CL,Castilla y Leon,Lunes siguiente a Inmaculada Concepción,regional
+2019-12-09,ES,EX,Extremadura,Lunes siguiente a Inmaculada Concepción,regional
+2019-12-09,ES,MD,Madrid,Lunes siguiente a Inmaculada Concepción,regional
+2019-12-09,ES,ML,Melilla,Lunes siguiente a Inmaculada Concepción,regional
+2019-12-09,ES,RI,La Rioja,Lunes siguiente a Inmaculada Concepción,regional
+2019-12-25,ES,AN,Andalucia,Natividad del Señor,national
+2019-12-25,ES,AR,Aragon,Natividad del Señor,national
+2019-12-25,ES,AS,Asturias,Natividad del Señor,national
+2019-12-25,ES,CB,Cantabria,Natividad del Señor,national
+2019-12-25,ES,CE,Ceuta,Natividad del Señor,national
+2019-12-25,ES,CL,Castilla y Leon,Natividad del Señor,national
+2019-12-25,ES,CM,Castilla-La Mancha,Natividad del Señor,national
+2019-12-25,ES,CN,Canarias,Natividad del Señor,national
+2019-12-25,ES,CT,Cataluna,Natividad del Señor,national
+2019-12-25,ES,ES,Espana,Natividad del Señor,national
+2019-12-25,ES,EX,Extremadura,Natividad del Señor,national
+2019-12-25,ES,GA,Galicia,Natividad del Señor,national
+2019-12-25,ES,IB,Illes Balears,Natividad del Señor,national
+2019-12-25,ES,MC,Murcia,Natividad del Señor,national
+2019-12-25,ES,MD,Madrid,Natividad del Señor,national
+2019-12-25,ES,ML,Melilla,Natividad del Señor,national
+2019-12-25,ES,NC,Navarra,Natividad del Señor,national
+2019-12-25,ES,PV,Pais Vasco,Natividad del Señor,national
+2019-12-25,ES,RI,La Rioja,Natividad del Señor,national
+2019-12-25,ES,VC,Comunitat Valenciana,Natividad del Señor,national
+2019-12-26,ES,CT,Cataluna,San Esteban,regional
+2019-12-26,ES,IB,Illes Balears,San Esteban,regional
+2020-01-01,ES,AN,Andalucia,Año Nuevo,national
+2020-01-01,ES,AR,Aragon,Año Nuevo,national
+2020-01-01,ES,AS,Asturias,Año Nuevo,national
+2020-01-01,ES,CB,Cantabria,Año Nuevo,national
+2020-01-01,ES,CE,Ceuta,Año Nuevo,national
+2020-01-01,ES,CL,Castilla y Leon,Año Nuevo,national
+2020-01-01,ES,CM,Castilla-La Mancha,Año Nuevo,national
+2020-01-01,ES,CN,Canarias,Año Nuevo,national
+2020-01-01,ES,CT,Cataluna,Año Nuevo,national
+2020-01-01,ES,ES,Espana,Año Nuevo,national
+2020-01-01,ES,EX,Extremadura,Año Nuevo,national
+2020-01-01,ES,GA,Galicia,Año Nuevo,national
+2020-01-01,ES,IB,Illes Balears,Año Nuevo,national
+2020-01-01,ES,MC,Murcia,Año Nuevo,national
+2020-01-01,ES,MD,Madrid,Año Nuevo,national
+2020-01-01,ES,ML,Melilla,Año Nuevo,national
+2020-01-01,ES,NC,Navarra,Año Nuevo,national
+2020-01-01,ES,PV,Pais Vasco,Año Nuevo,national
+2020-01-01,ES,RI,La Rioja,Año Nuevo,national
+2020-01-01,ES,VC,Comunitat Valenciana,Año Nuevo,national
+2020-01-06,ES,AN,Andalucia,Epifanía del Señor,national
+2020-01-06,ES,AR,Aragon,Epifanía del Señor,national
+2020-01-06,ES,AS,Asturias,Epifanía del Señor,national
+2020-01-06,ES,CB,Cantabria,Epifanía del Señor,national
+2020-01-06,ES,CE,Ceuta,Epifanía del Señor,national
+2020-01-06,ES,CL,Castilla y Leon,Epifanía del Señor,national
+2020-01-06,ES,CM,Castilla-La Mancha,Epifanía del Señor,national
+2020-01-06,ES,CN,Canarias,Epifanía del Señor,national
+2020-01-06,ES,CT,Cataluna,Epifanía del Señor,national
+2020-01-06,ES,ES,Espana,Epifanía del Señor,national
+2020-01-06,ES,EX,Extremadura,Epifanía del Señor,national
+2020-01-06,ES,GA,Galicia,Epifanía del Señor,national
+2020-01-06,ES,IB,Illes Balears,Epifanía del Señor,national
+2020-01-06,ES,MC,Murcia,Epifanía del Señor,national
+2020-01-06,ES,MD,Madrid,Epifanía del Señor,national
+2020-01-06,ES,ML,Melilla,Epifanía del Señor,national
+2020-01-06,ES,NC,Navarra,Epifanía del Señor,national
+2020-01-06,ES,PV,Pais Vasco,Epifanía del Señor,national
+2020-01-06,ES,RI,La Rioja,Epifanía del Señor,national
+2020-01-06,ES,VC,Comunitat Valenciana,Epifanía del Señor,national
+2020-02-28,ES,AN,Andalucia,Día de Andalucía,regional
+2020-03-13,ES,ML,Melilla,Estatuto de Autonomía de la Ciudad de Melilla,regional
+2020-03-19,ES,CM,Castilla-La Mancha,San José,regional
+2020-03-19,ES,GA,Galicia,San José,regional
+2020-03-19,ES,MC,Murcia,San José,regional
+2020-03-19,ES,NC,Navarra,San José,regional
+2020-03-19,ES,PV,Pais Vasco,San José,regional
+2020-03-19,ES,VC,Comunitat Valenciana,San José,regional
+2020-04-09,ES,AN,Andalucia,Jueves Santo,regional
+2020-04-09,ES,AR,Aragon,Jueves Santo,regional
+2020-04-09,ES,AS,Asturias,Jueves Santo,regional
+2020-04-09,ES,CB,Cantabria,Jueves Santo,regional
+2020-04-09,ES,CE,Ceuta,Jueves Santo,regional
+2020-04-09,ES,CL,Castilla y Leon,Jueves Santo,regional
+2020-04-09,ES,CM,Castilla-La Mancha,Jueves Santo,regional
+2020-04-09,ES,CN,Canarias,Jueves Santo,regional
+2020-04-09,ES,EX,Extremadura,Jueves Santo,regional
+2020-04-09,ES,GA,Galicia,Jueves Santo,regional
+2020-04-09,ES,IB,Illes Balears,Jueves Santo,regional
+2020-04-09,ES,MC,Murcia,Jueves Santo,regional
+2020-04-09,ES,MD,Madrid,Jueves Santo,regional
+2020-04-09,ES,ML,Melilla,Jueves Santo,regional
+2020-04-09,ES,NC,Navarra,Jueves Santo,regional
+2020-04-09,ES,PV,Pais Vasco,Jueves Santo,regional
+2020-04-09,ES,RI,La Rioja,Jueves Santo,regional
+2020-04-10,ES,AN,Andalucia,Viernes Santo,national
+2020-04-10,ES,AR,Aragon,Viernes Santo,national
+2020-04-10,ES,AS,Asturias,Viernes Santo,national
+2020-04-10,ES,CB,Cantabria,Viernes Santo,national
+2020-04-10,ES,CE,Ceuta,Viernes Santo,national
+2020-04-10,ES,CL,Castilla y Leon,Viernes Santo,national
+2020-04-10,ES,CM,Castilla-La Mancha,Viernes Santo,national
+2020-04-10,ES,CN,Canarias,Viernes Santo,national
+2020-04-10,ES,CT,Cataluna,Viernes Santo,national
+2020-04-10,ES,ES,Espana,Viernes Santo,national
+2020-04-10,ES,EX,Extremadura,Viernes Santo,national
+2020-04-10,ES,GA,Galicia,Viernes Santo,national
+2020-04-10,ES,IB,Illes Balears,Viernes Santo,national
+2020-04-10,ES,MC,Murcia,Viernes Santo,national
+2020-04-10,ES,MD,Madrid,Viernes Santo,national
+2020-04-10,ES,ML,Melilla,Viernes Santo,national
+2020-04-10,ES,NC,Navarra,Viernes Santo,national
+2020-04-10,ES,PV,Pais Vasco,Viernes Santo,national
+2020-04-10,ES,RI,La Rioja,Viernes Santo,national
+2020-04-10,ES,VC,Comunitat Valenciana,Viernes Santo,national
+2020-04-13,ES,CB,Cantabria,Lunes de Pascua,regional
+2020-04-13,ES,CM,Castilla-La Mancha,Lunes de Pascua,regional
+2020-04-13,ES,CT,Cataluna,Lunes de Pascua,regional
+2020-04-13,ES,IB,Illes Balears,Lunes de Pascua,regional
+2020-04-13,ES,NC,Navarra,Lunes de Pascua,regional
+2020-04-13,ES,PV,Pais Vasco,Lunes de Pascua,regional
+2020-04-13,ES,RI,La Rioja,Lunes de Pascua,regional
+2020-04-13,ES,VC,Comunitat Valenciana,Lunes de Pascua,regional
+2020-04-23,ES,AR,Aragon,Día de San Jorge,regional
+2020-04-23,ES,CL,Castilla y Leon,Fiesta de Castilla y León,regional
+2020-05-01,ES,AN,Andalucia,Fiesta del Trabajo,national
+2020-05-01,ES,AR,Aragon,Fiesta del Trabajo,national
+2020-05-01,ES,AS,Asturias,Fiesta del Trabajo,national
+2020-05-01,ES,CB,Cantabria,Fiesta del Trabajo,national
+2020-05-01,ES,CE,Ceuta,Fiesta del Trabajo,national
+2020-05-01,ES,CL,Castilla y Leon,Fiesta del Trabajo,national
+2020-05-01,ES,CM,Castilla-La Mancha,Fiesta del Trabajo,national
+2020-05-01,ES,CN,Canarias,Fiesta del Trabajo,national
+2020-05-01,ES,CT,Cataluna,Fiesta del Trabajo,national
+2020-05-01,ES,ES,Espana,Fiesta del Trabajo,national
+2020-05-01,ES,EX,Extremadura,Fiesta del Trabajo,national
+2020-05-01,ES,GA,Galicia,Fiesta del Trabajo,national
+2020-05-01,ES,IB,Illes Balears,Fiesta del Trabajo,national
+2020-05-01,ES,MC,Murcia,Fiesta del Trabajo,national
+2020-05-01,ES,MD,Madrid,Fiesta del Trabajo,national
+2020-05-01,ES,ML,Melilla,Fiesta del Trabajo,national
+2020-05-01,ES,NC,Navarra,Fiesta del Trabajo,national
+2020-05-01,ES,PV,Pais Vasco,Fiesta del Trabajo,national
+2020-05-01,ES,RI,La Rioja,Fiesta del Trabajo,national
+2020-05-01,ES,VC,Comunitat Valenciana,Fiesta del Trabajo,national
+2020-05-02,ES,MD,Madrid,Fiesta de la Comunidad de Madrid,regional
+2020-05-30,ES,CN,Canarias,Día de Canarias,regional
+2020-06-09,ES,MC,Murcia,Día de la Región de Murcia,regional
+2020-06-09,ES,RI,La Rioja,Día de La Rioja,regional
+2020-06-11,ES,CM,Castilla-La Mancha,Corpus Christi,regional
+2020-06-13,ES,CE,Ceuta,San Antonio,regional
+2020-06-24,ES,CT,Cataluna,San Juan,regional
+2020-06-24,ES,GA,Galicia,San Juan,regional
+2020-06-24,ES,VC,Comunitat Valenciana,San Juan,regional
+2020-07-25,ES,GA,Galicia,Día Nacional de Galicia,regional
+2020-07-25,ES,PV,Pais Vasco,Santiago Apóstol,regional
+2020-07-28,ES,CB,Cantabria,Día de las Instituciones de Cantabria,regional
+2020-07-31,ES,CE,Ceuta,Fiesta del Sacrificio-Eidul Adha,regional
+2020-07-31,ES,ML,Melilla,Fiesta del Sacrificio-Aid Al Adha,regional
+2020-08-15,ES,AN,Andalucia,Asunción de la Virgen,national
+2020-08-15,ES,AR,Aragon,Asunción de la Virgen,national
+2020-08-15,ES,AS,Asturias,Asunción de la Virgen,national
+2020-08-15,ES,CB,Cantabria,Asunción de la Virgen,national
+2020-08-15,ES,CE,Ceuta,Asunción de la Virgen,national
+2020-08-15,ES,CL,Castilla y Leon,Asunción de la Virgen,national
+2020-08-15,ES,CM,Castilla-La Mancha,Asunción de la Virgen,national
+2020-08-15,ES,CN,Canarias,Asunción de la Virgen,national
+2020-08-15,ES,CT,Cataluna,Asunción de la Virgen,national
+2020-08-15,ES,ES,Espana,Asunción de la Virgen,national
+2020-08-15,ES,EX,Extremadura,Asunción de la Virgen,national
+2020-08-15,ES,GA,Galicia,Asunción de la Virgen,national
+2020-08-15,ES,IB,Illes Balears,Asunción de la Virgen,national
+2020-08-15,ES,MC,Murcia,Asunción de la Virgen,national
+2020-08-15,ES,MD,Madrid,Asunción de la Virgen,national
+2020-08-15,ES,ML,Melilla,Asunción de la Virgen,national
+2020-08-15,ES,NC,Navarra,Asunción de la Virgen,national
+2020-08-15,ES,PV,Pais Vasco,Asunción de la Virgen,national
+2020-08-15,ES,RI,La Rioja,Asunción de la Virgen,national
+2020-08-15,ES,VC,Comunitat Valenciana,Asunción de la Virgen,national
+2020-09-02,ES,CE,Ceuta,Día de Ceuta,regional
+2020-09-08,ES,AS,Asturias,Día de Asturias,regional
+2020-09-08,ES,EX,Extremadura,Día de Extremadura,regional
+2020-09-08,ES,ML,Melilla,Día de Nuestra Señora la Virgen de la Victoria,regional
+2020-09-11,ES,CT,Cataluna,Fiesta Nacional de Cataluña,regional
+2020-09-15,ES,CB,Cantabria,La Bien Aparecida,regional
+2020-09-17,ES,ML,Melilla,Día de Melilla,regional
+2020-10-09,ES,VC,Comunitat Valenciana,Día de la Comunidad Valenciana,regional
+2020-10-12,ES,AN,Andalucia,Fiesta Nacional de España,national
+2020-10-12,ES,AR,Aragon,Fiesta Nacional de España,national
+2020-10-12,ES,AS,Asturias,Fiesta Nacional de España,national
+2020-10-12,ES,CB,Cantabria,Fiesta Nacional de España,national
+2020-10-12,ES,CE,Ceuta,Fiesta Nacional de España,national
+2020-10-12,ES,CL,Castilla y Leon,Fiesta Nacional de España,national
+2020-10-12,ES,CM,Castilla-La Mancha,Fiesta Nacional de España,national
+2020-10-12,ES,CN,Canarias,Fiesta Nacional de España,national
+2020-10-12,ES,CT,Cataluna,Fiesta Nacional de España,national
+2020-10-12,ES,ES,Espana,Fiesta Nacional de España,national
+2020-10-12,ES,EX,Extremadura,Fiesta Nacional de España,national
+2020-10-12,ES,GA,Galicia,Fiesta Nacional de España,national
+2020-10-12,ES,IB,Illes Balears,Fiesta Nacional de España,national
+2020-10-12,ES,MC,Murcia,Fiesta Nacional de España,national
+2020-10-12,ES,MD,Madrid,Fiesta Nacional de España,national
+2020-10-12,ES,ML,Melilla,Fiesta Nacional de España,national
+2020-10-12,ES,NC,Navarra,Fiesta Nacional de España,national
+2020-10-12,ES,PV,Pais Vasco,Fiesta Nacional de España,national
+2020-10-12,ES,RI,La Rioja,Fiesta Nacional de España,national
+2020-10-12,ES,VC,Comunitat Valenciana,Fiesta Nacional de España,national
+2020-11-02,ES,AN,Andalucia,Lunes siguiente a Todos los Santos,regional
+2020-11-02,ES,AR,Aragon,Lunes siguiente a Todos los Santos,regional
+2020-11-02,ES,AS,Asturias,Lunes siguiente a Todos los Santos,regional
+2020-11-02,ES,CL,Castilla y Leon,Lunes siguiente a Todos los Santos,regional
+2020-11-02,ES,EX,Extremadura,Lunes siguiente a Todos los Santos,regional
+2020-11-02,ES,MD,Madrid,Lunes siguiente a Todos los Santos,regional
+2020-12-03,ES,NC,Navarra,San Francisco Javier,regional
+2020-12-07,ES,AN,Andalucia,Lunes siguiente a Día de la Constitución Española,regional
+2020-12-07,ES,AR,Aragon,Lunes siguiente a Día de la Constitución Española,regional
+2020-12-07,ES,AS,Asturias,Lunes siguiente a Día de la Constitución Española,regional
+2020-12-07,ES,CE,Ceuta,Lunes siguiente a Día de la Constitución Española,regional
+2020-12-07,ES,CL,Castilla y Leon,Lunes siguiente a Día de la Constitución Española,regional
+2020-12-07,ES,CN,Canarias,Lunes siguiente a Día de la Constitución Española,regional
+2020-12-07,ES,EX,Extremadura,Lunes siguiente a Día de la Constitución Española,regional
+2020-12-07,ES,IB,Illes Balears,Lunes siguiente a Día de la Constitución Española,regional
+2020-12-07,ES,MC,Murcia,Lunes siguiente a Día de la Constitución Española,regional
+2020-12-07,ES,MD,Madrid,Lunes siguiente a Día de la Constitución Española,regional
+2020-12-07,ES,ML,Melilla,Lunes siguiente a Día de la Constitución Española,regional
+2020-12-07,ES,NC,Navarra,Lunes siguiente a Día de la Constitución Española,regional
+2020-12-07,ES,RI,La Rioja,Lunes siguiente a Día de la Constitución Española,regional
+2020-12-08,ES,AN,Andalucia,Inmaculada Concepción,national
+2020-12-08,ES,AR,Aragon,Inmaculada Concepción,national
+2020-12-08,ES,AS,Asturias,Inmaculada Concepción,national
+2020-12-08,ES,CB,Cantabria,Inmaculada Concepción,national
+2020-12-08,ES,CE,Ceuta,Inmaculada Concepción,national
+2020-12-08,ES,CL,Castilla y Leon,Inmaculada Concepción,national
+2020-12-08,ES,CM,Castilla-La Mancha,Inmaculada Concepción,national
+2020-12-08,ES,CN,Canarias,Inmaculada Concepción,national
+2020-12-08,ES,CT,Cataluna,Inmaculada Concepción,national
+2020-12-08,ES,ES,Espana,Inmaculada Concepción,national
+2020-12-08,ES,EX,Extremadura,Inmaculada Concepción,national
+2020-12-08,ES,GA,Galicia,Inmaculada Concepción,national
+2020-12-08,ES,IB,Illes Balears,Inmaculada Concepción,national
+2020-12-08,ES,MC,Murcia,Inmaculada Concepción,national
+2020-12-08,ES,MD,Madrid,Inmaculada Concepción,national
+2020-12-08,ES,ML,Melilla,Inmaculada Concepción,national
+2020-12-08,ES,NC,Navarra,Inmaculada Concepción,national
+2020-12-08,ES,PV,Pais Vasco,Inmaculada Concepción,national
+2020-12-08,ES,RI,La Rioja,Inmaculada Concepción,national
+2020-12-08,ES,VC,Comunitat Valenciana,Inmaculada Concepción,national
+2020-12-25,ES,AN,Andalucia,Natividad del Señor,national
+2020-12-25,ES,AR,Aragon,Natividad del Señor,national
+2020-12-25,ES,AS,Asturias,Natividad del Señor,national
+2020-12-25,ES,CB,Cantabria,Natividad del Señor,national
+2020-12-25,ES,CE,Ceuta,Natividad del Señor,national
+2020-12-25,ES,CL,Castilla y Leon,Natividad del Señor,national
+2020-12-25,ES,CM,Castilla-La Mancha,Natividad del Señor,national
+2020-12-25,ES,CN,Canarias,Natividad del Señor,national
+2020-12-25,ES,CT,Cataluna,Natividad del Señor,national
+2020-12-25,ES,ES,Espana,Natividad del Señor,national
+2020-12-25,ES,EX,Extremadura,Natividad del Señor,national
+2020-12-25,ES,GA,Galicia,Natividad del Señor,national
+2020-12-25,ES,IB,Illes Balears,Natividad del Señor,national
+2020-12-25,ES,MC,Murcia,Natividad del Señor,national
+2020-12-25,ES,MD,Madrid,Natividad del Señor,national
+2020-12-25,ES,ML,Melilla,Natividad del Señor,national
+2020-12-25,ES,NC,Navarra,Natividad del Señor,national
+2020-12-25,ES,PV,Pais Vasco,Natividad del Señor,national
+2020-12-25,ES,RI,La Rioja,Natividad del Señor,national
+2020-12-25,ES,VC,Comunitat Valenciana,Natividad del Señor,national
+2020-12-26,ES,CT,Cataluna,San Esteban,regional
+2020-12-26,ES,IB,Illes Balears,San Esteban,regional
+2021-01-01,ES,AN,Andalucia,Año Nuevo,national
+2021-01-01,ES,AR,Aragon,Año Nuevo,national
+2021-01-01,ES,AS,Asturias,Año Nuevo,national
+2021-01-01,ES,CB,Cantabria,Año Nuevo,national
+2021-01-01,ES,CE,Ceuta,Año Nuevo,national
+2021-01-01,ES,CL,Castilla y Leon,Año Nuevo,national
+2021-01-01,ES,CM,Castilla-La Mancha,Año Nuevo,national
+2021-01-01,ES,CN,Canarias,Año Nuevo,national
+2021-01-01,ES,CT,Cataluna,Año Nuevo,national
+2021-01-01,ES,ES,Espana,Año Nuevo,national
+2021-01-01,ES,EX,Extremadura,Año Nuevo,national
+2021-01-01,ES,GA,Galicia,Año Nuevo,national
+2021-01-01,ES,IB,Illes Balears,Año Nuevo,national
+2021-01-01,ES,MC,Murcia,Año Nuevo,national
+2021-01-01,ES,MD,Madrid,Año Nuevo,national
+2021-01-01,ES,ML,Melilla,Año Nuevo,national
+2021-01-01,ES,NC,Navarra,Año Nuevo,national
+2021-01-01,ES,PV,Pais Vasco,Año Nuevo,national
+2021-01-01,ES,RI,La Rioja,Año Nuevo,national
+2021-01-01,ES,VC,Comunitat Valenciana,Año Nuevo,national
+2021-01-06,ES,AN,Andalucia,Epifanía del Señor,national
+2021-01-06,ES,AR,Aragon,Epifanía del Señor,national
+2021-01-06,ES,AS,Asturias,Epifanía del Señor,national
+2021-01-06,ES,CB,Cantabria,Epifanía del Señor,national
+2021-01-06,ES,CE,Ceuta,Epifanía del Señor,national
+2021-01-06,ES,CL,Castilla y Leon,Epifanía del Señor,national
+2021-01-06,ES,CM,Castilla-La Mancha,Epifanía del Señor,national
+2021-01-06,ES,CN,Canarias,Epifanía del Señor,national
+2021-01-06,ES,CT,Cataluna,Epifanía del Señor,national
+2021-01-06,ES,ES,Espana,Epifanía del Señor,national
+2021-01-06,ES,EX,Extremadura,Epifanía del Señor,national
+2021-01-06,ES,GA,Galicia,Epifanía del Señor,national
+2021-01-06,ES,IB,Illes Balears,Epifanía del Señor,national
+2021-01-06,ES,MC,Murcia,Epifanía del Señor,national
+2021-01-06,ES,MD,Madrid,Epifanía del Señor,national
+2021-01-06,ES,ML,Melilla,Epifanía del Señor,national
+2021-01-06,ES,NC,Navarra,Epifanía del Señor,national
+2021-01-06,ES,PV,Pais Vasco,Epifanía del Señor,national
+2021-01-06,ES,RI,La Rioja,Epifanía del Señor,national
+2021-01-06,ES,VC,Comunitat Valenciana,Epifanía del Señor,national
+2021-03-01,ES,AN,Andalucia,Lunes siguiente a Día de Andalucía,regional
+2021-03-01,ES,IB,Illes Balears,Día de las Islas Baleares,regional
+2021-03-13,ES,ML,Melilla,Estatuto de Autonomía de la Ciudad de Melilla,regional
+2021-03-19,ES,EX,Extremadura,San José,regional
+2021-03-19,ES,GA,Galicia,San José,regional
+2021-03-19,ES,MC,Murcia,San José,regional
+2021-03-19,ES,MD,Madrid,San José,regional
+2021-03-19,ES,NC,Navarra,San José,regional
+2021-03-19,ES,PV,Pais Vasco,San José,regional
+2021-03-19,ES,VC,Comunitat Valenciana,San José,regional
+2021-04-01,ES,AN,Andalucia,Jueves Santo,regional
+2021-04-01,ES,AR,Aragon,Jueves Santo,regional
+2021-04-01,ES,AS,Asturias,Jueves Santo,regional
+2021-04-01,ES,CB,Cantabria,Jueves Santo,regional
+2021-04-01,ES,CE,Ceuta,Jueves Santo,regional
+2021-04-01,ES,CL,Castilla y Leon,Jueves Santo,regional
+2021-04-01,ES,CM,Castilla-La Mancha,Jueves Santo,regional
+2021-04-01,ES,CN,Canarias,Jueves Santo,regional
+2021-04-01,ES,EX,Extremadura,Jueves Santo,regional
+2021-04-01,ES,GA,Galicia,Jueves Santo,regional
+2021-04-01,ES,IB,Illes Balears,Jueves Santo,regional
+2021-04-01,ES,MC,Murcia,Jueves Santo,regional
+2021-04-01,ES,MD,Madrid,Jueves Santo,regional
+2021-04-01,ES,ML,Melilla,Jueves Santo,regional
+2021-04-01,ES,NC,Navarra,Jueves Santo,regional
+2021-04-01,ES,PV,Pais Vasco,Jueves Santo,regional
+2021-04-01,ES,RI,La Rioja,Jueves Santo,regional
+2021-04-02,ES,AN,Andalucia,Viernes Santo,national
+2021-04-02,ES,AR,Aragon,Viernes Santo,national
+2021-04-02,ES,AS,Asturias,Viernes Santo,national
+2021-04-02,ES,CB,Cantabria,Viernes Santo,national
+2021-04-02,ES,CE,Ceuta,Viernes Santo,national
+2021-04-02,ES,CL,Castilla y Leon,Viernes Santo,national
+2021-04-02,ES,CM,Castilla-La Mancha,Viernes Santo,national
+2021-04-02,ES,CN,Canarias,Viernes Santo,national
+2021-04-02,ES,CT,Cataluna,Viernes Santo,national
+2021-04-02,ES,ES,Espana,Viernes Santo,national
+2021-04-02,ES,EX,Extremadura,Viernes Santo,national
+2021-04-02,ES,GA,Galicia,Viernes Santo,national
+2021-04-02,ES,IB,Illes Balears,Viernes Santo,national
+2021-04-02,ES,MC,Murcia,Viernes Santo,national
+2021-04-02,ES,MD,Madrid,Viernes Santo,national
+2021-04-02,ES,ML,Melilla,Viernes Santo,national
+2021-04-02,ES,NC,Navarra,Viernes Santo,national
+2021-04-02,ES,PV,Pais Vasco,Viernes Santo,national
+2021-04-02,ES,RI,La Rioja,Viernes Santo,national
+2021-04-02,ES,VC,Comunitat Valenciana,Viernes Santo,national
+2021-04-05,ES,CT,Cataluna,Lunes de Pascua,regional
+2021-04-05,ES,IB,Illes Balears,Lunes de Pascua,regional
+2021-04-05,ES,NC,Navarra,Lunes de Pascua,regional
+2021-04-05,ES,PV,Pais Vasco,Lunes de Pascua,regional
+2021-04-05,ES,RI,La Rioja,Lunes de Pascua,regional
+2021-04-05,ES,VC,Comunitat Valenciana,Lunes de Pascua,regional
+2021-04-23,ES,AR,Aragon,Día de San Jorge,regional
+2021-04-23,ES,CL,Castilla y Leon,Fiesta de Castilla y León,regional
+2021-05-01,ES,AN,Andalucia,Fiesta del Trabajo,national
+2021-05-01,ES,AR,Aragon,Fiesta del Trabajo,national
+2021-05-01,ES,AS,Asturias,Fiesta del Trabajo,national
+2021-05-01,ES,CB,Cantabria,Fiesta del Trabajo,national
+2021-05-01,ES,CE,Ceuta,Fiesta del Trabajo,national
+2021-05-01,ES,CL,Castilla y Leon,Fiesta del Trabajo,national
+2021-05-01,ES,CM,Castilla-La Mancha,Fiesta del Trabajo,national
+2021-05-01,ES,CN,Canarias,Fiesta del Trabajo,national
+2021-05-01,ES,CT,Cataluna,Fiesta del Trabajo,national
+2021-05-01,ES,ES,Espana,Fiesta del Trabajo,national
+2021-05-01,ES,EX,Extremadura,Fiesta del Trabajo,national
+2021-05-01,ES,GA,Galicia,Fiesta del Trabajo,national
+2021-05-01,ES,IB,Illes Balears,Fiesta del Trabajo,national
+2021-05-01,ES,MC,Murcia,Fiesta del Trabajo,national
+2021-05-01,ES,MD,Madrid,Fiesta del Trabajo,national
+2021-05-01,ES,ML,Melilla,Fiesta del Trabajo,national
+2021-05-01,ES,NC,Navarra,Fiesta del Trabajo,national
+2021-05-01,ES,PV,Pais Vasco,Fiesta del Trabajo,national
+2021-05-01,ES,RI,La Rioja,Fiesta del Trabajo,national
+2021-05-01,ES,VC,Comunitat Valenciana,Fiesta del Trabajo,national
+2021-05-03,ES,MD,Madrid,Lunes siguiente a Fiesta de la Comunidad de Madrid,regional
+2021-05-17,ES,GA,Galicia,Día de las Letras Gallegas,regional
+2021-05-31,ES,CM,Castilla-La Mancha,Día de Castilla-La Mancha,regional
+2021-06-03,ES,CM,Castilla-La Mancha,Corpus Christi,regional
+2021-06-09,ES,MC,Murcia,Día de la Región de Murcia,regional
+2021-06-09,ES,RI,La Rioja,Día de La Rioja,regional
+2021-06-14,ES,CE,Ceuta,Lunes siguiente a San Antonio,regional
+2021-06-24,ES,CT,Cataluna,San Juan,regional
+2021-06-24,ES,VC,Comunitat Valenciana,San Juan,regional
+2021-07-20,ES,CE,Ceuta,Fiesta del Sacrificio-Eidul Adha,regional
+2021-07-21,ES,ML,Melilla,Fiesta del Sacrificio-Aid Al Adha,regional
+2021-07-28,ES,CB,Cantabria,Día de las Instituciones de Cantabria,regional
+2021-08-16,ES,AN,Andalucia,Lunes siguiente a Asunción de la Virgen,regional
+2021-08-16,ES,AR,Aragon,Lunes siguiente a Asunción de la Virgen,regional
+2021-08-16,ES,AS,Asturias,Lunes siguiente a Asunción de la Virgen,regional
+2021-08-16,ES,CL,Castilla y Leon,Lunes siguiente a Asunción de la Virgen,regional
+2021-08-16,ES,CN,Canarias,Lunes siguiente a Asunción de la Virgen,regional
+2021-09-02,ES,CE,Ceuta,Día de Ceuta,regional
+2021-09-08,ES,AS,Asturias,Día de Asturias,regional
+2021-09-08,ES,EX,Extremadura,Día de Extremadura,regional
+2021-09-08,ES,ML,Melilla,Día de Nuestra Señora la Virgen de la Victoria,regional
+2021-09-11,ES,CT,Cataluna,Fiesta Nacional de Cataluña,regional
+2021-09-15,ES,CB,Cantabria,La Bien Aparecida,regional
+2021-09-17,ES,ML,Melilla,Día de Melilla,regional
+2021-10-09,ES,VC,Comunitat Valenciana,Día de la Comunidad Valenciana,regional
+2021-10-12,ES,AN,Andalucia,Fiesta Nacional de España,national
+2021-10-12,ES,AR,Aragon,Fiesta Nacional de España,national
+2021-10-12,ES,AS,Asturias,Fiesta Nacional de España,national
+2021-10-12,ES,CB,Cantabria,Fiesta Nacional de España,national
+2021-10-12,ES,CE,Ceuta,Fiesta Nacional de España,national
+2021-10-12,ES,CL,Castilla y Leon,Fiesta Nacional de España,national
+2021-10-12,ES,CM,Castilla-La Mancha,Fiesta Nacional de España,national
+2021-10-12,ES,CN,Canarias,Fiesta Nacional de España,national
+2021-10-12,ES,CT,Cataluna,Fiesta Nacional de España,national
+2021-10-12,ES,ES,Espana,Fiesta Nacional de España,national
+2021-10-12,ES,EX,Extremadura,Fiesta Nacional de España,national
+2021-10-12,ES,GA,Galicia,Fiesta Nacional de España,national
+2021-10-12,ES,IB,Illes Balears,Fiesta Nacional de España,national
+2021-10-12,ES,MC,Murcia,Fiesta Nacional de España,national
+2021-10-12,ES,MD,Madrid,Fiesta Nacional de España,national
+2021-10-12,ES,ML,Melilla,Fiesta Nacional de España,national
+2021-10-12,ES,NC,Navarra,Fiesta Nacional de España,national
+2021-10-12,ES,PV,Pais Vasco,Fiesta Nacional de España,national
+2021-10-12,ES,RI,La Rioja,Fiesta Nacional de España,national
+2021-10-12,ES,VC,Comunitat Valenciana,Fiesta Nacional de España,national
+2021-11-01,ES,AN,Andalucia,Todos los Santos,national
+2021-11-01,ES,AR,Aragon,Todos los Santos,national
+2021-11-01,ES,AS,Asturias,Todos los Santos,national
+2021-11-01,ES,CB,Cantabria,Todos los Santos,national
+2021-11-01,ES,CE,Ceuta,Todos los Santos,national
+2021-11-01,ES,CL,Castilla y Leon,Todos los Santos,national
+2021-11-01,ES,CM,Castilla-La Mancha,Todos los Santos,national
+2021-11-01,ES,CN,Canarias,Todos los Santos,national
+2021-11-01,ES,CT,Cataluna,Todos los Santos,national
+2021-11-01,ES,ES,Espana,Todos los Santos,national
+2021-11-01,ES,EX,Extremadura,Todos los Santos,national
+2021-11-01,ES,GA,Galicia,Todos los Santos,national
+2021-11-01,ES,IB,Illes Balears,Todos los Santos,national
+2021-11-01,ES,MC,Murcia,Todos los Santos,national
+2021-11-01,ES,MD,Madrid,Todos los Santos,national
+2021-11-01,ES,ML,Melilla,Todos los Santos,national
+2021-11-01,ES,NC,Navarra,Todos los Santos,national
+2021-11-01,ES,PV,Pais Vasco,Todos los Santos,national
+2021-11-01,ES,RI,La Rioja,Todos los Santos,national
+2021-11-01,ES,VC,Comunitat Valenciana,Todos los Santos,national
+2021-12-03,ES,NC,Navarra,San Francisco Javier,regional
+2021-12-06,ES,AN,Andalucia,Día de la Constitución Española,national
+2021-12-06,ES,AR,Aragon,Día de la Constitución Española,national
+2021-12-06,ES,AS,Asturias,Día de la Constitución Española,national
+2021-12-06,ES,CB,Cantabria,Día de la Constitución Española,national
+2021-12-06,ES,CE,Ceuta,Día de la Constitución Española,national
+2021-12-06,ES,CL,Castilla y Leon,Día de la Constitución Española,national
+2021-12-06,ES,CM,Castilla-La Mancha,Día de la Constitución Española,national
+2021-12-06,ES,CN,Canarias,Día de la Constitución Española,national
+2021-12-06,ES,CT,Cataluna,Día de la Constitución Española,national
+2021-12-06,ES,ES,Espana,Día de la Constitución Española,national
+2021-12-06,ES,EX,Extremadura,Día de la Constitución Española,national
+2021-12-06,ES,GA,Galicia,Día de la Constitución Española,national
+2021-12-06,ES,IB,Illes Balears,Día de la Constitución Española,national
+2021-12-06,ES,MC,Murcia,Día de la Constitución Española,national
+2021-12-06,ES,MD,Madrid,Día de la Constitución Española,national
+2021-12-06,ES,ML,Melilla,Día de la Constitución Española,national
+2021-12-06,ES,NC,Navarra,Día de la Constitución Española,national
+2021-12-06,ES,PV,Pais Vasco,Día de la Constitución Española,national
+2021-12-06,ES,RI,La Rioja,Día de la Constitución Española,national
+2021-12-06,ES,VC,Comunitat Valenciana,Día de la Constitución Española,national
+2021-12-08,ES,AN,Andalucia,Inmaculada Concepción,national
+2021-12-08,ES,AR,Aragon,Inmaculada Concepción,national
+2021-12-08,ES,AS,Asturias,Inmaculada Concepción,national
+2021-12-08,ES,CB,Cantabria,Inmaculada Concepción,national
+2021-12-08,ES,CE,Ceuta,Inmaculada Concepción,national
+2021-12-08,ES,CL,Castilla y Leon,Inmaculada Concepción,national
+2021-12-08,ES,CM,Castilla-La Mancha,Inmaculada Concepción,national
+2021-12-08,ES,CN,Canarias,Inmaculada Concepción,national
+2021-12-08,ES,CT,Cataluna,Inmaculada Concepción,national
+2021-12-08,ES,ES,Espana,Inmaculada Concepción,national
+2021-12-08,ES,EX,Extremadura,Inmaculada Concepción,national
+2021-12-08,ES,GA,Galicia,Inmaculada Concepción,national
+2021-12-08,ES,IB,Illes Balears,Inmaculada Concepción,national
+2021-12-08,ES,MC,Murcia,Inmaculada Concepción,national
+2021-12-08,ES,MD,Madrid,Inmaculada Concepción,national
+2021-12-08,ES,ML,Melilla,Inmaculada Concepción,national
+2021-12-08,ES,NC,Navarra,Inmaculada Concepción,national
+2021-12-08,ES,PV,Pais Vasco,Inmaculada Concepción,national
+2021-12-08,ES,RI,La Rioja,Inmaculada Concepción,national
+2021-12-08,ES,VC,Comunitat Valenciana,Inmaculada Concepción,national
+2021-12-25,ES,AN,Andalucia,Natividad del Señor,national
+2021-12-25,ES,AR,Aragon,Natividad del Señor,national
+2021-12-25,ES,AS,Asturias,Natividad del Señor,national
+2021-12-25,ES,CB,Cantabria,Natividad del Señor,national
+2021-12-25,ES,CE,Ceuta,Natividad del Señor,national
+2021-12-25,ES,CL,Castilla y Leon,Natividad del Señor,national
+2021-12-25,ES,CM,Castilla-La Mancha,Natividad del Señor,national
+2021-12-25,ES,CN,Canarias,Natividad del Señor,national
+2021-12-25,ES,CT,Cataluna,Natividad del Señor,national
+2021-12-25,ES,ES,Espana,Natividad del Señor,national
+2021-12-25,ES,EX,Extremadura,Natividad del Señor,national
+2021-12-25,ES,GA,Galicia,Natividad del Señor,national
+2021-12-25,ES,IB,Illes Balears,Natividad del Señor,national
+2021-12-25,ES,MC,Murcia,Natividad del Señor,national
+2021-12-25,ES,MD,Madrid,Natividad del Señor,national
+2021-12-25,ES,ML,Melilla,Natividad del Señor,national
+2021-12-25,ES,NC,Navarra,Natividad del Señor,national
+2021-12-25,ES,PV,Pais Vasco,Natividad del Señor,national
+2021-12-25,ES,RI,La Rioja,Natividad del Señor,national
+2021-12-25,ES,VC,Comunitat Valenciana,Natividad del Señor,national
+2022-01-01,ES,AN,Andalucia,Año Nuevo,national
+2022-01-01,ES,AR,Aragon,Año Nuevo,national
+2022-01-01,ES,AS,Asturias,Año Nuevo,national
+2022-01-01,ES,CB,Cantabria,Año Nuevo,national
+2022-01-01,ES,CE,Ceuta,Año Nuevo,national
+2022-01-01,ES,CL,Castilla y Leon,Año Nuevo,national
+2022-01-01,ES,CM,Castilla-La Mancha,Año Nuevo,national
+2022-01-01,ES,CN,Canarias,Año Nuevo,national
+2022-01-01,ES,CT,Cataluna,Año Nuevo,national
+2022-01-01,ES,ES,Espana,Año Nuevo,national
+2022-01-01,ES,EX,Extremadura,Año Nuevo,national
+2022-01-01,ES,GA,Galicia,Año Nuevo,national
+2022-01-01,ES,IB,Illes Balears,Año Nuevo,national
+2022-01-01,ES,MC,Murcia,Año Nuevo,national
+2022-01-01,ES,MD,Madrid,Año Nuevo,national
+2022-01-01,ES,ML,Melilla,Año Nuevo,national
+2022-01-01,ES,NC,Navarra,Año Nuevo,national
+2022-01-01,ES,PV,Pais Vasco,Año Nuevo,national
+2022-01-01,ES,RI,La Rioja,Año Nuevo,national
+2022-01-01,ES,VC,Comunitat Valenciana,Año Nuevo,national
+2022-01-06,ES,AN,Andalucia,Epifanía del Señor,national
+2022-01-06,ES,AR,Aragon,Epifanía del Señor,national
+2022-01-06,ES,AS,Asturias,Epifanía del Señor,national
+2022-01-06,ES,CB,Cantabria,Epifanía del Señor,national
+2022-01-06,ES,CE,Ceuta,Epifanía del Señor,national
+2022-01-06,ES,CL,Castilla y Leon,Epifanía del Señor,national
+2022-01-06,ES,CM,Castilla-La Mancha,Epifanía del Señor,national
+2022-01-06,ES,CN,Canarias,Epifanía del Señor,national
+2022-01-06,ES,CT,Cataluna,Epifanía del Señor,national
+2022-01-06,ES,ES,Espana,Epifanía del Señor,national
+2022-01-06,ES,EX,Extremadura,Epifanía del Señor,national
+2022-01-06,ES,GA,Galicia,Epifanía del Señor,national
+2022-01-06,ES,IB,Illes Balears,Epifanía del Señor,national
+2022-01-06,ES,MC,Murcia,Epifanía del Señor,national
+2022-01-06,ES,MD,Madrid,Epifanía del Señor,national
+2022-01-06,ES,ML,Melilla,Epifanía del Señor,national
+2022-01-06,ES,NC,Navarra,Epifanía del Señor,national
+2022-01-06,ES,PV,Pais Vasco,Epifanía del Señor,national
+2022-01-06,ES,RI,La Rioja,Epifanía del Señor,national
+2022-01-06,ES,VC,Comunitat Valenciana,Epifanía del Señor,national
+2022-02-28,ES,AN,Andalucia,Día de Andalucía,regional
+2022-03-01,ES,IB,Illes Balears,Día de las Islas Baleares,regional
+2022-03-19,ES,VC,Comunitat Valenciana,San José,regional
+2022-04-14,ES,AN,Andalucia,Jueves Santo,regional
+2022-04-14,ES,AR,Aragon,Jueves Santo,regional
+2022-04-14,ES,AS,Asturias,Jueves Santo,regional
+2022-04-14,ES,CB,Cantabria,Jueves Santo,regional
+2022-04-14,ES,CE,Ceuta,Jueves Santo,regional
+2022-04-14,ES,CL,Castilla y Leon,Jueves Santo,regional
+2022-04-14,ES,CM,Castilla-La Mancha,Jueves Santo,regional
+2022-04-14,ES,CN,Canarias,Jueves Santo,regional
+2022-04-14,ES,EX,Extremadura,Jueves Santo,regional
+2022-04-14,ES,GA,Galicia,Jueves Santo,regional
+2022-04-14,ES,IB,Illes Balears,Jueves Santo,regional
+2022-04-14,ES,MC,Murcia,Jueves Santo,regional
+2022-04-14,ES,MD,Madrid,Jueves Santo,regional
+2022-04-14,ES,ML,Melilla,Jueves Santo,regional
+2022-04-14,ES,NC,Navarra,Jueves Santo,regional
+2022-04-14,ES,PV,Pais Vasco,Jueves Santo,regional
+2022-04-14,ES,RI,La Rioja,Jueves Santo,regional
+2022-04-14,ES,VC,Comunitat Valenciana,Jueves Santo,regional
+2022-04-15,ES,AN,Andalucia,Viernes Santo,national
+2022-04-15,ES,AR,Aragon,Viernes Santo,national
+2022-04-15,ES,AS,Asturias,Viernes Santo,national
+2022-04-15,ES,CB,Cantabria,Viernes Santo,national
+2022-04-15,ES,CE,Ceuta,Viernes Santo,national
+2022-04-15,ES,CL,Castilla y Leon,Viernes Santo,national
+2022-04-15,ES,CM,Castilla-La Mancha,Viernes Santo,national
+2022-04-15,ES,CN,Canarias,Viernes Santo,national
+2022-04-15,ES,CT,Cataluna,Viernes Santo,national
+2022-04-15,ES,ES,Espana,Viernes Santo,national
+2022-04-15,ES,EX,Extremadura,Viernes Santo,national
+2022-04-15,ES,GA,Galicia,Viernes Santo,national
+2022-04-15,ES,IB,Illes Balears,Viernes Santo,national
+2022-04-15,ES,MC,Murcia,Viernes Santo,national
+2022-04-15,ES,MD,Madrid,Viernes Santo,national
+2022-04-15,ES,ML,Melilla,Viernes Santo,national
+2022-04-15,ES,NC,Navarra,Viernes Santo,national
+2022-04-15,ES,PV,Pais Vasco,Viernes Santo,national
+2022-04-15,ES,RI,La Rioja,Viernes Santo,national
+2022-04-15,ES,VC,Comunitat Valenciana,Viernes Santo,national
+2022-04-18,ES,CT,Cataluna,Lunes de Pascua,regional
+2022-04-18,ES,IB,Illes Balears,Lunes de Pascua,regional
+2022-04-18,ES,NC,Navarra,Lunes de Pascua,regional
+2022-04-18,ES,PV,Pais Vasco,Lunes de Pascua,regional
+2022-04-18,ES,RI,La Rioja,Lunes de Pascua,regional
+2022-04-18,ES,VC,Comunitat Valenciana,Lunes de Pascua,regional
+2022-04-23,ES,AR,Aragon,Día de San Jorge,regional
+2022-04-23,ES,CL,Castilla y Leon,Fiesta de Castilla y León,regional
+2022-05-02,ES,AN,Andalucia,Lunes siguiente a Fiesta del Trabajo,regional
+2022-05-02,ES,AR,Aragon,Lunes siguiente a Fiesta del Trabajo,regional
+2022-05-02,ES,AS,Asturias,Lunes siguiente a Fiesta del Trabajo,regional
+2022-05-02,ES,CL,Castilla y Leon,Lunes siguiente a Fiesta del Trabajo,regional
+2022-05-02,ES,EX,Extremadura,Lunes siguiente a Fiesta del Trabajo,regional
+2022-05-02,ES,MC,Murcia,Lunes siguiente a Fiesta del Trabajo,regional
+2022-05-02,ES,MD,Madrid,Fiesta de la Comunidad de Madrid,regional
+2022-05-03,ES,ML,Melilla,Fiesta del Eid Fitr,regional
+2022-05-17,ES,GA,Galicia,Día de las Letras Gallegas,regional
+2022-05-30,ES,CN,Canarias,Día de Canarias,regional
+2022-05-31,ES,CM,Castilla-La Mancha,Día de Castilla-La Mancha,regional
+2022-06-06,ES,CT,Cataluna,Día de la Pascua Granada,regional
+2022-06-09,ES,MC,Murcia,Día de la Región de Murcia,regional
+2022-06-09,ES,RI,La Rioja,Día de La Rioja,regional
+2022-06-13,ES,CE,Ceuta,San Antonio,regional
+2022-06-16,ES,CM,Castilla-La Mancha,Corpus Christi,regional
+2022-06-24,ES,CT,Cataluna,San Juan,regional
+2022-06-24,ES,GA,Galicia,San Juan,regional
+2022-06-24,ES,VC,Comunitat Valenciana,San Juan,regional
+2022-07-09,ES,CE,Ceuta,Fiesta del Sacrificio-Eidul Adha,regional
+2022-07-11,ES,ML,Melilla,Fiesta del Sacrificio-Aid Al Adha,regional
+2022-07-25,ES,GA,Galicia,Día Nacional de Galicia,regional
+2022-07-25,ES,MD,Madrid,Santiago Apóstol,regional
+2022-07-25,ES,NC,Navarra,Santiago Apóstol,regional
+2022-07-25,ES,PV,Pais Vasco,Santiago Apóstol,regional
+2022-07-28,ES,CB,Cantabria,Día de las Instituciones de Cantabria,regional
+2022-08-05,ES,CE,Ceuta,Nuestra Señora de África,regional
+2022-08-15,ES,AN,Andalucia,Asunción de la Virgen,national
+2022-08-15,ES,AR,Aragon,Asunción de la Virgen,national
+2022-08-15,ES,AS,Asturias,Asunción de la Virgen,national
+2022-08-15,ES,CB,Cantabria,Asunción de la Virgen,national
+2022-08-15,ES,CE,Ceuta,Asunción de la Virgen,national
+2022-08-15,ES,CL,Castilla y Leon,Asunción de la Virgen,national
+2022-08-15,ES,CM,Castilla-La Mancha,Asunción de la Virgen,national
+2022-08-15,ES,CN,Canarias,Asunción de la Virgen,national
+2022-08-15,ES,CT,Cataluna,Asunción de la Virgen,national
+2022-08-15,ES,ES,Espana,Asunción de la Virgen,national
+2022-08-15,ES,EX,Extremadura,Asunción de la Virgen,national
+2022-08-15,ES,GA,Galicia,Asunción de la Virgen,national
+2022-08-15,ES,IB,Illes Balears,Asunción de la Virgen,national
+2022-08-15,ES,MC,Murcia,Asunción de la Virgen,national
+2022-08-15,ES,MD,Madrid,Asunción de la Virgen,national
+2022-08-15,ES,ML,Melilla,Asunción de la Virgen,national
+2022-08-15,ES,NC,Navarra,Asunción de la Virgen,national
+2022-08-15,ES,PV,Pais Vasco,Asunción de la Virgen,national
+2022-08-15,ES,RI,La Rioja,Asunción de la Virgen,national
+2022-08-15,ES,VC,Comunitat Valenciana,Asunción de la Virgen,national
+2022-09-02,ES,CE,Ceuta,Día de Ceuta,regional
+2022-09-06,ES,PV,Pais Vasco,V Centenario Vuelta al Mundo,regional
+2022-09-08,ES,AS,Asturias,Día de Asturias,regional
+2022-09-08,ES,EX,Extremadura,Día de Extremadura,regional
+2022-09-08,ES,ML,Melilla,Día de Nuestra Señora la Virgen de la Victoria,regional
+2022-09-15,ES,CB,Cantabria,La Bien Aparecida,regional
+2022-09-17,ES,ML,Melilla,Día de Melilla,regional
+2022-10-12,ES,AN,Andalucia,Fiesta Nacional de España,national
+2022-10-12,ES,AR,Aragon,Fiesta Nacional de España,national
+2022-10-12,ES,AS,Asturias,Fiesta Nacional de España,national
+2022-10-12,ES,CB,Cantabria,Fiesta Nacional de España,national
+2022-10-12,ES,CE,Ceuta,Fiesta Nacional de España,national
+2022-10-12,ES,CL,Castilla y Leon,Fiesta Nacional de España,national
+2022-10-12,ES,CM,Castilla-La Mancha,Fiesta Nacional de España,national
+2022-10-12,ES,CN,Canarias,Fiesta Nacional de España,national
+2022-10-12,ES,CT,Cataluna,Fiesta Nacional de España,national
+2022-10-12,ES,ES,Espana,Fiesta Nacional de España,national
+2022-10-12,ES,EX,Extremadura,Fiesta Nacional de España,national
+2022-10-12,ES,GA,Galicia,Fiesta Nacional de España,national
+2022-10-12,ES,IB,Illes Balears,Fiesta Nacional de España,national
+2022-10-12,ES,MC,Murcia,Fiesta Nacional de España,national
+2022-10-12,ES,MD,Madrid,Fiesta Nacional de España,national
+2022-10-12,ES,ML,Melilla,Fiesta Nacional de España,national
+2022-10-12,ES,NC,Navarra,Fiesta Nacional de España,national
+2022-10-12,ES,PV,Pais Vasco,Fiesta Nacional de España,national
+2022-10-12,ES,RI,La Rioja,Fiesta Nacional de España,national
+2022-10-12,ES,VC,Comunitat Valenciana,Fiesta Nacional de España,national
+2022-11-01,ES,AN,Andalucia,Todos los Santos,national
+2022-11-01,ES,AR,Aragon,Todos los Santos,national
+2022-11-01,ES,AS,Asturias,Todos los Santos,national
+2022-11-01,ES,CB,Cantabria,Todos los Santos,national
+2022-11-01,ES,CE,Ceuta,Todos los Santos,national
+2022-11-01,ES,CL,Castilla y Leon,Todos los Santos,national
+2022-11-01,ES,CM,Castilla-La Mancha,Todos los Santos,national
+2022-11-01,ES,CN,Canarias,Todos los Santos,national
+2022-11-01,ES,CT,Cataluna,Todos los Santos,national
+2022-11-01,ES,ES,Espana,Todos los Santos,national
+2022-11-01,ES,EX,Extremadura,Todos los Santos,national
+2022-11-01,ES,GA,Galicia,Todos los Santos,national
+2022-11-01,ES,IB,Illes Balears,Todos los Santos,national
+2022-11-01,ES,MC,Murcia,Todos los Santos,national
+2022-11-01,ES,MD,Madrid,Todos los Santos,national
+2022-11-01,ES,ML,Melilla,Todos los Santos,national
+2022-11-01,ES,NC,Navarra,Todos los Santos,national
+2022-11-01,ES,PV,Pais Vasco,Todos los Santos,national
+2022-11-01,ES,RI,La Rioja,Todos los Santos,national
+2022-11-01,ES,VC,Comunitat Valenciana,Todos los Santos,national
+2022-12-03,ES,NC,Navarra,San Francisco Javier,regional
+2022-12-06,ES,AN,Andalucia,Día de la Constitución Española,national
+2022-12-06,ES,AR,Aragon,Día de la Constitución Española,national
+2022-12-06,ES,AS,Asturias,Día de la Constitución Española,national
+2022-12-06,ES,CB,Cantabria,Día de la Constitución Española,national
+2022-12-06,ES,CE,Ceuta,Día de la Constitución Española,national
+2022-12-06,ES,CL,Castilla y Leon,Día de la Constitución Española,national
+2022-12-06,ES,CM,Castilla-La Mancha,Día de la Constitución Española,national
+2022-12-06,ES,CN,Canarias,Día de la Constitución Española,national
+2022-12-06,ES,CT,Cataluna,Día de la Constitución Española,national
+2022-12-06,ES,ES,Espana,Día de la Constitución Española,national
+2022-12-06,ES,EX,Extremadura,Día de la Constitución Española,national
+2022-12-06,ES,GA,Galicia,Día de la Constitución Española,national
+2022-12-06,ES,IB,Illes Balears,Día de la Constitución Española,national
+2022-12-06,ES,MC,Murcia,Día de la Constitución Española,national
+2022-12-06,ES,MD,Madrid,Día de la Constitución Española,national
+2022-12-06,ES,ML,Melilla,Día de la Constitución Española,national
+2022-12-06,ES,NC,Navarra,Día de la Constitución Española,national
+2022-12-06,ES,PV,Pais Vasco,Día de la Constitución Española,national
+2022-12-06,ES,RI,La Rioja,Día de la Constitución Española,national
+2022-12-06,ES,VC,Comunitat Valenciana,Día de la Constitución Española,national
+2022-12-08,ES,AN,Andalucia,Inmaculada Concepción,national
+2022-12-08,ES,AR,Aragon,Inmaculada Concepción,national
+2022-12-08,ES,AS,Asturias,Inmaculada Concepción,national
+2022-12-08,ES,CB,Cantabria,Inmaculada Concepción,national
+2022-12-08,ES,CE,Ceuta,Inmaculada Concepción,national
+2022-12-08,ES,CL,Castilla y Leon,Inmaculada Concepción,national
+2022-12-08,ES,CM,Castilla-La Mancha,Inmaculada Concepción,national
+2022-12-08,ES,CN,Canarias,Inmaculada Concepción,national
+2022-12-08,ES,CT,Cataluna,Inmaculada Concepción,national
+2022-12-08,ES,ES,Espana,Inmaculada Concepción,national
+2022-12-08,ES,EX,Extremadura,Inmaculada Concepción,national
+2022-12-08,ES,GA,Galicia,Inmaculada Concepción,national
+2022-12-08,ES,IB,Illes Balears,Inmaculada Concepción,national
+2022-12-08,ES,MC,Murcia,Inmaculada Concepción,national
+2022-12-08,ES,MD,Madrid,Inmaculada Concepción,national
+2022-12-08,ES,ML,Melilla,Inmaculada Concepción,national
+2022-12-08,ES,NC,Navarra,Inmaculada Concepción,national
+2022-12-08,ES,PV,Pais Vasco,Inmaculada Concepción,national
+2022-12-08,ES,RI,La Rioja,Inmaculada Concepción,national
+2022-12-08,ES,VC,Comunitat Valenciana,Inmaculada Concepción,national
+2022-12-26,ES,AN,Andalucia,Lunes siguiente a Natividad del Señor,regional
+2022-12-26,ES,AR,Aragon,Lunes siguiente a Natividad del Señor,regional
+2022-12-26,ES,AS,Asturias,Lunes siguiente a Natividad del Señor,regional
+2022-12-26,ES,CB,Cantabria,Lunes siguiente a Natividad del Señor,regional
+2022-12-26,ES,CL,Castilla y Leon,Lunes siguiente a Natividad del Señor,regional
+2022-12-26,ES,CM,Castilla-La Mancha,Lunes siguiente a Natividad del Señor,regional
+2022-12-26,ES,CN,Canarias,Lunes siguiente a Natividad del Señor,regional
+2022-12-26,ES,CT,Cataluna,San Esteban,regional
+2022-12-26,ES,EX,Extremadura,Lunes siguiente a Natividad del Señor,regional
+2022-12-26,ES,IB,Illes Balears,Lunes siguiente a Natividad del Señor,regional
+2022-12-26,ES,MC,Murcia,Lunes siguiente a Natividad del Señor,regional
+2022-12-26,ES,MD,Madrid,Lunes siguiente a Natividad del Señor,regional
+2022-12-26,ES,ML,Melilla,Lunes siguiente a Natividad del Señor,regional
+2022-12-26,ES,NC,Navarra,Lunes siguiente a Natividad del Señor,regional
+2022-12-26,ES,RI,La Rioja,Lunes siguiente a Natividad del Señor,regional
+2023-01-02,ES,AN,Andalucia,Lunes siguiente a Año Nuevo,regional
+2023-01-02,ES,AR,Aragon,Lunes siguiente a Año Nuevo,regional
+2023-01-02,ES,AS,Asturias,Lunes siguiente a Año Nuevo,regional
+2023-01-02,ES,CL,Castilla y Leon,Lunes siguiente a Año Nuevo,regional
+2023-01-02,ES,MC,Murcia,Lunes siguiente a Año Nuevo,regional
+2023-01-06,ES,AN,Andalucia,Epifanía del Señor,national
+2023-01-06,ES,AR,Aragon,Epifanía del Señor,national
+2023-01-06,ES,AS,Asturias,Epifanía del Señor,national
+2023-01-06,ES,CB,Cantabria,Epifanía del Señor,national
+2023-01-06,ES,CE,Ceuta,Epifanía del Señor,national
+2023-01-06,ES,CL,Castilla y Leon,Epifanía del Señor,national
+2023-01-06,ES,CM,Castilla-La Mancha,Epifanía del Señor,national
+2023-01-06,ES,CN,Canarias,Epifanía del Señor,national
+2023-01-06,ES,CT,Cataluna,Epifanía del Señor,national
+2023-01-06,ES,ES,Espana,Epifanía del Señor,national
+2023-01-06,ES,EX,Extremadura,Epifanía del Señor,national
+2023-01-06,ES,GA,Galicia,Epifanía del Señor,national
+2023-01-06,ES,IB,Illes Balears,Epifanía del Señor,national
+2023-01-06,ES,MC,Murcia,Epifanía del Señor,national
+2023-01-06,ES,MD,Madrid,Epifanía del Señor,national
+2023-01-06,ES,ML,Melilla,Epifanía del Señor,national
+2023-01-06,ES,NC,Navarra,Epifanía del Señor,national
+2023-01-06,ES,PV,Pais Vasco,Epifanía del Señor,national
+2023-01-06,ES,RI,La Rioja,Epifanía del Señor,national
+2023-01-06,ES,VC,Comunitat Valenciana,Epifanía del Señor,national
+2023-02-21,ES,EX,Extremadura,Martes de Carnaval,regional
+2023-02-28,ES,AN,Andalucia,Día de Andalucía,regional
+2023-03-01,ES,IB,Illes Balears,Día de las Islas Baleares,regional
+2023-03-13,ES,ML,Melilla,Estatuto de Autonomía de la Ciudad de Melilla,regional
+2023-03-20,ES,MD,Madrid,Lunes siguiente a San José,regional
+2023-04-06,ES,AN,Andalucia,Jueves Santo,regional
+2023-04-06,ES,AR,Aragon,Jueves Santo,regional
+2023-04-06,ES,AS,Asturias,Jueves Santo,regional
+2023-04-06,ES,CB,Cantabria,Jueves Santo,regional
+2023-04-06,ES,CE,Ceuta,Jueves Santo,regional
+2023-04-06,ES,CL,Castilla y Leon,Jueves Santo,regional
+2023-04-06,ES,CM,Castilla-La Mancha,Jueves Santo,regional
+2023-04-06,ES,CN,Canarias,Jueves Santo,regional
+2023-04-06,ES,EX,Extremadura,Jueves Santo,regional
+2023-04-06,ES,GA,Galicia,Jueves Santo,regional
+2023-04-06,ES,IB,Illes Balears,Jueves Santo,regional
+2023-04-06,ES,MC,Murcia,Jueves Santo,regional
+2023-04-06,ES,MD,Madrid,Jueves Santo,regional
+2023-04-06,ES,ML,Melilla,Jueves Santo,regional
+2023-04-06,ES,NC,Navarra,Jueves Santo,regional
+2023-04-06,ES,PV,Pais Vasco,Jueves Santo,regional
+2023-04-06,ES,RI,La Rioja,Jueves Santo,regional
+2023-04-07,ES,AN,Andalucia,Viernes Santo,national
+2023-04-07,ES,AR,Aragon,Viernes Santo,national
+2023-04-07,ES,AS,Asturias,Viernes Santo,national
+2023-04-07,ES,CB,Cantabria,Viernes Santo,national
+2023-04-07,ES,CE,Ceuta,Viernes Santo,national
+2023-04-07,ES,CL,Castilla y Leon,Viernes Santo,national
+2023-04-07,ES,CM,Castilla-La Mancha,Viernes Santo,national
+2023-04-07,ES,CN,Canarias,Viernes Santo,national
+2023-04-07,ES,CT,Cataluna,Viernes Santo,national
+2023-04-07,ES,ES,Espana,Viernes Santo,national
+2023-04-07,ES,EX,Extremadura,Viernes Santo,national
+2023-04-07,ES,GA,Galicia,Viernes Santo,national
+2023-04-07,ES,IB,Illes Balears,Viernes Santo,national
+2023-04-07,ES,MC,Murcia,Viernes Santo,national
+2023-04-07,ES,MD,Madrid,Viernes Santo,national
+2023-04-07,ES,ML,Melilla,Viernes Santo,national
+2023-04-07,ES,NC,Navarra,Viernes Santo,national
+2023-04-07,ES,PV,Pais Vasco,Viernes Santo,national
+2023-04-07,ES,RI,La Rioja,Viernes Santo,national
+2023-04-07,ES,VC,Comunitat Valenciana,Viernes Santo,national
+2023-04-10,ES,CT,Cataluna,Lunes de Pascua,regional
+2023-04-10,ES,IB,Illes Balears,Lunes de Pascua,regional
+2023-04-10,ES,NC,Navarra,Lunes de Pascua,regional
+2023-04-10,ES,PV,Pais Vasco,Lunes de Pascua,regional
+2023-04-10,ES,RI,La Rioja,Lunes de Pascua,regional
+2023-04-10,ES,VC,Comunitat Valenciana,Lunes de Pascua,regional
+2023-04-21,ES,ML,Melilla,Fiesta del Eid Fitr,regional
+2023-04-24,ES,AR,Aragon,Lunes siguiente a Día de San Jorge,regional
+2023-05-01,ES,AN,Andalucia,Fiesta del Trabajo,national
+2023-05-01,ES,AR,Aragon,Fiesta del Trabajo,national
+2023-05-01,ES,AS,Asturias,Fiesta del Trabajo,national
+2023-05-01,ES,CB,Cantabria,Fiesta del Trabajo,national
+2023-05-01,ES,CE,Ceuta,Fiesta del Trabajo,national
+2023-05-01,ES,CL,Castilla y Leon,Fiesta del Trabajo,national
+2023-05-01,ES,CM,Castilla-La Mancha,Fiesta del Trabajo,national
+2023-05-01,ES,CN,Canarias,Fiesta del Trabajo,national
+2023-05-01,ES,CT,Cataluna,Fiesta del Trabajo,national
+2023-05-01,ES,ES,Espana,Fiesta del Trabajo,national
+2023-05-01,ES,EX,Extremadura,Fiesta del Trabajo,national
+2023-05-01,ES,GA,Galicia,Fiesta del Trabajo,national
+2023-05-01,ES,IB,Illes Balears,Fiesta del Trabajo,national
+2023-05-01,ES,MC,Murcia,Fiesta del Trabajo,national
+2023-05-01,ES,MD,Madrid,Fiesta del Trabajo,national
+2023-05-01,ES,ML,Melilla,Fiesta del Trabajo,national
+2023-05-01,ES,NC,Navarra,Fiesta del Trabajo,national
+2023-05-01,ES,PV,Pais Vasco,Fiesta del Trabajo,national
+2023-05-01,ES,RI,La Rioja,Fiesta del Trabajo,national
+2023-05-01,ES,VC,Comunitat Valenciana,Fiesta del Trabajo,national
+2023-05-02,ES,MD,Madrid,Fiesta de la Comunidad de Madrid,regional
+2023-05-17,ES,GA,Galicia,Día de las Letras Gallegas,regional
+2023-05-30,ES,CN,Canarias,Día de Canarias,regional
+2023-05-31,ES,CM,Castilla-La Mancha,Día de Castilla-La Mancha,regional
+2023-06-08,ES,CM,Castilla-La Mancha,Corpus Christi,regional
+2023-06-09,ES,MC,Murcia,Día de la Región de Murcia,regional
+2023-06-09,ES,RI,La Rioja,Día de La Rioja,regional
+2023-06-13,ES,CE,Ceuta,San Antonio,regional
+2023-06-24,ES,CT,Cataluna,San Juan,regional
+2023-06-24,ES,VC,Comunitat Valenciana,San Juan,regional
+2023-06-29,ES,CE,Ceuta,Fiesta del Sacrificio-Eidul Adha,regional
+2023-06-29,ES,ML,Melilla,Fiesta del Sacrificio-Aid Al Adha,regional
+2023-07-25,ES,CL,Castilla y Leon,Santiago Apóstol,regional
+2023-07-25,ES,GA,Galicia,Día Nacional de Galicia,regional
+2023-07-25,ES,NC,Navarra,Santiago Apóstol,regional
+2023-07-25,ES,PV,Pais Vasco,Santiago Apóstol,regional
+2023-07-28,ES,CB,Cantabria,Día de las Instituciones de Cantabria,regional
+2023-08-05,ES,CE,Ceuta,Nuestra Señora de África,regional
+2023-08-15,ES,AN,Andalucia,Asunción de la Virgen,national
+2023-08-15,ES,AR,Aragon,Asunción de la Virgen,national
+2023-08-15,ES,AS,Asturias,Asunción de la Virgen,national
+2023-08-15,ES,CB,Cantabria,Asunción de la Virgen,national
+2023-08-15,ES,CE,Ceuta,Asunción de la Virgen,national
+2023-08-15,ES,CL,Castilla y Leon,Asunción de la Virgen,national
+2023-08-15,ES,CM,Castilla-La Mancha,Asunción de la Virgen,national
+2023-08-15,ES,CN,Canarias,Asunción de la Virgen,national
+2023-08-15,ES,CT,Cataluna,Asunción de la Virgen,national
+2023-08-15,ES,ES,Espana,Asunción de la Virgen,national
+2023-08-15,ES,EX,Extremadura,Asunción de la Virgen,national
+2023-08-15,ES,GA,Galicia,Asunción de la Virgen,national
+2023-08-15,ES,IB,Illes Balears,Asunción de la Virgen,national
+2023-08-15,ES,MC,Murcia,Asunción de la Virgen,national
+2023-08-15,ES,MD,Madrid,Asunción de la Virgen,national
+2023-08-15,ES,ML,Melilla,Asunción de la Virgen,national
+2023-08-15,ES,NC,Navarra,Asunción de la Virgen,national
+2023-08-15,ES,PV,Pais Vasco,Asunción de la Virgen,national
+2023-08-15,ES,RI,La Rioja,Asunción de la Virgen,national
+2023-08-15,ES,VC,Comunitat Valenciana,Asunción de la Virgen,national
+2023-09-02,ES,CE,Ceuta,Día de Ceuta,regional
+2023-09-08,ES,AS,Asturias,Día de Asturias,regional
+2023-09-08,ES,EX,Extremadura,Día de Extremadura,regional
+2023-09-08,ES,ML,Melilla,Día de Nuestra Señora la Virgen de la Victoria,regional
+2023-09-11,ES,CT,Cataluna,Fiesta Nacional de Cataluña,regional
+2023-09-15,ES,CB,Cantabria,La Bien Aparecida,regional
+2023-10-09,ES,VC,Comunitat Valenciana,Día de la Comunidad Valenciana,regional
+2023-10-12,ES,AN,Andalucia,Fiesta Nacional de España,national
+2023-10-12,ES,AR,Aragon,Fiesta Nacional de España,national
+2023-10-12,ES,AS,Asturias,Fiesta Nacional de España,national
+2023-10-12,ES,CB,Cantabria,Fiesta Nacional de España,national
+2023-10-12,ES,CE,Ceuta,Fiesta Nacional de España,national
+2023-10-12,ES,CL,Castilla y Leon,Fiesta Nacional de España,national
+2023-10-12,ES,CM,Castilla-La Mancha,Fiesta Nacional de España,national
+2023-10-12,ES,CN,Canarias,Fiesta Nacional de España,national
+2023-10-12,ES,CT,Cataluna,Fiesta Nacional de España,national
+2023-10-12,ES,ES,Espana,Fiesta Nacional de España,national
+2023-10-12,ES,EX,Extremadura,Fiesta Nacional de España,national
+2023-10-12,ES,GA,Galicia,Fiesta Nacional de España,national
+2023-10-12,ES,IB,Illes Balears,Fiesta Nacional de España,national
+2023-10-12,ES,MC,Murcia,Fiesta Nacional de España,national
+2023-10-12,ES,MD,Madrid,Fiesta Nacional de España,national
+2023-10-12,ES,ML,Melilla,Fiesta Nacional de España,national
+2023-10-12,ES,NC,Navarra,Fiesta Nacional de España,national
+2023-10-12,ES,PV,Pais Vasco,Fiesta Nacional de España,national
+2023-10-12,ES,RI,La Rioja,Fiesta Nacional de España,national
+2023-10-12,ES,VC,Comunitat Valenciana,Fiesta Nacional de España,national
+2023-11-01,ES,AN,Andalucia,Todos los Santos,national
+2023-11-01,ES,AR,Aragon,Todos los Santos,national
+2023-11-01,ES,AS,Asturias,Todos los Santos,national
+2023-11-01,ES,CB,Cantabria,Todos los Santos,national
+2023-11-01,ES,CE,Ceuta,Todos los Santos,national
+2023-11-01,ES,CL,Castilla y Leon,Todos los Santos,national
+2023-11-01,ES,CM,Castilla-La Mancha,Todos los Santos,national
+2023-11-01,ES,CN,Canarias,Todos los Santos,national
+2023-11-01,ES,CT,Cataluna,Todos los Santos,national
+2023-11-01,ES,ES,Espana,Todos los Santos,national
+2023-11-01,ES,EX,Extremadura,Todos los Santos,national
+2023-11-01,ES,GA,Galicia,Todos los Santos,national
+2023-11-01,ES,IB,Illes Balears,Todos los Santos,national
+2023-11-01,ES,MC,Murcia,Todos los Santos,national
+2023-11-01,ES,MD,Madrid,Todos los Santos,national
+2023-11-01,ES,ML,Melilla,Todos los Santos,national
+2023-11-01,ES,NC,Navarra,Todos los Santos,national
+2023-11-01,ES,PV,Pais Vasco,Todos los Santos,national
+2023-11-01,ES,RI,La Rioja,Todos los Santos,national
+2023-11-01,ES,VC,Comunitat Valenciana,Todos los Santos,national
+2023-12-04,ES,NC,Navarra,Lunes siguiente a San Francisco Javier,regional
+2023-12-06,ES,AN,Andalucia,Día de la Constitución Española,national
+2023-12-06,ES,AR,Aragon,Día de la Constitución Española,national
+2023-12-06,ES,AS,Asturias,Día de la Constitución Española,national
+2023-12-06,ES,CB,Cantabria,Día de la Constitución Española,national
+2023-12-06,ES,CE,Ceuta,Día de la Constitución Española,national
+2023-12-06,ES,CL,Castilla y Leon,Día de la Constitución Española,national
+2023-12-06,ES,CM,Castilla-La Mancha,Día de la Constitución Española,national
+2023-12-06,ES,CN,Canarias,Día de la Constitución Española,national
+2023-12-06,ES,CT,Cataluna,Día de la Constitución Española,national
+2023-12-06,ES,ES,Espana,Día de la Constitución Española,national
+2023-12-06,ES,EX,Extremadura,Día de la Constitución Española,national
+2023-12-06,ES,GA,Galicia,Día de la Constitución Española,national
+2023-12-06,ES,IB,Illes Balears,Día de la Constitución Española,national
+2023-12-06,ES,MC,Murcia,Día de la Constitución Española,national
+2023-12-06,ES,MD,Madrid,Día de la Constitución Española,national
+2023-12-06,ES,ML,Melilla,Día de la Constitución Española,national
+2023-12-06,ES,NC,Navarra,Día de la Constitución Española,national
+2023-12-06,ES,PV,Pais Vasco,Día de la Constitución Española,national
+2023-12-06,ES,RI,La Rioja,Día de la Constitución Española,national
+2023-12-06,ES,VC,Comunitat Valenciana,Día de la Constitución Española,national
+2023-12-08,ES,AN,Andalucia,Inmaculada Concepción,national
+2023-12-08,ES,AR,Aragon,Inmaculada Concepción,national
+2023-12-08,ES,AS,Asturias,Inmaculada Concepción,national
+2023-12-08,ES,CB,Cantabria,Inmaculada Concepción,national
+2023-12-08,ES,CE,Ceuta,Inmaculada Concepción,national
+2023-12-08,ES,CL,Castilla y Leon,Inmaculada Concepción,national
+2023-12-08,ES,CM,Castilla-La Mancha,Inmaculada Concepción,national
+2023-12-08,ES,CN,Canarias,Inmaculada Concepción,national
+2023-12-08,ES,CT,Cataluna,Inmaculada Concepción,national
+2023-12-08,ES,ES,Espana,Inmaculada Concepción,national
+2023-12-08,ES,EX,Extremadura,Inmaculada Concepción,national
+2023-12-08,ES,GA,Galicia,Inmaculada Concepción,national
+2023-12-08,ES,IB,Illes Balears,Inmaculada Concepción,national
+2023-12-08,ES,MC,Murcia,Inmaculada Concepción,national
+2023-12-08,ES,MD,Madrid,Inmaculada Concepción,national
+2023-12-08,ES,ML,Melilla,Inmaculada Concepción,national
+2023-12-08,ES,NC,Navarra,Inmaculada Concepción,national
+2023-12-08,ES,PV,Pais Vasco,Inmaculada Concepción,national
+2023-12-08,ES,RI,La Rioja,Inmaculada Concepción,national
+2023-12-08,ES,VC,Comunitat Valenciana,Inmaculada Concepción,national
+2023-12-25,ES,AN,Andalucia,Natividad del Señor,national
+2023-12-25,ES,AR,Aragon,Natividad del Señor,national
+2023-12-25,ES,AS,Asturias,Natividad del Señor,national
+2023-12-25,ES,CB,Cantabria,Natividad del Señor,national
+2023-12-25,ES,CE,Ceuta,Natividad del Señor,national
+2023-12-25,ES,CL,Castilla y Leon,Natividad del Señor,national
+2023-12-25,ES,CM,Castilla-La Mancha,Natividad del Señor,national
+2023-12-25,ES,CN,Canarias,Natividad del Señor,national
+2023-12-25,ES,CT,Cataluna,Natividad del Señor,national
+2023-12-25,ES,ES,Espana,Natividad del Señor,national
+2023-12-25,ES,EX,Extremadura,Natividad del Señor,national
+2023-12-25,ES,GA,Galicia,Natividad del Señor,national
+2023-12-25,ES,IB,Illes Balears,Natividad del Señor,national
+2023-12-25,ES,MC,Murcia,Natividad del Señor,national
+2023-12-25,ES,MD,Madrid,Natividad del Señor,national
+2023-12-25,ES,ML,Melilla,Natividad del Señor,national
+2023-12-25,ES,NC,Navarra,Natividad del Señor,national
+2023-12-25,ES,PV,Pais Vasco,Natividad del Señor,national
+2023-12-25,ES,RI,La Rioja,Natividad del Señor,national
+2023-12-25,ES,VC,Comunitat Valenciana,Natividad del Señor,national
+2023-12-26,ES,CT,Cataluna,San Esteban,regional
+2024-01-01,ES,AN,Andalucia,Año Nuevo,national
+2024-01-01,ES,AR,Aragon,Año Nuevo,national
+2024-01-01,ES,AS,Asturias,Año Nuevo,national
+2024-01-01,ES,CB,Cantabria,Año Nuevo,national
+2024-01-01,ES,CE,Ceuta,Año Nuevo,national
+2024-01-01,ES,CL,Castilla y Leon,Año Nuevo,national
+2024-01-01,ES,CM,Castilla-La Mancha,Año Nuevo,national
+2024-01-01,ES,CN,Canarias,Año Nuevo,national
+2024-01-01,ES,CT,Cataluna,Año Nuevo,national
+2024-01-01,ES,ES,Espana,Año Nuevo,national
+2024-01-01,ES,EX,Extremadura,Año Nuevo,national
+2024-01-01,ES,GA,Galicia,Año Nuevo,national
+2024-01-01,ES,IB,Illes Balears,Año Nuevo,national
+2024-01-01,ES,MC,Murcia,Año Nuevo,national
+2024-01-01,ES,MD,Madrid,Año Nuevo,national
+2024-01-01,ES,ML,Melilla,Año Nuevo,national
+2024-01-01,ES,NC,Navarra,Año Nuevo,national
+2024-01-01,ES,PV,Pais Vasco,Año Nuevo,national
+2024-01-01,ES,RI,La Rioja,Año Nuevo,national
+2024-01-01,ES,VC,Comunitat Valenciana,Año Nuevo,national
+2024-01-06,ES,AN,Andalucia,Epifanía del Señor,national
+2024-01-06,ES,AR,Aragon,Epifanía del Señor,national
+2024-01-06,ES,AS,Asturias,Epifanía del Señor,national
+2024-01-06,ES,CB,Cantabria,Epifanía del Señor,national
+2024-01-06,ES,CE,Ceuta,Epifanía del Señor,national
+2024-01-06,ES,CL,Castilla y Leon,Epifanía del Señor,national
+2024-01-06,ES,CM,Castilla-La Mancha,Epifanía del Señor,national
+2024-01-06,ES,CN,Canarias,Epifanía del Señor,national
+2024-01-06,ES,CT,Cataluna,Epifanía del Señor,national
+2024-01-06,ES,ES,Espana,Epifanía del Señor,national
+2024-01-06,ES,EX,Extremadura,Epifanía del Señor,national
+2024-01-06,ES,GA,Galicia,Epifanía del Señor,national
+2024-01-06,ES,IB,Illes Balears,Epifanía del Señor,national
+2024-01-06,ES,MC,Murcia,Epifanía del Señor,national
+2024-01-06,ES,MD,Madrid,Epifanía del Señor,national
+2024-01-06,ES,ML,Melilla,Epifanía del Señor,national
+2024-01-06,ES,NC,Navarra,Epifanía del Señor,national
+2024-01-06,ES,PV,Pais Vasco,Epifanía del Señor,national
+2024-01-06,ES,RI,La Rioja,Epifanía del Señor,national
+2024-01-06,ES,VC,Comunitat Valenciana,Epifanía del Señor,national
+2024-02-13,ES,EX,Extremadura,Martes de Carnaval,regional
+2024-02-28,ES,AN,Andalucia,Día de Andalucía,regional
+2024-03-01,ES,IB,Illes Balears,Día de las Islas Baleares,regional
+2024-03-19,ES,MC,Murcia,San José,regional
+2024-03-19,ES,VC,Comunitat Valenciana,San José,regional
+2024-03-28,ES,AN,Andalucia,Jueves Santo,regional
+2024-03-28,ES,AR,Aragon,Jueves Santo,regional
+2024-03-28,ES,AS,Asturias,Jueves Santo,regional
+2024-03-28,ES,CB,Cantabria,Jueves Santo,regional
+2024-03-28,ES,CE,Ceuta,Jueves Santo,regional
+2024-03-28,ES,CL,Castilla y Leon,Jueves Santo,regional
+2024-03-28,ES,CM,Castilla-La Mancha,Jueves Santo,regional
+2024-03-28,ES,CN,Canarias,Jueves Santo,regional
+2024-03-28,ES,EX,Extremadura,Jueves Santo,regional
+2024-03-28,ES,GA,Galicia,Jueves Santo,regional
+2024-03-28,ES,IB,Illes Balears,Jueves Santo,regional
+2024-03-28,ES,MC,Murcia,Jueves Santo,regional
+2024-03-28,ES,MD,Madrid,Jueves Santo,regional
+2024-03-28,ES,ML,Melilla,Jueves Santo,regional
+2024-03-28,ES,NC,Navarra,Jueves Santo,regional
+2024-03-28,ES,PV,Pais Vasco,Jueves Santo,regional
+2024-03-28,ES,RI,La Rioja,Jueves Santo,regional
+2024-03-29,ES,AN,Andalucia,Viernes Santo,national
+2024-03-29,ES,AR,Aragon,Viernes Santo,national
+2024-03-29,ES,AS,Asturias,Viernes Santo,national
+2024-03-29,ES,CB,Cantabria,Viernes Santo,national
+2024-03-29,ES,CE,Ceuta,Viernes Santo,national
+2024-03-29,ES,CL,Castilla y Leon,Viernes Santo,national
+2024-03-29,ES,CM,Castilla-La Mancha,Viernes Santo,national
+2024-03-29,ES,CN,Canarias,Viernes Santo,national
+2024-03-29,ES,CT,Cataluna,Viernes Santo,national
+2024-03-29,ES,ES,Espana,Viernes Santo,national
+2024-03-29,ES,EX,Extremadura,Viernes Santo,national
+2024-03-29,ES,GA,Galicia,Viernes Santo,national
+2024-03-29,ES,IB,Illes Balears,Viernes Santo,national
+2024-03-29,ES,MC,Murcia,Viernes Santo,national
+2024-03-29,ES,MD,Madrid,Viernes Santo,national
+2024-03-29,ES,ML,Melilla,Viernes Santo,national
+2024-03-29,ES,NC,Navarra,Viernes Santo,national
+2024-03-29,ES,PV,Pais Vasco,Viernes Santo,national
+2024-03-29,ES,RI,La Rioja,Viernes Santo,national
+2024-03-29,ES,VC,Comunitat Valenciana,Viernes Santo,national
+2024-04-01,ES,CB,Cantabria,Lunes de Pascua,regional
+2024-04-01,ES,CT,Cataluna,Lunes de Pascua,regional
+2024-04-01,ES,IB,Illes Balears,Lunes de Pascua,regional
+2024-04-01,ES,NC,Navarra,Lunes de Pascua,regional
+2024-04-01,ES,PV,Pais Vasco,Lunes de Pascua,regional
+2024-04-01,ES,RI,La Rioja,Lunes de Pascua,regional
+2024-04-01,ES,VC,Comunitat Valenciana,Lunes de Pascua,regional
+2024-04-10,ES,ML,Melilla,Fiesta del Eid Fitr,regional
+2024-04-23,ES,AR,Aragon,Día de San Jorge,regional
+2024-04-23,ES,CL,Castilla y Leon,Fiesta de Castilla y León,regional
+2024-05-01,ES,AN,Andalucia,Fiesta del Trabajo,national
+2024-05-01,ES,AR,Aragon,Fiesta del Trabajo,national
+2024-05-01,ES,AS,Asturias,Fiesta del Trabajo,national
+2024-05-01,ES,CB,Cantabria,Fiesta del Trabajo,national
+2024-05-01,ES,CE,Ceuta,Fiesta del Trabajo,national
+2024-05-01,ES,CL,Castilla y Leon,Fiesta del Trabajo,national
+2024-05-01,ES,CM,Castilla-La Mancha,Fiesta del Trabajo,national
+2024-05-01,ES,CN,Canarias,Fiesta del Trabajo,national
+2024-05-01,ES,CT,Cataluna,Fiesta del Trabajo,national
+2024-05-01,ES,ES,Espana,Fiesta del Trabajo,national
+2024-05-01,ES,EX,Extremadura,Fiesta del Trabajo,national
+2024-05-01,ES,GA,Galicia,Fiesta del Trabajo,national
+2024-05-01,ES,IB,Illes Balears,Fiesta del Trabajo,national
+2024-05-01,ES,MC,Murcia,Fiesta del Trabajo,national
+2024-05-01,ES,MD,Madrid,Fiesta del Trabajo,national
+2024-05-01,ES,ML,Melilla,Fiesta del Trabajo,national
+2024-05-01,ES,NC,Navarra,Fiesta del Trabajo,national
+2024-05-01,ES,PV,Pais Vasco,Fiesta del Trabajo,national
+2024-05-01,ES,RI,La Rioja,Fiesta del Trabajo,national
+2024-05-01,ES,VC,Comunitat Valenciana,Fiesta del Trabajo,national
+2024-05-02,ES,MD,Madrid,Fiesta de la Comunidad de Madrid,regional
+2024-05-17,ES,GA,Galicia,Día de las Letras Gallegas,regional
+2024-05-30,ES,CM,Castilla-La Mancha,Corpus Christi,regional
+2024-05-30,ES,CN,Canarias,Día de Canarias,regional
+2024-05-31,ES,CM,Castilla-La Mancha,Día de Castilla-La Mancha,regional
+2024-06-10,ES,RI,La Rioja,Lunes siguiente a Día de La Rioja,regional
+2024-06-13,ES,CE,Ceuta,San Antonio,regional
+2024-06-17,ES,CE,Ceuta,Fiesta del Sacrificio-Eidul Adha,regional
+2024-06-17,ES,ML,Melilla,Fiesta del Sacrificio-Aid Al Adha,regional
+2024-06-24,ES,CT,Cataluna,San Juan,regional
+2024-06-24,ES,VC,Comunitat Valenciana,San Juan,regional
+2024-07-25,ES,CB,Cantabria,Santiago Apóstol,regional
+2024-07-25,ES,GA,Galicia,Día Nacional de Galicia,regional
+2024-07-25,ES,MD,Madrid,Santiago Apóstol,regional
+2024-07-25,ES,NC,Navarra,Santiago Apóstol,regional
+2024-07-25,ES,PV,Pais Vasco,Santiago Apóstol,regional
+2024-08-05,ES,CE,Ceuta,Nuestra Señora de África,regional
+2024-08-15,ES,AN,Andalucia,Asunción de la Virgen,national
+2024-08-15,ES,AR,Aragon,Asunción de la Virgen,national
+2024-08-15,ES,AS,Asturias,Asunción de la Virgen,national
+2024-08-15,ES,CB,Cantabria,Asunción de la Virgen,national
+2024-08-15,ES,CE,Ceuta,Asunción de la Virgen,national
+2024-08-15,ES,CL,Castilla y Leon,Asunción de la Virgen,national
+2024-08-15,ES,CM,Castilla-La Mancha,Asunción de la Virgen,national
+2024-08-15,ES,CN,Canarias,Asunción de la Virgen,national
+2024-08-15,ES,CT,Cataluna,Asunción de la Virgen,national
+2024-08-15,ES,ES,Espana,Asunción de la Virgen,national
+2024-08-15,ES,EX,Extremadura,Asunción de la Virgen,national
+2024-08-15,ES,GA,Galicia,Asunción de la Virgen,national
+2024-08-15,ES,IB,Illes Balears,Asunción de la Virgen,national
+2024-08-15,ES,MC,Murcia,Asunción de la Virgen,national
+2024-08-15,ES,MD,Madrid,Asunción de la Virgen,national
+2024-08-15,ES,ML,Melilla,Asunción de la Virgen,national
+2024-08-15,ES,NC,Navarra,Asunción de la Virgen,national
+2024-08-15,ES,PV,Pais Vasco,Asunción de la Virgen,national
+2024-08-15,ES,RI,La Rioja,Asunción de la Virgen,national
+2024-08-15,ES,VC,Comunitat Valenciana,Asunción de la Virgen,national
+2024-09-02,ES,CE,Ceuta,Día de Ceuta,regional
+2024-09-09,ES,AS,Asturias,Lunes siguiente a Día de Asturias,regional
+2024-09-11,ES,CT,Cataluna,Fiesta Nacional de Cataluña,regional
+2024-09-17,ES,ML,Melilla,Día de Melilla,regional
+2024-10-09,ES,VC,Comunitat Valenciana,Día de la Comunidad Valenciana,regional
+2024-10-12,ES,AN,Andalucia,Fiesta Nacional de España,national
+2024-10-12,ES,AR,Aragon,Fiesta Nacional de España,national
+2024-10-12,ES,AS,Asturias,Fiesta Nacional de España,national
+2024-10-12,ES,CB,Cantabria,Fiesta Nacional de España,national
+2024-10-12,ES,CE,Ceuta,Fiesta Nacional de España,national
+2024-10-12,ES,CL,Castilla y Leon,Fiesta Nacional de España,national
+2024-10-12,ES,CM,Castilla-La Mancha,Fiesta Nacional de España,national
+2024-10-12,ES,CN,Canarias,Fiesta Nacional de España,national
+2024-10-12,ES,CT,Cataluna,Fiesta Nacional de España,national
+2024-10-12,ES,ES,Espana,Fiesta Nacional de España,national
+2024-10-12,ES,EX,Extremadura,Fiesta Nacional de España,national
+2024-10-12,ES,GA,Galicia,Fiesta Nacional de España,national
+2024-10-12,ES,IB,Illes Balears,Fiesta Nacional de España,national
+2024-10-12,ES,MC,Murcia,Fiesta Nacional de España,national
+2024-10-12,ES,MD,Madrid,Fiesta Nacional de España,national
+2024-10-12,ES,ML,Melilla,Fiesta Nacional de España,national
+2024-10-12,ES,NC,Navarra,Fiesta Nacional de España,national
+2024-10-12,ES,PV,Pais Vasco,Fiesta Nacional de España,national
+2024-10-12,ES,RI,La Rioja,Fiesta Nacional de España,national
+2024-10-12,ES,VC,Comunitat Valenciana,Fiesta Nacional de España,national
+2024-11-01,ES,AN,Andalucia,Todos los Santos,national
+2024-11-01,ES,AR,Aragon,Todos los Santos,national
+2024-11-01,ES,AS,Asturias,Todos los Santos,national
+2024-11-01,ES,CB,Cantabria,Todos los Santos,national
+2024-11-01,ES,CE,Ceuta,Todos los Santos,national
+2024-11-01,ES,CL,Castilla y Leon,Todos los Santos,national
+2024-11-01,ES,CM,Castilla-La Mancha,Todos los Santos,national
+2024-11-01,ES,CN,Canarias,Todos los Santos,national
+2024-11-01,ES,CT,Cataluna,Todos los Santos,national
+2024-11-01,ES,ES,Espana,Todos los Santos,national
+2024-11-01,ES,EX,Extremadura,Todos los Santos,national
+2024-11-01,ES,GA,Galicia,Todos los Santos,national
+2024-11-01,ES,IB,Illes Balears,Todos los Santos,national
+2024-11-01,ES,MC,Murcia,Todos los Santos,national
+2024-11-01,ES,MD,Madrid,Todos los Santos,national
+2024-11-01,ES,ML,Melilla,Todos los Santos,national
+2024-11-01,ES,NC,Navarra,Todos los Santos,national
+2024-11-01,ES,PV,Pais Vasco,Todos los Santos,national
+2024-11-01,ES,RI,La Rioja,Todos los Santos,national
+2024-11-01,ES,VC,Comunitat Valenciana,Todos los Santos,national
+2024-12-03,ES,NC,Navarra,San Francisco Javier,regional
+2024-12-06,ES,AN,Andalucia,Día de la Constitución Española,national
+2024-12-06,ES,AR,Aragon,Día de la Constitución Española,national
+2024-12-06,ES,AS,Asturias,Día de la Constitución Española,national
+2024-12-06,ES,CB,Cantabria,Día de la Constitución Española,national
+2024-12-06,ES,CE,Ceuta,Día de la Constitución Española,national
+2024-12-06,ES,CL,Castilla y Leon,Día de la Constitución Española,national
+2024-12-06,ES,CM,Castilla-La Mancha,Día de la Constitución Española,national
+2024-12-06,ES,CN,Canarias,Día de la Constitución Española,national
+2024-12-06,ES,CT,Cataluna,Día de la Constitución Española,national
+2024-12-06,ES,ES,Espana,Día de la Constitución Española,national
+2024-12-06,ES,EX,Extremadura,Día de la Constitución Española,national
+2024-12-06,ES,GA,Galicia,Día de la Constitución Española,national
+2024-12-06,ES,IB,Illes Balears,Día de la Constitución Española,national
+2024-12-06,ES,MC,Murcia,Día de la Constitución Española,national
+2024-12-06,ES,MD,Madrid,Día de la Constitución Española,national
+2024-12-06,ES,ML,Melilla,Día de la Constitución Española,national
+2024-12-06,ES,NC,Navarra,Día de la Constitución Española,national
+2024-12-06,ES,PV,Pais Vasco,Día de la Constitución Española,national
+2024-12-06,ES,RI,La Rioja,Día de la Constitución Española,national
+2024-12-06,ES,VC,Comunitat Valenciana,Día de la Constitución Española,national
+2024-12-09,ES,AN,Andalucia,Lunes siguiente a Inmaculada Concepción,regional
+2024-12-09,ES,AR,Aragon,Lunes siguiente a Inmaculada Concepción,regional
+2024-12-09,ES,AS,Asturias,Lunes siguiente a Inmaculada Concepción,regional
+2024-12-09,ES,CL,Castilla y Leon,Lunes siguiente a Inmaculada Concepción,regional
+2024-12-09,ES,EX,Extremadura,Lunes siguiente a Inmaculada Concepción,regional
+2024-12-09,ES,MC,Murcia,Lunes siguiente a Inmaculada Concepción,regional
+2024-12-09,ES,ML,Melilla,Lunes siguiente a Inmaculada Concepción,regional
+2024-12-25,ES,AN,Andalucia,Natividad del Señor,national
+2024-12-25,ES,AR,Aragon,Natividad del Señor,national
+2024-12-25,ES,AS,Asturias,Natividad del Señor,national
+2024-12-25,ES,CB,Cantabria,Natividad del Señor,national
+2024-12-25,ES,CE,Ceuta,Natividad del Señor,national
+2024-12-25,ES,CL,Castilla y Leon,Natividad del Señor,national
+2024-12-25,ES,CM,Castilla-La Mancha,Natividad del Señor,national
+2024-12-25,ES,CN,Canarias,Natividad del Señor,national
+2024-12-25,ES,CT,Cataluna,Natividad del Señor,national
+2024-12-25,ES,ES,Espana,Natividad del Señor,national
+2024-12-25,ES,EX,Extremadura,Natividad del Señor,national
+2024-12-25,ES,GA,Galicia,Natividad del Señor,national
+2024-12-25,ES,IB,Illes Balears,Natividad del Señor,national
+2024-12-25,ES,MC,Murcia,Natividad del Señor,national
+2024-12-25,ES,MD,Madrid,Natividad del Señor,national
+2024-12-25,ES,ML,Melilla,Natividad del Señor,national
+2024-12-25,ES,NC,Navarra,Natividad del Señor,national
+2024-12-25,ES,PV,Pais Vasco,Natividad del Señor,national
+2024-12-25,ES,RI,La Rioja,Natividad del Señor,national
+2024-12-25,ES,VC,Comunitat Valenciana,Natividad del Señor,national
+2024-12-26,ES,CT,Cataluna,San Esteban,regional

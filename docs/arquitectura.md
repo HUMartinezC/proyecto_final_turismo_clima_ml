@@ -30,7 +30,7 @@ datasets/processed/gold/   Tabla final de features
 ## Flujo
 
 1. `scripts/run_pipeline.py` ingiere Dataestur, Open-Meteo y festivos.
-2. Los Excel mensuales de AENA se colocan manualmente en `datasets/raw/aena/`.
+2. Los Excel mensuales de AENA se colocan manualmente en `datasets/bronze/aena/` o `datasets/bronze/aena/original/`.
 3. Los originales se guardan en `datasets/raw/` y, si procede, en `s3://bucket/bronze/`.
 4. El procesamiento genera tablas silver en CSV y Parquet.
 5. La capa gold integra turismo, clima, calendario y movilidad por `province + year_month`.
@@ -77,3 +77,5 @@ python scripts/run_pipeline.py --catalog
 ```
 
 La ejecucion sin argumentos intenta despliegue, ingesta y procesamiento. Las ejecuciones parciales permiten validar o regenerar componentes concretos sin repetir descargas.
+
+Con un `.env` completo, incluyendo credenciales AWS, `S3_BUCKET_NAME` y `ATHENA_RESULTS_S3_URI`, el flujo completo se reproduce con `python scripts/run_pipeline.py`. Para regenerar solo salidas locales sin escribir en S3, se usa `python scripts/run_pipeline.py --process --skip-s3-upload`.
